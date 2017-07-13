@@ -7,6 +7,10 @@ import {
 } from 'react-router-dom';
 import Login from '../Login';
 import Main from '../Main';
+
+import Welcome from '../views/welcome'
+import Dashboard from '../views/dashboard'
+
 import { getQueryParams } from '../utils';
 
 class App extends Component {
@@ -23,12 +27,26 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        {this.isLoggedIn()
-          ? <Main token={this.state.token} />
-          : <Login />
-        }
-      </div>
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route exact path="/" render={() => (
+              this.isLoggedIn() ? (
+                <Redirect to="/dashboard" />
+              ) : (
+                <Welcome />
+              )
+            )}/>
+            <Route exact path="/dashboard" render={() => (
+              this.isLoggedIn() ? (
+                <Dashboard />
+              ) : (
+                <Redirect to="/"/>
+              )
+            )}/>
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
