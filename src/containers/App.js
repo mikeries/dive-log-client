@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom';
 import Login from '../Login';
 import Main from '../Main';
 import { getQueryParams } from '../utils';
