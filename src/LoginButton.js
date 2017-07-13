@@ -5,13 +5,23 @@ import Button from 'react-toolbox/lib/button/Button';
 class LoginButton extends Component {
   render() {
     return (
-      <Button
-        raised
-        accent
-        href='http://localhost:3000/authenticate'
-      >
-        Login with Facebook
-      </Button>
+      <div>
+        <Button
+          raised
+          accent
+          href='http://localhost:3000/authenticate?type=facebook'
+        >
+          Login with Facebook
+        </Button>
+        <p></p>
+              <Button
+          raised
+          accent
+          href='http://localhost:3000/authenticate?type=github'
+        >
+          Login with Github
+        </Button>
+      </div>
     );
   }
 }
