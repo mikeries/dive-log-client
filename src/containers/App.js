@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import Login from './Login';
-import Main from './Main';
-import { getQueryParams } from './utils';
-import './App.css';
+import Login from '../Login';
+import Main from '../Main';
+import { getQueryParams } from '../utils';
 
 class App extends Component {
   constructor() {
