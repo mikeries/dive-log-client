@@ -1,13 +1,29 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import Login from './Login';
+import Main from './Main';
+import { getQueryParams } from './utils';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+
+    const params = getQueryParams();
+    this.state = { token: params.token };
+  }
+
+  isLoggedIn() {
+    return !!this.state.token;
+  }
+
   render() {
     return (
       <div className="App">
-        <Login />
+        {this.isLoggedIn()
+          ? <Main token={this.state.token} />
+          : <Login />
+        }
       </div>
     );
   }
