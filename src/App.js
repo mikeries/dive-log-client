@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import Button from 'react-toolbox/lib/button/Button';
+import Login from './Login';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Button raised primary>
-          Hi!
-        </Button>
+        <Login />
       </div>
     );
   }
