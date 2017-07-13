@@ -15,6 +15,7 @@ class Welcome extends Component {
         </div>
         <div className="Login-buttons">
           <LoginButton type='facebook'/>
+          <LoginButton type='github'/>
         </div>
       </div>
     );
