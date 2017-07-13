@@ -13,14 +13,6 @@ class LoginButton extends Component {
         >
           Login with Facebook
         </Button>
-        <p></p>
-              <Button
-          raised
-          accent
-          href='http://localhost:3000/authenticate?type=github'
-        >
-          Login with Github
-        </Button>
       </div>
     );
   }

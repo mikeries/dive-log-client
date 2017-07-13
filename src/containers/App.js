@@ -5,8 +5,6 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom';
-import Login from '../Login';
-import Main from '../Main';
 
 import Welcome from '../views/welcome'
 import Dashboard from '../views/dashboard'
