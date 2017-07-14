@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
+import {bindActionCreators} from 'redux';  
+import {connect} from 'react-redux';  
+import * as sessionActions from '../redux/sessionActions';
 import LoginButton from './components/LoginButton';
 
+
+
 class Welcome extends Component {
+
+  onSave(loginType) {
+    console.log('Logging in with '+loginType)
+    //this.props.actions.logInUser(this.state.credentials);
+  }
+
   render() {
     return (
       <div className="Login">
@@ -14,12 +25,17 @@ class Welcome extends Component {
           </p>
         </div>
         <div className="Login-buttons">
-          <LoginButton type='facebook'/>
-          <LoginButton type='github'/>
+          <LoginButton type='facebook' onClick={this.onClick('facebook')}/>
+          <LoginButton type='github' onClick={this.onClick('github')}/>
         </div>
       </div>
     );
   }
 }
 
-export default Welcome;
+function mapDispatchToProps(dispatch) {  
+  return {
+    actions: bindActionCreators(sessionActions, dispatch)
+  };
+}
+export default connect(null, mapDispatchToProps)(Welcome);
