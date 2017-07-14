@@ -1,10 +1,11 @@
 
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
+import sessionReducer from './modules/Auth/reducer'
 
 const middlewares = [thunk];
 const reducers = combineReducers({
-
+  sessionReducer
 });
 
 export default createStore(
