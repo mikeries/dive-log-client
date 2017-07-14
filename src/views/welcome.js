@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import {bindActionCreators} from 'redux';  
 import {connect} from 'react-redux';  
-import * as sessionActions from '../redux/sessionActions';
+import * as sessionActions from '../redux/modules/Auth/sessionActions';
 import LoginButton from './components/LoginButton';
 
 
 
 class Welcome extends Component {
 
-  onSave(loginType) {
+  onClick(loginType) {
     console.log('Logging in with '+loginType)
     //this.props.actions.logInUser(this.state.credentials);
   }
@@ -25,8 +25,9 @@ class Welcome extends Component {
           </p>
         </div>
         <div className="Login-buttons">
-          <LoginButton type='facebook' onClick={this.onClick('facebook')}/>
-          <LoginButton type='github' onClick={this.onClick('github')}/>
+          <LoginButton type='facebook' onClick={()=> this.onClick('facebook')}/>
+            <br/>
+          <LoginButton type='github' onClick={() => this.onClick('github')}/>
         </div>
       </div>
     );
