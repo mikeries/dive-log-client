@@ -1,11 +1,12 @@
 class SessionApi {
-  static login(credentials) {
-    const request = new Request(`${process.env.API_HOST}/login`, {
+  static login(loginType) {
+    console.log('logging in')
+    const request = new Request(`http://localhost:3000/authenticate`, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'
       }), 
-      body: JSON.stringify({auth: credentials})
+      body: JSON.stringify({type: loginType})
     });
 
 

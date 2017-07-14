@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import {bindActionCreators} from 'redux';  
 import {connect} from 'react-redux';  
-import * as sessionActions from '../redux/modules/Auth/sessionActions';
+import { loginUser } from '../redux/modules/Auth/sessionActions';
 import LoginButton from './components/LoginButton';
-
-
 
 class Welcome extends Component {
 
   onClick(loginType) {
-    console.log('Logging in with '+loginType)
-    //this.props.actions.logInUser(this.state.credentials);
+    console.log('Logging in with '+loginType);
+    console.log(this.props.actions);
+    this.props.actions.loginUser(loginType);
   }
 
   render() {
@@ -36,7 +35,7 @@ class Welcome extends Component {
 
 function mapDispatchToProps(dispatch) {  
   return {
-    actions: bindActionCreators(sessionActions, dispatch)
+    actions: bindActionCreators({loginUser: loginUser}, dispatch)
   };
 }
 export default connect(null, mapDispatchToProps)(Welcome);
