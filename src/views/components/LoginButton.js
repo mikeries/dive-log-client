@@ -10,7 +10,7 @@ class LoginButton extends Component {
         <Button
           raised
           accent
-          onClick={this.props.onClick}
+          href={`http://localhost:3000/authenticate?type=${this.props.type}`}
         >
           Login with {this.props.type}
         </Button>

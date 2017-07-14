@@ -24,9 +24,9 @@ class Welcome extends Component {
           </p>
         </div>
         <div className="Login-buttons">
-          <LoginButton type='facebook' onClick={()=> this.onClick('facebook')}/>
+          <LoginButton type='facebook'/>
             <br/>
-          <LoginButton type='github' onClick={() => this.onClick('github')}/>
+          <LoginButton type='github'/>
         </div>
       </div>
     );
