@@ -9,6 +9,7 @@ import {
 import Welcome from '../views/welcome'
 import Dashboard from '../views/dashboard'
 import Dives from '../views/dives'
+import Locations from '../views/locations'
 
 import { getQueryParams } from '../utils';
 
@@ -44,6 +45,7 @@ class App extends Component {
               )
             )}/>
             <Route exact path='/dives' component={Dives} />
+            <Route exact path='/locations' component={Locations} />
           </Switch>
         </div>
       </Router>
