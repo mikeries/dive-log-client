@@ -8,6 +8,7 @@ import {
 
 import Welcome from '../views/welcome'
 import Dashboard from '../views/dashboard'
+import Dives from '../views/dives'
 
 import { getQueryParams } from '../utils';
 
@@ -42,6 +43,7 @@ class App extends Component {
                 <Redirect to="/"/>
               )
             )}/>
+            <Route exact path='/dives' component={Dives} />
           </Switch>
         </div>
       </Router>
