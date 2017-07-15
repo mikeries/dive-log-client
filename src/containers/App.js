@@ -21,12 +21,18 @@ class App extends Component {
     super();
 
     const params = getQueryParams();
-    const token = params.token || sessionStorage.getItem('jwt');
-    this.state = { jwt: token };
+    const jwt = params.token || sessionStorage.getItem('jwt');
+
+    if (jwt) {
+      console.log('found jwt')
+      this.state = { jwt: jwt };
+    } else {
+      this.state = { jwt: null}
+    }
   }
 
   isLoggedIn() {
-    return !!this.state.token;
+    return !!this.state.jwt;
   }
 
   componentWillMount() {
