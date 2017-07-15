@@ -23,11 +23,8 @@ class App extends Component {
     const params = getQueryParams();
     const jwt = params.token || sessionStorage.getItem('jwt');
 
-    if (jwt) {
-      console.log('found jwt')
-      this.state = { jwt: jwt };
-    } else {
-      this.state = { jwt: null}
+    this.state = {
+      jwt: jwt || null
     }
   }
 
@@ -59,6 +56,7 @@ class App extends Component {
               )
             )}/>
             <Route exact path='/dives' component={Dives} />
+            <Route exact path='/locations' component={Locations} />
             <Route exact path='/locations' component={Locations} />
           </Switch>
         </div>

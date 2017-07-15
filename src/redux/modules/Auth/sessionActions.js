@@ -1,8 +1,6 @@
 import * as actions from './actionTypes';
 
 export function loginUser(jwt = null) {
-  console.log('logging in');
-  console.log(jwt)
   if (jwt) sessionStorage.setItem('jwt', jwt);
   else sessionStorage.removeItem('jwt');
   return {type: actions.LOG_IN, token: jwt}
