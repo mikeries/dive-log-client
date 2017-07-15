@@ -1,4 +1,4 @@
-import * as types from './actionTypes' 
+import * as actions from './actionTypes' 
 
 const initialState = {
   isAuthenticated: false,
@@ -10,8 +10,7 @@ const initialState = {
 
 export default function sessionReducer(state = initialState, action) {  
   switch(action.type) {
-    case types.LOG_IN_SUCCESS:
-    console.log('Login success')
+    case actions.LOG_IN:
       return !!sessionStorage.jwt
     default: 
       return state;

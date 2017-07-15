@@ -5,6 +5,9 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+import { loginUser } from '../redux/modules/Auth/sessionActions'
 
 import Welcome from '../views/welcome'
 import Dashboard from '../views/dashboard'
@@ -18,12 +21,16 @@ class App extends Component {
     super();
 
     const params = getQueryParams();
-    const token = params.token || sessionStorage.getItem('token');
-    this.state = { token: token };
+    const token = params.token || sessionStorage.getItem('jwt');
+    this.state = { jwt: token };
   }
 
   isLoggedIn() {
     return !!this.state.token;
+  }
+
+  componentWillMount() {
+    this.props.loginUser(this.state.jwt);
   }
 
   render() {
@@ -54,4 +61,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    { loginUser }
+  , dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(App);

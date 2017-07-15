@@ -1,23 +1,13 @@
 
-import * as types from './actionTypes';
+import * as actions from './actionTypes';
 import sessionApi from '../Api/SessionApi';
 
-export function loginSuccess() {
-  return {type: types.LOG_IN_SUCCESS}
-}
-
-export function loginUser(credentials) {
-  return function(dispatch) {
-    return sessionApi.login(credentials).then(response => {
-      sessionStorage.setItem('jwt', response.jwt);
-      dispatch(loginSuccess());
-    }).catch(error => {
-      throw(error);
-    });
-  };
+export function loginUser(token) {
+  sessionStorage.setItem('jwt', token);
+  return {type: actions.LOG_IN_USER}
 }
 
 export function logOutUser() {
   sessionStorage.removeItem('jwt');
-  return {type: types.LOG_OUT}
+  return {type: actions.LOG_OUT_USER}
 }
