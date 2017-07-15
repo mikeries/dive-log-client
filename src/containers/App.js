@@ -18,7 +18,8 @@ class App extends Component {
     super();
 
     const params = getQueryParams();
-    this.state = { token: params.token };
+    const token = params.token || sessionStorage.getItem('token');
+    this.state = { token: token };
   }
 
   isLoggedIn() {
