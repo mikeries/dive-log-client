@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import Navbar from './components/Navbar'
 
 class Dashboard extends Component {
   render() {
     return (
       <div>
-        Welcome!
+        <Navbar />
+        <div>
+          Welcome!
+        </div>
       </div>
     );
   }
