@@ -1,9 +1,6 @@
 import * as actions from './actionTypes' 
 
 const initialState = {
-  isAuthenticated: false,
-  isAuthenticating: true,
-  currentUser: {},
   token: null,
   errors: []
 }
@@ -11,7 +8,9 @@ const initialState = {
 export default function sessionReducer(state = initialState, action) {  
   switch(action.type) {
     case actions.LOG_IN:
-      return !!sessionStorage.jwt
+      return state; // for now...
+    case actions.LOG_OUT:
+      return state;
     default: 
       return state;
   }
