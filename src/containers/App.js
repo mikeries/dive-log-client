@@ -61,7 +61,7 @@ class App extends Component {
                 <Redirect to="/"/>
               )
             )}/>
-            <Route exact path='/dives' component={Dives} handleLogout={this.props.logoutUser}/>
+            <Route exact path='/dives' component={Dives} handleLogout={this.props.logoutUser} dives={this.props.dives}/>
             <Route exact path='/locations' component={Locations} handleLogout={this.props.logoutUser}/>
           </Switch>
         </div>
@@ -80,7 +80,10 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
-  return { user: state.sessionReducer.user };
+  return { 
+    user: state.sessionReducer.user,
+    dives: state.divesReducer.dives
+   };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -11,17 +11,20 @@ import Navbar from './components/Navbar';
 class Dives extends Component {
 
   componentWillMount(state) {
-   // this.props.fetchDives(jwt)
+    this.props.fetchDives(this.props.jwt)
   }
 
   render() {
     return (
-      <div>
-        <Navbar handleLogout={this.props.handleLogout} />
-        <div>
-          Dives index page!
-        </div>
-      </div>
+    <div>
+      <Navbar handleLogout={this.props.handleLogout} />
+      <h1>Dives Page</h1>
+        {this.props.dives && this.props.dives.map((dive,index) => {
+          return <div key={index}>
+            {dive.id}
+          </div>
+        })}
+    </div>
     );
   }
 }
@@ -34,8 +37,10 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state)
-  return { jwt: state.sessionReducer.jwt };
+  return { 
+    jwt: state.sessionReducer.jwt,
+    dives: state.divesReducer.dives
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dives);
