@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Dive from './components/Dive'
 
 import { 
   fetchDives
@@ -19,11 +20,9 @@ class Dives extends Component {
     <div>
       <Navbar handleLogout={this.props.handleLogout} />
       <h1>Dives Page</h1>
-        {this.props.dives && this.props.dives.map((dive,index) => {
-          return <div key={index}>
-            {dive.id}
-          </div>
-        })}
+      {this.props.dives && 
+        <Dive dive={this.props.dives[0]}>this.props.dives[0]</Dive>
+      }
     </div>
     );
   }
