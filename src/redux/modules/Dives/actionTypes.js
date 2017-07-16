@@ -1,0 +1,2 @@
+export const LOADING_DIVES = 'LOADING_DIVES';
+export const UPDATING_DIVES = 'UPDATING_DIVES';
