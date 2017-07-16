@@ -5,7 +5,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar handleLogout={this.props.handleLogout} />
         <div>
           Welcome!
         </div>

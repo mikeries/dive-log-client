@@ -6,8 +6,8 @@ export function loginUser(jwt = null) {
   return {type: actions.LOG_IN, token: jwt}
 }
 
-export function logOutUser() {
-  console.log('logging out');
+export function logoutUser(router) {
   sessionStorage.removeItem('jwt');
+  router.history.replace('/')
   return {type: actions.LOG_OUT}
 }

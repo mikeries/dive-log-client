@@ -5,7 +5,7 @@ class Dives extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar handleLogout={this.props.handleLogout} />
         <div>
           Dives index page!
         </div>

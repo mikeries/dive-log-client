@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { loginUser } from '../redux/modules/Auth/sessionActions'
+import { loginUser, logoutUser } from '../redux/modules/Auth/sessionActions'
 
 import Welcome from '../views/welcome'
 import Dashboard from '../views/dashboard'
@@ -50,14 +50,13 @@ class App extends Component {
             )}/>
             <Route exact path="/dashboard" render={() => (
               this.isLoggedIn() ? (
-                <Dashboard />
+                <Dashboard handleLogout={this.props.logoutUser} />
               ) : (
                 <Redirect to="/"/>
               )
             )}/>
-            <Route exact path='/dives' component={Dives} />
-            <Route exact path='/locations' component={Locations} />
-            <Route exact path='/locations' component={Locations} />
+            <Route exact path='/dives' component={Dives} handleLogout={this.props.logoutUser}/>
+            <Route exact path='/locations' component={Locations} handleLogout={this.props.logoutUser}/>
           </Switch>
         </div>
       </Router>
@@ -67,7 +66,9 @@ class App extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
-    { loginUser }
+    { loginUser,
+      logoutUser
+    }
   , dispatch);
 };
 

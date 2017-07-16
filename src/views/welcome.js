@@ -10,7 +10,7 @@ class Welcome extends Component {
             Dive Log
           </h2>
           <p className="Login-intro">
-            Cloud based Dive Log
+            Cloud-based Dive Log
           </p>
         </div>
         <div className="Login-buttons">

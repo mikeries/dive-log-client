@@ -5,7 +5,7 @@ class Locations extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar handleLogout={this.props.handleLogout} />
         <div>
           Locations index page!
         </div>
