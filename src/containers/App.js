@@ -6,13 +6,17 @@ import {
   Redirect
 } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
-import { loginUser, logoutUser } from '../redux/modules/Auth/sessionActions'
+import { bindActionCreators } from 'redux';
+import { 
+  loginUser, 
+  logoutUser, 
+  fetchUser
+} from '../redux/modules/Auth/sessionActions';
 
-import Welcome from '../views/welcome'
-import Dashboard from '../views/dashboard'
-import Dives from '../views/dives'
-import Locations from '../views/locations'
+import Welcome from '../views/welcome';
+import Dashboard from '../views/dashboard';
+import Dives from '../views/dives';
+import Locations from '../views/locations';
 
 import { getQueryParams } from '../utils';
 
@@ -33,7 +37,9 @@ class App extends Component {
   }
 
   componentWillMount() {
-    this.props.loginUser(this.state.jwt);
+    const jwt = this.state.jwt
+    this.props.loginUser(jwt);
+    if(jwt) this.props.fetchUser(jwt)
   }
 
   render() {
@@ -67,7 +73,8 @@ class App extends Component {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     { loginUser,
-      logoutUser
+      logoutUser,
+      fetchUser
     }
   , dispatch);
 };

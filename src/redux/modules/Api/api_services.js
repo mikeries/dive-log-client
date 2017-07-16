@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
 
-const API_URL = 'https://localhost:3000'
+const API_URL = 'http://localhost:3000'
 
 export default {
 
@@ -10,11 +10,10 @@ export default {
       'Content-Type': 'application/json',
       'Authorization': `Bearer: ${jwt}`
     }
-    return fetch(`${API_URL + url}`, {
+    return fetch(`${API_URL}${url}`, {
       method: 'GET',
       headers: headers
-    })
-    .then(response => {response.json()})
+    }).then(response => {response.json()})
   }
 
 }
