@@ -20,9 +20,9 @@ class Dives extends Component {
     <div>
       <Navbar handleLogout={this.props.handleLogout} />
       <h1>Dives Page</h1>
-      {this.props.dives && 
-        <Dive dive={this.props.dives[0]}>this.props.dives[0]</Dive>
-      }
+      {this.props.dives && this.props.dives.map(
+        (dive,index) => ( <Dive key={index} dive={dive}/>)
+      )}
     </div>
     );
   }
