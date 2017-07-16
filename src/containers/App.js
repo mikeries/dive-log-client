@@ -56,7 +56,7 @@ class App extends Component {
             )}/>
             <Route exact path="/dashboard" render={() => (
               this.isLoggedIn() ? (
-                <Dashboard handleLogout={this.props.logoutUser} />
+                <Dashboard handleLogout={this.props.logoutUser} user={this.props.user} />
               ) : (
                 <Redirect to="/"/>
               )
@@ -79,4 +79,8 @@ const mapDispatchToProps = (dispatch) => {
   , dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(App);
+const mapStateToProps = (state) => {
+  return { user: state.sessionReducer.user };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
