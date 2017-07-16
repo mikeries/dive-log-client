@@ -15,7 +15,6 @@ export function loginUser(jwt = null) {
   if (jwt) sessionStorage.setItem('jwt', jwt);
   else sessionStorage.removeItem('jwt');
 
-  console.log('jwt on loginUser:' + jwt)
   return {type: actions.LOG_IN, token: jwt}
 }
 
