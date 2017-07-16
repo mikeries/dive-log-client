@@ -5,7 +5,9 @@ export function fetchUser(jwt) {
   return (dispatch) => {
     dispatch({type: actions.LOADING_USER});
     return services.get('/user/current_user', jwt)
-          .then(user => dispatch({type: actions.UPDATE_USER, user}))
+          .then(user => dispatch(
+            { type: actions.UPDATE_USER, user }
+          ));
   }
 }
 

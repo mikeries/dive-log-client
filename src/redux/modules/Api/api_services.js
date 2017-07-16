@@ -13,7 +13,7 @@ export default {
     return fetch(`${API_URL}${url}`, {
       method: 'GET',
       headers: headers
-    }).then(response => {response.json()})
+    }).then(response => (response.json()));
   }
 
 }
