@@ -6,15 +6,14 @@ const initialState = {
   user: null
 }
 
-export default function sessionReducer(state = initialState, action) {  
+export default function sessionReducer(state = initialState, action) {
   switch(action.type) {
     case actions.LOADING_USER:
       return Object.assign({}, state, {loading: true})
     case actions.UPDATE_USER:
-      console.log('Updating user:', action)
       return Object.assign({}, state, {user: action.user, loading: false})
     case actions.LOG_IN:
-      return Object.assign({}, state, {jwt: action.jwt})
+      return Object.assign({}, state, {jwt: action.token})
     case actions.LOG_OUT:
       return Object.assign({}, state, initialState.jwt)
     default: 
