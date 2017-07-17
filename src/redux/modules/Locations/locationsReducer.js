@@ -11,7 +11,7 @@ export default function locationsReducer(state = initialState, action) {
       return Object.assign({}, state, {loading: true})
     case actions.UPDATING_LOCATIONS:
       let locations = Object.assign([], action.locations)
-      locations = locations.map(locations => Object.assign({}, locations))
+      //locations = locations.map(locations => Object.assign({}, locations))
       return Object.assign({}, state, {locations: locations, loading: false})
     default: 
       return state;

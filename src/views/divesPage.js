@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { Route, Switch } from 'react-router-dom';
 import DiveShow from './diveShow'
 import DiveEdit from './diveEdit'
 import DiveList from './diveList'
-
-import { 
-  fetchDives
-} from '../redux/modules/Dives/divesActions';
 
 import Navbar from './components/Navbar';
 
@@ -44,14 +39,6 @@ class DivesPage extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(
-    { 
-      fetchDives
-    }
-  , dispatch);
-};
-
 const mapStateToProps = (state) => {
   return { 
     jwt: state.sessionReducer.jwt,
@@ -59,4 +46,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DivesPage);
+export default connect(mapStateToProps)(DivesPage);
