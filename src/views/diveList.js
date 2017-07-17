@@ -1,13 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import Dive from './components/Dive'
 
-const DiveList = (props) => {
+const DiveList = ({dives}) => {
+    const renderDives = dives.map((dive) => {
+      return (
+        <Link key={dive.id} to={`/dives/${dive.id}`}>
+          <Dive key={dive.id} dive={dive}/>
+        </Link>
+      )
+    });
+
     return (
     <div>
       <h1>Dives List Page</h1>
-      {props.dives && props.dives.map(
-        (dive,index) => ( <Dive key={index} dive={dive}/>)
-      )}
+      {renderDives}
     </div>
     );
 }
