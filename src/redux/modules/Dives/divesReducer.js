@@ -11,7 +11,6 @@ export default function divesReducer(state = initialState, action) {
       return Object.assign({}, state, {loading: true})
     case actions.UPDATING_DIVES:
       let dives = Object.assign([], action.dives)
-      //dives = dives.map(dive => Object.assign({}, dive))
       return Object.assign({}, state, {dives: dives, loading: false})
     default: 
       return state;
