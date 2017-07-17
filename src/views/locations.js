@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Navbar from './components/Navbar'
+import Location from './components/Location'
 
 import { 
   fetchLocations
@@ -17,9 +18,10 @@ class Locations extends Component {
     return (
       <div>
         <Navbar handleLogout={this.props.handleLogout} />
-        <div>
-          Locations index page!
-        </div>
+        <h1>Locations Page</h1>
+        {this.props.locations && this.props.locations.map(
+          (location, index) => ( <Location key={index} location={location} />)
+        )}
       </div>
     );
   }
@@ -35,7 +37,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return { 
     jwt: state.sessionReducer.jwt,
-    dives: state.locationsReducer.locations
+    locations: state.locationsReducer.locations
   };
 }
 
