@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom';
 
 const DiveShow = ({dive, match}) => {
     return (
@@ -9,7 +10,9 @@ const DiveShow = ({dive, match}) => {
       <p>Ballast: {dive.ballast}  Maximum Depth: {dive.max_depth}</p>
       <p>Starting Pressure: {dive.starting_pressure}  Final Pressure: {dive.final_pressure}</p>
       <h4>Comments</h4>
-      <textarea>{dive.comments}</textarea>
+      <p>{dive.comments}</p>
+      <br/>
+      <Link to={`${match.url}/edit`}>Edit</Link>
     </div>
     );
 }

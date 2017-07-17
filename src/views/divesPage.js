@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Route, Switch } from 'react-router-dom';
 import DiveShow from './diveShow'
+import DiveEdit from './diveEdit'
 import DiveList from './diveList'
 
 import { 
@@ -16,13 +17,9 @@ class DivesPage extends Component {
     super(props);
     this.state = {
       url: props.match.url,
-      dives: []
+      dives: props.dives
     }
     this.match = props.match;
-  }
-
-  componentWillMount(state) {
-    this.props.fetchDives(this.props.jwt)
   }
 
   ShowDiveList = () => {
@@ -37,6 +34,7 @@ class DivesPage extends Component {
       <Navbar handleLogout={this.props.handleLogout} />
       {this.props.dives &&
         <Switch>
+          <Route path={`${this.state.url}/:diveId/edit`} component={DiveEdit}/>
           <Route path={`${this.state.url}/:diveId`} component={DiveShow}/>
           <Route exact path={this.state.url} component={this.ShowDiveList} />
         </Switch>
