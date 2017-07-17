@@ -12,6 +12,8 @@ import {
   logoutUser, 
   fetchUser
 } from '../redux/modules/Auth/sessionActions';
+import { fetchDives } from '../redux/modules/Dives/divesActions'
+import { fetchLocations } from '../redux/modules/Locations/locationsActions'
 
 import Welcome from '../views/welcome';
 import Dashboard from '../views/dashboard';
@@ -40,6 +42,8 @@ class App extends Component {
     const jwt = this.state.jwt
     this.props.loginUser(jwt);
     if(jwt) this.props.fetchUser(jwt)
+    if(jwt) this.props.fetchDives(jwt)
+    if(jwt) this.props.fetchLocations(jwt)
   }
 
   render() {
@@ -74,7 +78,9 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     { loginUser,
       logoutUser,
-      fetchUser
+      fetchUser,
+      fetchDives,
+      fetchLocations
     }
   , dispatch);
 };
