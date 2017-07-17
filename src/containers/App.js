@@ -15,7 +15,7 @@ import {
 
 import Welcome from '../views/welcome';
 import Dashboard from '../views/dashboard';
-import Dives from '../views/dives';
+import DivesPage from '../views/divesPage';
 import Locations from '../views/locations';
 
 import { getQueryParams } from '../utils';
@@ -61,7 +61,7 @@ class App extends Component {
                 <Redirect to="/"/>
               )
             )}/>
-            <Route exact path='/dives' component={Dives} handleLogout={this.props.logoutUser} dives={this.props.dives}/>
+            <Route exact path='/dives' component={DivesPage} handleLogout={this.props.logoutUser} dives={this.props.dives} />
             <Route exact path='/locations' component={Locations} handleLogout={this.props.logoutUser}/>
           </Switch>
         </div>

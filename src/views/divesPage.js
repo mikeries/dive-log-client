@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Dive from './components/Dive'
+import { Route, Switch } from 'react-router-dom';
+import DiveShow from './diveShow'
+import DiveList from './diveList'
 
 import { 
   fetchDives
@@ -9,7 +11,13 @@ import {
 
 import Navbar from './components/Navbar';
 
-class Dives extends Component {
+class DivesPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      url: props.match.url
+    }
+  }
 
   componentWillMount(state) {
     this.props.fetchDives(this.props.jwt)
@@ -19,10 +27,14 @@ class Dives extends Component {
     return (
     <div>
       <Navbar handleLogout={this.props.handleLogout} />
-      <h1>Dives Page</h1>
-      {this.props.dives && this.props.dives.map(
-        (dive,index) => ( <Dive key={index} dive={dive}/>)
-      )}
+      {this.props.dives &&
+        <Switch>
+          <Route path={`${this.state.url}/:id`} dives={this.props.dives} component={DiveShow} />
+          <Route exact path={this.state.url} dives={this.props.dives} render={() => (
+            <DiveList dives={this.props.dives}/>
+          )}/>
+        </Switch>
+      }
     </div>
     );
   }
@@ -42,4 +54,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dives);
+export default connect(mapStateToProps, mapDispatchToProps)(DivesPage);
