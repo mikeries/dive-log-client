@@ -29,7 +29,9 @@ class DivesPage extends Component {
       <Navbar handleLogout={this.props.handleLogout} />
       {this.props.dives &&
         <Switch>
-          <Route path={`${this.state.url}/:id`} dives={this.props.dives} component={DiveShow} />
+          <Route path={`${this.state.url}/:id`} dives={this.props.dives} render={() => (
+            <DiveShow dives={this.props.dives}/>)
+          }/>
           <Route exact path={this.state.url} dives={this.props.dives} render={() => (
             <DiveList dives={this.props.dives}/>
           )}/>
