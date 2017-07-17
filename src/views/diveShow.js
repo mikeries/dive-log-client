@@ -1,13 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux'
 
-import Navbar from './components/Navbar';
-
-const DiveShow = (props) => {
+const DiveShow = ({dive, match}) => {
     return (
     <div>
       <h1>Dive Show Page</h1>
+      <p>{dive.id}</p>
     </div>
     );
 }
 
-export default DiveShow;
+const mapStateToProps = (state, ownProps) => {
+  const dive = state.divesReducer.dives.find(dive => dive.id === +ownProps.match.params.diveId)
+  if (dive) {
+    return { dive }
+  } else {
+    return { dive: {} }
+  }
+}
+ 
+export default connect(mapStateToProps)(DiveShow);

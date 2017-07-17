@@ -15,12 +15,20 @@ class DivesPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: props.match.url
+      url: props.match.url,
+      dives: []
     }
+    this.match = props.match;
   }
 
   componentWillMount(state) {
     this.props.fetchDives(this.props.jwt)
+  }
+
+  ShowDiveList = () => {
+    return (
+      <DiveList dives={this.props.dives} />
+    )
   }
 
   render() {
@@ -29,12 +37,8 @@ class DivesPage extends Component {
       <Navbar handleLogout={this.props.handleLogout} />
       {this.props.dives &&
         <Switch>
-          <Route path={`${this.state.url}/:id`} dives={this.props.dives} render={() => (
-            <DiveShow dives={this.props.dives}/>)
-          }/>
-          <Route exact path={this.state.url} dives={this.props.dives} render={() => (
-            <DiveList dives={this.props.dives}/>
-          )}/>
+          <Route path={`${this.state.url}/:diveId`} component={DiveShow}/>
+          <Route exact path={this.state.url} component={this.ShowDiveList} />
         </Switch>
       }
     </div>
@@ -44,7 +48,8 @@ class DivesPage extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
-    { fetchDives
+    { 
+      fetchDives
     }
   , dispatch);
 };

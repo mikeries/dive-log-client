@@ -61,7 +61,7 @@ class App extends Component {
                 <Redirect to="/"/>
               )
             )}/>
-            <Route path='/dives' component={DivesPage} handleLogout={this.props.logoutUser} dives={this.props.dives} />
+            <Route path='/dives' component={DivesPage} handleLogout={this.props.logoutUser} />
             <Route exact path='/locations' component={Locations} handleLogout={this.props.logoutUser}/>
           </Switch>
         </div>
