@@ -4,8 +4,12 @@ import { connect } from 'react-redux'
 const DiveShow = ({dive, match}) => {
     return (
     <div>
-      <h1>Dive Show Page</h1>
-      <p>{dive.id}</p>
+      <h3>{dive.datetime} {dive.location.name} - {dive.location.city}, {dive.location.country}</h3>
+      <p>Duration: {dive.duration}</p>
+      <p>Ballast: {dive.ballast}  Maximum Depth: {dive.max_depth}</p>
+      <p>Starting Pressure: {dive.starting_pressure}  Final Pressure: {dive.final_pressure}</p>
+      <h4>Comments</h4>
+      <textarea>{dive.comments}</textarea>
     </div>
     );
 }
