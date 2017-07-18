@@ -15,7 +15,7 @@ class DivesPage extends Component {
       this.props.updateDive(this.props.jwt, dive)
       this.props.history.push(this.props.match.url)
     } else {
-      dive.id=0; // temporary id until we get the real one back from the back end
+      dive.id=0; // temporary id until we get the real one from the back end
       this.props.newDive(this.props.jwt, dive)
       this.props.history.push(this.props.match.url)
     }
@@ -24,11 +24,6 @@ class DivesPage extends Component {
   ShowDiveList = () => (
     <DiveList dives={this.props.dives} />
   )
-
-  ShowDiveEdit = props => {
-    const dive = this.props.dives.find(dive => dive.id === +props.match.params.diveId)
-    return <DiveForm dive={dive} onSubmit={this.handleSubmit} locations={this.props.locations}/>
-  }
 
   ShowDiveShow = props => {
     const dive = this.props.dives.find(dive => dive.id === +props.match.params.diveId)
@@ -46,6 +41,11 @@ class DivesPage extends Component {
       starting_pressure: '',
       final_pressure: ''
     }
+    return <DiveForm dive={dive} onSubmit={this.handleSubmit} locations={this.props.locations}/>
+  }
+
+  ShowDiveEdit = props => {
+    const dive = this.props.dives.find(dive => dive.id === +props.match.params.diveId)
     return <DiveForm dive={dive} onSubmit={this.handleSubmit} locations={this.props.locations}/>
   }
 
