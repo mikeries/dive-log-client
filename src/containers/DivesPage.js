@@ -6,13 +6,17 @@ import DiveShow from '../views/dives/Show'
 import DiveForm from '../views/dives/Form'
 import DiveList from '../views/dives/List'
 
-import { updateDive } from '../redux/modules/Dives/divesActions'
+import { updateDive, newDive } from '../redux/modules/Dives/divesActions'
 
 class DivesPage extends Component {
 
   handleSubmit = dive => {
-    this.props.updateDive(this.props.jwt, dive)
-    this.props.history.push(this.props.match.url)
+    if (dive.id) {
+      this.props.updateDive(this.props.jwt, dive)
+      this.props.history.push(this.props.match.url)
+    } else {
+      this.props.newDive(this.props.jwt, dive)
+    }
   }
 
   ShowDiveList = () => (
@@ -69,7 +73,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
-    { updateDive }
+    { 
+    updateDive,
+    newDive
+    }
   , dispatch);
 };
 
