@@ -11,18 +11,10 @@ import { updateDive } from '../redux/modules/Dives/divesActions'
 import Navbar from './components/Navbar';
 
 class DivesPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      url: props.match.url,
-      dives: props.dives
-    }
-    this.match = props.match;
-  }
 
   handleSubmit = dive => {
     this.props.updateDive(this.props.jwt, dive)
-    this.props.history.push(this.state.url)
+    this.props.history.push(this.props.match.url)
   }
 
   ShowDiveList = () => {
@@ -43,9 +35,9 @@ class DivesPage extends Component {
       <Navbar handleLogout={this.props.handleLogout} />
       {this.props.dives &&
         <Switch>
-          <Route path={`${this.state.url}/:diveId/edit`} component={this.ShowDiveEdit}/>
-          <Route path={`${this.state.url}/:diveId`} component={DiveShow}/>
-          <Route exact path={this.state.url} component={this.ShowDiveList} />
+          <Route path={`${this.props.match.url}/:diveId/edit`} component={this.ShowDiveEdit}/>
+          <Route path={`${this.props.match.url}/:diveId`} component={DiveShow}/>
+          <Route exact path={this.props.match.url} component={this.ShowDiveList} />
         </Switch>
       }
     </div>
