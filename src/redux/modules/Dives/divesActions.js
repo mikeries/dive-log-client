@@ -31,3 +31,14 @@ export function newDive(jwt,dive) {
       }))
   }
 }
+
+export function deleteDive(jwt,diveId) {
+  return (dispatch) => {
+    dispatch({type: actions.DELETE_DIVE});
+    return services.delete(`/dives/${diveId}`, jwt)
+      .then(dive => dispatch({
+        type: actions.DELETE_DIVE_SUCCESSFUL,
+        diveId: diveId
+      }))
+  }
+}
