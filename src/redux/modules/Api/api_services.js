@@ -14,6 +14,19 @@ export default {
       method: 'GET',
       headers: headers
     }).then(response => (response.json()));
+  },
+
+  patch(url, jwt, data) {
+    const headers =  {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer: ${jwt}`
+    }
+    return fetch(`${API_URL}${url}`, {
+      method: 'PATCH',
+      headers: headers,
+      body: JSON.stringify(data)
+    }).then(response => (response.json()));
   }
 
 }
