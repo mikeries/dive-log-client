@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Location from './components/Location'
+import Location from './Location'
 
 const Locations = (props) => (
   <div>
@@ -10,7 +10,6 @@ const Locations = (props) => (
     )}
   </div>
 )
-
 
 const mapStateToProps = (state) => {
   return { 

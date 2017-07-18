@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import Dive from './components/Dive'
+import Dive from './Dive'
 
 const DiveList = ({dives}) => {
   const renderDives = dives.map((dive) => (

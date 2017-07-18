@@ -19,7 +19,7 @@ import Navbar from '../views/components/Navbar';
 import Welcome from '../views/welcome';
 import Dashboard from '../views/dashboard';
 import DivesPage from './DivesPage';
-import Locations from '../views/locations';
+import Locations from '../views/locations/List';
 
 import { getQueryParams } from '../utils';
 
