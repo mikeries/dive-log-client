@@ -15,6 +15,7 @@ import {
 import { fetchDives } from '../redux/modules/Dives/divesActions'
 import { fetchLocations } from '../redux/modules/Locations/locationsActions'
 
+import Navbar from '../views/components/Navbar';
 import Welcome from '../views/welcome';
 import Dashboard from '../views/dashboard';
 import DivesPage from '../views/divesPage';
@@ -41,15 +42,21 @@ class App extends Component {
   componentWillMount() {
     const jwt = this.state.jwt
     this.props.loginUser(jwt);
-    if(jwt) this.props.fetchUser(jwt)
-    if(jwt) this.props.fetchDives(jwt)
-    if(jwt) this.props.fetchLocations(jwt)
+
+    if(jwt) {
+      this.props.fetchUser(jwt)
+      this.props.fetchDives(jwt)
+      this.props.fetchLocations(jwt)
+    }
   }
 
   render() {
     return (
       <Router>
         <div className="App">
+          { this.isLoggedIn() &&
+            <Navbar handleLogout={this.props.logoutUser} />
+          }
           <Switch>
             <Route exact path="/" render={() => (
               this.isLoggedIn() ? (
@@ -88,7 +95,6 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return { 
     user: state.sessionReducer.user,
-    dives: state.divesReducer.dives
    };
 }
 

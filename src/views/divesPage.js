@@ -8,8 +8,6 @@ import DiveList from './diveList'
 
 import { updateDive } from '../redux/modules/Dives/divesActions'
 
-import Navbar from './components/Navbar';
-
 class DivesPage extends Component {
 
   handleSubmit = dive => {
@@ -34,7 +32,6 @@ class DivesPage extends Component {
   render() {
     return (
     <div>
-      <Navbar handleLogout={this.props.handleLogout} />
       {this.props.dives &&
         <Switch>
           <Route path={`${this.props.match.url}/:diveId/edit`} component={this.ShowDiveEdit}/>
