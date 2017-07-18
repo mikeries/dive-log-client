@@ -32,6 +32,13 @@ export default function divesReducer(state = initialState, action) {
       ));
       return Object.assign({}, state, {dives: dives});
 
+    case actions.DELETE_DIVE:
+      return state;
+
+    case actions.DELETE_DIVE_SUCCESSFUL:
+      dives = state.dives.filter(dive => (dive.id !== action.diveId));
+      return Object.assign({}, state, {dives: dives});
+
     default: 
       return state;
   }
