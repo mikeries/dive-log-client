@@ -4,9 +4,9 @@ import Dive from './components/Dive'
 
 const DiveList = ({dives}) => {
   const renderDives = dives.map((dive) => (
-      <Link key={dive.id} to={`/dives/${dive.id}`}>
-        <Dive key={dive.id} dive={dive}/>
-      </Link>
+    <Link key={dive.id} to={`/dives/${dive.id}`}>
+      <Dive key={dive.id} dive={dive}/>
+    </Link>
   ));
 
   return (
