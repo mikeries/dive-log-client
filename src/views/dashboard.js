@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 
-class Dashboard extends Component {
-  render() {
-    return (
-      <div>
-        <div>
-          {this.props.user && 
-            'Welcome ' + this.props.user.name + '!'
-          }
-        </div>
-      </div>
-    );
-  }
-}
+const Dashboard = (props) => (
+  <div>
+    {props.user && 
+      'Welcome ' + props.user.name + '!'
+    }
+  </div>
+)
 
 export default Dashboard;
