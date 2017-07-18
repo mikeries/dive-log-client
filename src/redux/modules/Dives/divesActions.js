@@ -10,3 +10,13 @@ export function fetchDives(jwt) {
           ));
   }
 }
+
+export function updateDive(jwt,dive) {
+  return (dispatch) => {
+    dispatch({type: actions.UPDATING_DIVE, dive});
+    return services.patch(`/dives/${dive.id}`, jwt, dive)
+      .then(dive => dispatch({
+        type: actions.DIVE_PATCH_SUCCESSFUL
+      }))
+  }
+}

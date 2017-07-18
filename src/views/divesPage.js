@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Route, Switch } from 'react-router-dom';
 import DiveShow from './diveShow'
 import DiveEdit from './diveEdit'
 import DiveList from './diveList'
+
+import { updateDive } from '../redux/modules/Dives/divesActions'
 
 import Navbar from './components/Navbar';
 
@@ -17,8 +20,9 @@ class DivesPage extends Component {
     this.match = props.match;
   }
 
-  handleSubmit(dive) {
-    console.log('submitting form' + dive.location.name);
+  handleSubmit = dive => {
+    this.props.updateDive(this.props.jwt, dive)
+    this.props.history.push(this.state.url)
   }
 
   ShowDiveList = () => {
@@ -56,4 +60,10 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps)(DivesPage);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    { updateDive }
+  , dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DivesPage);
