@@ -27,6 +27,19 @@ export default {
       headers: headers,
       body: JSON.stringify(data)
     }).then(response => (response.json()));
+  },
+
+  post(url, jwt, data) {
+    const headers =  {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer: ${jwt}`
+    }
+    return fetch(`${API_URL}${url}`, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(data)
+    }).then(response => (response.json()));
   }
 
 }
