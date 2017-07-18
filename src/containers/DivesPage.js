@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Route, Switch } from 'react-router-dom';
 import DiveShow from '../views/dives/Show'
-import DiveEdit from '../views/dives/Edit'
+import DiveForm from '../views/dives/Form'
 import DiveList from '../views/dives/List'
 
 import { updateDive } from '../redux/modules/Dives/divesActions'
@@ -21,7 +21,7 @@ class DivesPage extends Component {
 
   ShowDiveEdit = props => {
     const dive = this.props.dives.find(dive => dive.id === +props.match.params.diveId)
-    return <DiveEdit dive={dive} onSubmit={this.handleSubmit} locations={this.props.locations}/>
+    return <DiveForm dive={dive} onSubmit={this.handleSubmit} locations={this.props.locations}/>
   }
 
   ShowDiveShow = props => {
@@ -29,11 +29,26 @@ class DivesPage extends Component {
     return <DiveShow dive={dive} onSubmit={this.handleSubmit} />
   }
 
+  ShowDiveNew = props => {
+    const dive = {
+      location: this.props.locations[0], // default to first location for now
+      location_id: this.props.locations[0].id,
+      datetime: '',
+      duration: '',
+      ballast: '',
+      max_depth: '',
+      starting_pressure: '',
+      final_pressure: ''
+    }
+    return <DiveForm dive={dive} onSubmit={this.handleSubmit} locations={this.props.locations}/>
+  }
+
   render() {
     return (
     <div>
       {this.props.dives &&
         <Switch>
+          <Route path={`${this.props.match.url}/new`} component={this.ShowDiveNew}/>
           <Route path={`${this.props.match.url}/:diveId/edit`} component={this.ShowDiveEdit}/>
           <Route path={`${this.props.match.url}/:diveId`} component={this.ShowDiveShow}/>
           <Route exact path={this.props.match.url} component={this.ShowDiveList} />

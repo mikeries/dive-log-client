@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class DiveEdit extends Component  {
+class DiveForm extends Component  {
 
   componentWillMount() {
     this.state = {
@@ -40,7 +40,7 @@ class DiveEdit extends Component  {
                   name='datetime' 
                   onChange={this.handleInputChange} /></label>
       <label>Location: 
-        <select value={this.state.location.id} name='location' onChange={this.handleLocationChange}>
+        <select value={this.state.location_id} name='location' onChange={this.handleLocationChange}>
           {this.props.locations && this.props.locations.map(location => (
             <option value={location.id} key={location.id}>{location.name}</option>)
           )}
@@ -77,4 +77,4 @@ class DiveEdit extends Component  {
   }
 }
 
-export default DiveEdit
+export default DiveForm
