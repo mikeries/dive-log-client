@@ -17,7 +17,7 @@ const DiveShow = ({
     <br/>
     
     <Link to={`/dives/${dive.id}/edit`}>Edit</Link>
-    <button onClick={onDelete}>Delete</button>
+    <button onClick={() => onDelete(dive.id)}>Delete</button>
   </div>
 )
 

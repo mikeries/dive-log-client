@@ -23,6 +23,7 @@ class DivesPage extends Component {
 
   handleDelete = (args) => {
     console.log('handling')
+    console.log(args)
   }
 
   ShowDiveList = () => (
