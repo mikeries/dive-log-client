@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import Dive from './Dive'
+import DiveListItem from './DiveListItem'
 
 const DiveList = ({
   dives,
@@ -8,7 +8,7 @@ const DiveList = ({
 }) => {
   const renderDives = dives.map((dive) => (
     <Link key={dive.id} to={`/dives/${dive.id}`}>
-      <Dive key={dive.id} dive={dive}/>
+      <DiveListItem key={dive.id} dive={dive}/>
     </Link>
   ));
 
