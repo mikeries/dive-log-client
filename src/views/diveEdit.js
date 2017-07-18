@@ -76,10 +76,6 @@ class DiveEdit extends Component  {
   }
 }
 
-DiveEdit.propTypes = {
-  onSubmit: React.PropTypes.func
-};
-
 const mapStateToProps = (state, ownProps) => {
   let dive = state.divesReducer.dives.find(dive => dive.id === +ownProps.diveId)
 
