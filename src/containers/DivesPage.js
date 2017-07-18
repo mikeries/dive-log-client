@@ -21,13 +21,20 @@ class DivesPage extends Component {
     }
   }
 
+  handleDelete = (args) => {
+    console.log('handling')
+  }
+
   ShowDiveList = () => (
     <DiveList dives={this.props.dives} />
   )
 
   ShowDiveShow = props => {
     const dive = this.props.dives.find(dive => dive.id === +props.match.params.diveId)
-    return <DiveShow dive={dive} onSubmit={this.handleSubmit} />
+    return <DiveShow 
+          dive={dive} 
+          onDelete={this.handleDelete}
+          />
   }
 
   ShowDiveNew = props => {
@@ -46,7 +53,11 @@ class DivesPage extends Component {
 
   ShowDiveEdit = props => {
     const dive = this.props.dives.find(dive => dive.id === +props.match.params.diveId)
-    return <DiveForm dive={dive} onSubmit={this.handleSubmit} locations={this.props.locations}/>
+    return <DiveForm
+            dive={dive}
+            locations={this.props.locations}
+            onSubmit={this.handleSubmit}
+          />
   }
 
   render() {
@@ -65,7 +76,7 @@ class DivesPage extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return { 
     jwt: state.sessionReducer.jwt,
     dives: state.divesReducer.dives,
@@ -73,7 +84,7 @@ const mapStateToProps = (state) => {
   };
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     { 
     updateDive,
