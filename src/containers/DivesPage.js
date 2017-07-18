@@ -15,7 +15,9 @@ class DivesPage extends Component {
       this.props.updateDive(this.props.jwt, dive)
       this.props.history.push(this.props.match.url)
     } else {
+      dive.id=0; // temporary id until we get the real one back from the back end
       this.props.newDive(this.props.jwt, dive)
+      this.props.history.push(this.props.match.url)
     }
   }
 
