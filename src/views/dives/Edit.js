@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
 
 class DiveEdit extends Component  {
 
   componentWillMount() {
     this.state = {
-      ...this.props.dive
+      ...this.props.dive,
+      locations: this.props.locations
     }
   }
 
@@ -77,10 +77,4 @@ class DiveEdit extends Component  {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    locations: state.locationsReducer.locations
-  }
-}
- 
-export default connect(mapStateToProps)(DiveEdit);
+export default DiveEdit

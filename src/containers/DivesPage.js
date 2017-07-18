@@ -21,7 +21,7 @@ class DivesPage extends Component {
 
   ShowDiveEdit = props => {
     const dive = this.props.dives.find(dive => dive.id === +props.match.params.diveId)
-    return <DiveEdit dive={dive} onSubmit={this.handleSubmit} />
+    return <DiveEdit dive={dive} onSubmit={this.handleSubmit} locations={this.props.locations}/>
   }
 
   ShowDiveShow = props => {
@@ -48,6 +48,7 @@ const mapStateToProps = (state) => {
   return { 
     jwt: state.sessionReducer.jwt,
     dives: state.divesReducer.dives,
+    locations: state.locationsReducer.locations
   };
 }
 
