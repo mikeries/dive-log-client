@@ -40,6 +40,18 @@ export default {
       headers: headers,
       body: JSON.stringify(data)
     }).then(response => (response.json()));
+  },
+
+    delete(url, jwt) {
+    const headers =  {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer: ${jwt}`
+    }
+    return fetch(`${API_URL}${url}`, {
+      method: 'DELETE',
+      headers: headers,
+    }).then(response => (response.json()));
   }
 
 }
