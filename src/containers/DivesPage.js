@@ -6,7 +6,7 @@ import DiveShow from '../views/dives/Show'
 import DiveForm from '../views/dives/Form'
 import DiveList from '../views/dives/List'
 
-import { updateDive, newDive } from '../redux/modules/Dives/divesActions'
+import { updateDive, newDive, deleteDive } from '../redux/modules/Dives/divesActions'
 
 class DivesPage extends Component {
 
@@ -21,9 +21,9 @@ class DivesPage extends Component {
     }
   }
 
-  handleDelete = (args) => {
-    console.log('handling')
-    console.log(args)
+  handleDelete = (diveId) => {
+    this.props.deleteDive(this.props.jwt, diveId);
+    this.props.history.push(this.props.match.url);
   }
 
   ShowDiveList = () => (
@@ -89,7 +89,8 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     { 
     updateDive,
-    newDive
+    newDive,
+    deleteDive
     }
   , dispatch);
 };
