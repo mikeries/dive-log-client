@@ -15,8 +15,19 @@ export function updateDive(jwt,dive) {
   return (dispatch) => {
     dispatch({type: actions.UPDATING_DIVE, dive});
     return services.patch(`/dives/${dive.id}`, jwt, dive)
-      .then(dive => dispatch({
+      .then( () => dispatch({
         type: actions.DIVE_PATCH_SUCCESSFUL
+      }))
+  }
+}
+
+export function newDive(jwt,dive) {
+  return (dispatch) => {
+    dispatch({type: actions.CREATING_DIVE, dive});
+    return services.post(`/dives`, jwt, dive)
+      .then(dive => dispatch({
+        type: actions.CREATE_DIVE_SUCCESSFUL,
+        dive
       }))
   }
 }
