@@ -17,9 +17,19 @@ class DivesPage extends Component {
     this.match = props.match;
   }
 
+  handleSubmit(dive) {
+    console.log('submitting form' + dive.location);
+  }
+
   ShowDiveList = () => {
     return (
       <DiveList dives={this.props.dives} />
+    )
+  }
+
+  ShowDiveEdit = (props) => {
+    return (
+      <DiveEdit diveId={props.match.params.diveId} onSubmit={this.handleSubmit} />
     )
   }
 
@@ -29,7 +39,7 @@ class DivesPage extends Component {
       <Navbar handleLogout={this.props.handleLogout} />
       {this.props.dives &&
         <Switch>
-          <Route path={`${this.state.url}/:diveId/edit`} component={DiveEdit}/>
+          <Route path={`${this.state.url}/:diveId/edit`} component={this.ShowDiveEdit}/>
           <Route path={`${this.state.url}/:diveId`} component={DiveShow}/>
           <Route exact path={this.state.url} component={this.ShowDiveList} />
         </Switch>
@@ -42,7 +52,7 @@ class DivesPage extends Component {
 const mapStateToProps = (state) => {
   return { 
     jwt: state.sessionReducer.jwt,
-    dives: state.divesReducer.dives
+    dives: state.divesReducer.dives,
   };
 }
 

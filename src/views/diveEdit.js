@@ -14,14 +14,21 @@ class DiveEdit extends Component  {
   }
 
   handleInputChange = (event) => {
+    event.preventDefault();
     this.setState({
       [event.target.name]: event.target.value,
     });
   }
+    
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.props);
+    this.props.onSubmit({location: 'test'});
+  }
 
   render() {
     return (
-    <div>
+    <form onSubmit={this.handleFormSubmit}>
       <h1>Editing the dive</h1>
       <label>Date: <input type='text' 
                   value={this.state.datetime}
@@ -69,21 +76,24 @@ class DiveEdit extends Component  {
       <h4>Comments</h4>
       <textarea value={this.state.comments} name='comments' onChange={this.handleInputChange}></textarea>
       <br/>
-      <button onClick={this.handleSubmit}>Save</button>
-    </div>
+      <button>Save</button>
+    </form>
     );
   }
 }
 
+DiveEdit.propTypes = {
+  onSubmit: React.PropTypes.func
+};
+
 const mapStateToProps = (state, ownProps) => {
-  let dive = state.divesReducer.dives.find(dive => dive.id === +ownProps.match.params.diveId)
+  let dive = state.divesReducer.dives.find(dive => dive.id === +ownProps.diveId)
 
   if (!dive) {
     dive = { dive: {} }
   }
 
   return {
-    ...state,
     dive,
     locations: state.locationsReducer.locations
   }
