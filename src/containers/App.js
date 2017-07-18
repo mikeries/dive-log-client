@@ -67,13 +67,13 @@ class App extends Component {
             )}/>
             <Route exact path="/dashboard" render={() => (
               this.isLoggedIn() ? (
-                <Dashboard handleLogout={this.props.logoutUser} user={this.props.user} />
+                <Dashboard user={this.props.user}/>
               ) : (
                 <Redirect to="/"/>
               )
             )}/>
-            <Route path='/dives' component={DivesPage} handleLogout={this.props.logoutUser} />
-            <Route exact path='/locations' component={Locations} handleLogout={this.props.logoutUser}/>
+            <Route path='/dives' component={DivesPage} />
+            <Route exact path='/locations' component={Locations} />
           </Switch>
         </div>
       </Router>
