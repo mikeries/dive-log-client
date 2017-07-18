@@ -18,7 +18,7 @@ class DivesPage extends Component {
   }
 
   handleSubmit(dive) {
-    console.log('submitting form' + dive.location);
+    console.log('submitting form' + dive.location.name);
   }
 
   ShowDiveList = () => {

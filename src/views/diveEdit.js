@@ -4,13 +4,16 @@ import { connect } from 'react-redux'
 class DiveEdit extends Component  {
 
   componentWillMount() {
-    const dive = this.props.dive;
     this.state = {
-      ...dive,
-      location: dive.location.name,
-      city: dive.location.city,
-      country: dive.location.country,
+      ...this.props.dive
     }
+  }
+
+  handleLocationChange = (event) => {
+    event.preventDefault();
+    this.setState({
+      location: this.props.locations.find(location => location.id === +event.target.value)
+    });
   }
 
   handleInputChange = (event) => {
@@ -22,8 +25,9 @@ class DiveEdit extends Component  {
     
   handleFormSubmit = (event) => {
     event.preventDefault();
-    console.log(this.props);
-    this.props.onSubmit({location: 'test'});
+    this.props.onSubmit({
+      ...this.state,
+    });
   }
 
   render() {
@@ -35,21 +39,11 @@ class DiveEdit extends Component  {
                   name='datetime' 
                   onChange={this.handleInputChange} /></label>
       <label>Location: 
-        <select value={this.state.location} name='location' onChange={this.handleInputChange}>
+        <select value={this.state.location.id} name='location' onChange={this.handleLocationChange}>
           {this.props.locations && this.props.locations.map(location => (
-            <option key={location.id}>{location.name}</option>)
+            <option value={location.id} key={location.id}>{location.name}</option>)
           )}
         </select>
-      </label>
-      <label>City: <input type='text' 
-        value={this.state.city} 
-        name='city' 
-        onChange={this.handleInputChange} />
-      </label>
-      <label>Country: <input type='text' 
-        value={this.state.country} 
-        name='country' 
-        onChange={this.handleInputChange} />
       </label>
       <br/>
       <br/>
