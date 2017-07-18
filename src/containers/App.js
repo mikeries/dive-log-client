@@ -18,7 +18,7 @@ import { fetchLocations } from '../redux/modules/Locations/locationsActions'
 import Navbar from '../views/components/Navbar';
 import Welcome from '../views/welcome';
 import Dashboard from '../views/dashboard';
-import DivesPage from '../views/divesPage';
+import DivesPage from './DivesPage';
 import Locations from '../views/locations';
 
 import { getQueryParams } from '../utils';

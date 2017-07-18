@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Route, Switch } from 'react-router-dom';
-import DiveShow from './diveShow'
-import DiveEdit from './diveEdit'
-import DiveList from './diveList'
+import DiveShow from '../views/diveShow'
+import DiveEdit from '../views/diveEdit'
+import DiveList from '../views/diveList'
 
 import { updateDive } from '../redux/modules/Dives/divesActions'
 
