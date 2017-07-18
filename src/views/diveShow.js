@@ -1,8 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 
-const DiveShow = ({dive, match}) => {
+const DiveShow = ({ dive }) => {
     return (
     <div>
       <h3>{dive.datetime} {dive.location.name} - {dive.location.city}, {dive.location.country}</h3>
@@ -12,18 +11,9 @@ const DiveShow = ({dive, match}) => {
       <h4>Comments</h4>
       <p>{dive.comments}</p>
       <br/>
-      <Link to={`${match.url}/edit`}>Edit</Link>
+      <Link to={`/dives/${dive.id}/edit`}>Edit</Link>
     </div>
     );
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const dive = state.divesReducer.dives.find(dive => dive.id === +ownProps.match.params.diveId)
-  if (dive) {
-    return { dive }
-  } else {
-    return { dive: {} }
-  }
-}
- 
-export default connect(mapStateToProps)(DiveShow);
+export default DiveShow

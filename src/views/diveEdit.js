@@ -78,14 +78,7 @@ class DiveEdit extends Component  {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let dive = state.divesReducer.dives.find(dive => dive.id === +ownProps.diveId)
-
-  if (!dive) {
-    dive = { dive: {} }
-  }
-
   return {
-    dive,
     locations: state.locationsReducer.locations
   }
 }

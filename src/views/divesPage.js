@@ -17,16 +17,18 @@ class DivesPage extends Component {
     this.props.history.push(this.props.match.url)
   }
 
-  ShowDiveList = () => {
-    return (
-      <DiveList dives={this.props.dives} />
-    )
+  ShowDiveList = () => (
+    <DiveList dives={this.props.dives} />
+  )
+
+  ShowDiveEdit = props => {
+    const dive = this.props.dives.find(dive => dive.id === +props.match.params.diveId)
+    return <DiveEdit dive={dive} onSubmit={this.handleSubmit} />
   }
 
-  ShowDiveEdit = (props) => {
-    return (
-      <DiveEdit diveId={props.match.params.diveId} onSubmit={this.handleSubmit} />
-    )
+  ShowDiveShow = props => {
+    const dive = this.props.dives.find(dive => dive.id === +props.match.params.diveId)
+    return <DiveShow dive={dive} onSubmit={this.handleSubmit} />
   }
 
   render() {
@@ -36,7 +38,7 @@ class DivesPage extends Component {
       {this.props.dives &&
         <Switch>
           <Route path={`${this.props.match.url}/:diveId/edit`} component={this.ShowDiveEdit}/>
-          <Route path={`${this.props.match.url}/:diveId`} component={DiveShow}/>
+          <Route path={`${this.props.match.url}/:diveId`} component={this.ShowDiveShow}/>
           <Route exact path={this.props.match.url} component={this.ShowDiveList} />
         </Switch>
       }
