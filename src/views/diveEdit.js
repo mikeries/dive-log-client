@@ -12,6 +12,7 @@ class DiveEdit extends Component  {
   handleLocationChange = (event) => {
     event.preventDefault();
     this.setState({
+      location_id: event.target.value,
       location: this.props.locations.find(location => location.id === +event.target.value)
     });
   }
