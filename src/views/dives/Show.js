@@ -15,18 +15,20 @@ const DiveShow = ({
 
     <Row>
       <Col md={12}>
-        <p>on {dive.datetime}</p>
+        <p>on {dive.date} at {dive.time}</p>
       </Col>
     </Row>
+    <br/>
 
     <Row>
-      <Col md={2}><p>Duration: {dive.duration}</p></Col>
+      <Col md={2} mdOffset={1}><p>Duration: {dive.duration}</p></Col>
       <Col md={2}><p>Ballast: {dive.ballast}</p></Col>
       <Col md={2}><p>Maximum Depth: {dive.max_depth}</p></Col>
       <Col md={2}><p>Starting Pressure: {dive.starting_pressure}</p></Col>
       <Col md={2}><p>Final Pressure: {dive.final_pressure}</p></Col>
     </Row>
-    
+    <br/>
+
     {dive.comments &&
       <Row>
         <Col md={12}>
@@ -35,7 +37,7 @@ const DiveShow = ({
         </Col>
       </Row>
     }
-    
+    <br/>
     <Link to={'/dives'}>
       <Button>Back</Button>
     </Link>
