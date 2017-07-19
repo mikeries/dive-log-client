@@ -5,7 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 const NavBar = ({ user, handleLogout }) => (
   <Navbar>
     <Nav>
-      <LinkContainer to='/dashboard'><NavItem>Home</NavItem></LinkContainer>
+      <LinkContainer to='/dashboard'><NavItem>Dive Log Dashboard</NavItem></LinkContainer>
       <LinkContainer to='/dives'><NavItem>Dives</NavItem></LinkContainer>
       <LinkContainer to='/locations'><NavItem>Locations</NavItem></LinkContainer>
     </Nav>
