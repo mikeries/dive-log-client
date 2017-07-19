@@ -72,7 +72,7 @@ class DiveForm extends Component  {
       <h4>Comments</h4>
       <textarea value={this.state.comments} name='comments' onChange={this.handleInputChange}></textarea>
       <br/>
-      <Button>Save</Button>
+      <Button type='submit'>Save</Button>
     </form>
     );
   }
