@@ -68,7 +68,7 @@ class App extends Component {
             )}/>
             <Route exact path="/dashboard" render={() => (
               this.isLoggedIn() ? (
-                <Dashboard user={this.props.user}/>
+                <Dashboard user={this.props.user} dives={this.props.dives} />
               ) : (
                 <Redirect to="/"/>
               )
@@ -96,6 +96,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return { 
     user: state.sessionReducer.user,
+    dives: state.divesReducer.dives
    };
 }
 
