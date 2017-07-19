@@ -50,7 +50,7 @@ class DiveForm extends Component  {
           {this.state.id!==0 ? <h1>Editing Dive</h1> : <h1>New Dive</h1>}
 
           <Row>
-            <Col md={6}>
+            <Col md={4}>
               <FormGroup>
                 <ControlLabel>Date</ControlLabel>
                 <FormControl
@@ -62,7 +62,7 @@ class DiveForm extends Component  {
                 />
               </FormGroup>
             </Col>
-            <Col md={6}>
+            <Col md={4}>
               <FormGroup>
                 <ControlLabel>Location</ControlLabel>
                 <FormControl componentClass='select'
@@ -73,7 +73,18 @@ class DiveForm extends Component  {
                 </FormControl>
               </FormGroup>
             </Col>
-            <br/>
+            <Col md={4}>
+              <FormGroup>
+                <ControlLabel>Duration</ControlLabel>
+                <FormControl
+                  type="text"
+                  value={this.state.duration}
+                  placeholder="Duration of dive, in minutes"
+                  name='duration'
+                  onChange={this.handleInputChange}
+                />
+              </FormGroup>
+            </Col>
           </Row>
 
           <Row>
@@ -83,6 +94,7 @@ class DiveForm extends Component  {
                 <FormControl 
                   type='text' 
                   value={this.state.ballast} 
+                  placeholder='How many pounds of ballast'
                   name='ballast' 
                   onChange={this.handleInputChange} />
               </FormGroup>
@@ -93,7 +105,8 @@ class DiveForm extends Component  {
                 <ControlLabel>Maximum Depth</ControlLabel>
                 <FormControl 
                   type='text' 
-                  value={this.state.max_depth} 
+                  value={this.state.max_depth}
+                  placeholder='Maximum depth, in feet'
                   name='max_depth' 
                   onChange={this.handleInputChange} />
               </FormGroup>
@@ -104,7 +117,8 @@ class DiveForm extends Component  {
                 <ControlLabel>Starting Pressure</ControlLabel>
                 <FormControl 
                   type='text' 
-                  value={this.state.starting_pressure} 
+                  value={this.state.starting_pressure}
+                  placeholder='Initial pressure, in psi'
                   name='starting_pressure' 
                   onChange={this.handleInputChange} />
               </FormGroup>
@@ -115,7 +129,8 @@ class DiveForm extends Component  {
                 <ControlLabel>Final Pressure</ControlLabel>
                 <FormControl 
                   type='text' 
-                  value={this.state.final_pressure} 
+                  value={this.state.final_pressure}
+                  placeholder='Final pressure, in psi'
                   name='final_pressure' 
                   onChange={this.handleInputChange} />
               </FormGroup>
