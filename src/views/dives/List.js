@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 import DiveListItem from './DiveListItem'
 
 const DiveList = ({
@@ -16,7 +17,9 @@ const DiveList = ({
     <div>
       <h1>Your Dives</h1>
       {renderDives}
-      <Link to={`/dives/new`}>New</Link>
+      <Link to={`/dives/new`}>
+        <Button>New</Button>
+      </Link>
     </div>
   );
 }

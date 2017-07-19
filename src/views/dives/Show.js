@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 const DiveShow = ({ 
   dive,
@@ -16,8 +17,10 @@ const DiveShow = ({
     <p>{dive.comments}</p>
     <br/>
     
-    <Link to={`/dives/${dive.id}/edit`}>Edit</Link>
-    <button onClick={() => onDelete(dive.id)}>Delete</button>
+    <Link to={`/dives/${dive.id}/edit`}>
+      <Button>Save</Button>
+    </Link>
+    <Button onClick={() => onDelete(dive.id)}>Delete</Button>
   </div>
 )
 
