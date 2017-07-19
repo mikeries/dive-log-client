@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   Button,
   Form,
@@ -133,6 +134,9 @@ class DiveForm extends Component  {
             </Col>
           </Row>
 
+          <Link to={'/dives'}>
+            <Button>Back</Button>
+          </Link>
           <Button type='submit'>Save</Button>
         </Form>
       </Grid>

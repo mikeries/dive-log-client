@@ -12,6 +12,7 @@ const Welcome = (props) => (
         Cloud-based Dive Log
       </p>
     </div>
+    
     <div>
       <LoginButton type='facebook'/>
         <br/>
