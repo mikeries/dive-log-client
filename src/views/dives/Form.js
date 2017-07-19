@@ -4,7 +4,10 @@ import {
   Form,
   FormGroup,
   ControlLabel,
-  FormControl
+  FormControl,
+  Grid,
+  Row,
+  Col
  } from 'react-bootstrap';
 
 
@@ -41,78 +44,98 @@ class DiveForm extends Component  {
 
   render() {
     return (
-    <Form onSubmit={this.handleFormSubmit}>
-      {this.props.dive.id==0 ? <h1>Editing dive</h1> : <h1>New Dive</h1>}
+      <Grid>
+        <Form onSubmit={this.handleFormSubmit}>
+          {this.props.dive.id==0 ? <h1>Editing dive</h1> : <h1>New Dive</h1>}
 
-      <FormGroup>
-        <ControlLabel>Date</ControlLabel>
-        <FormControl
-          type="text"
-          value={this.state.value}
-          placeholder="Date of dive"
-          name='datetime'
-          onChange={this.handleInputChange}
-        />
-      </FormGroup>
+          <Row>
+            <Col md={6}>
+              <FormGroup>
+                <ControlLabel>Date</ControlLabel>
+                <FormControl
+                  type="text"
+                  value={this.state.value}
+                  placeholder="Date of dive"
+                  name='datetime'
+                  onChange={this.handleInputChange}
+                />
+              </FormGroup>
+            </Col>
+            <Col md={6}>
+              <FormGroup>
+                <ControlLabel>Location</ControlLabel>
+                <FormControl componentClass='select'
+                  value={this.state.location_id} name='location' onChange={this.handleLocationChange}>
+                  {this.props.locations && this.props.locations.map(location => (
+                    <option value={location.id} key={location.id}>{location.name}</option>)
+                  )}
+                </FormControl>
+              </FormGroup>
+            </Col>
+            <br/>
+          </Row>
 
-      <FormGroup>
-        <ControlLabel>Location</ControlLabel>
-        <FormControl componentClass='select'
-          value={this.state.location_id} name='location' onChange={this.handleLocationChange}>
-          {this.props.locations && this.props.locations.map(location => (
-            <option value={location.id} key={location.id}>{location.name}</option>)
-          )}
-        </FormControl>
-      </FormGroup>
-      <br/>
+          <Row>
+            <Col md={3}>
+              <FormGroup>
+                <ControlLabel>Ballast</ControlLabel>
+                <FormControl 
+                  type='text' 
+                  value={this.state.ballast} 
+                  name='ballast' 
+                  onChange={this.handleInputChange} />
+              </FormGroup>
+            </Col>
 
-      <FormGroup>
-        <ControlLabel>Ballast</ControlLabel>
-        <FormControl 
-          type='text' 
-          value={this.state.ballast} 
-          name='ballast' 
-          onChange={this.handleInputChange} />
-      </FormGroup>
+            <Col md={3}>
+              <FormGroup>
+                <ControlLabel>Maximum Depth</ControlLabel>
+                <FormControl 
+                  type='text' 
+                  value={this.state.max_depth} 
+                  name='max_depth' 
+                  onChange={this.handleInputChange} />
+              </FormGroup>
+            </Col>
 
-      <FormGroup>
-        <ControlLabel>Maximum Depth</ControlLabel>
-        <FormControl 
-          type='text' 
-          value={this.state.max_depth} 
-          name='max_depth' 
-          onChange={this.handleInputChange} />
-      </FormGroup>
+            <Col md={3}>
+              <FormGroup>
+                <ControlLabel>Starting Pressure</ControlLabel>
+                <FormControl 
+                  type='text' 
+                  value={this.state.starting_pressure} 
+                  name='starting_pressure' 
+                  onChange={this.handleInputChange} />
+              </FormGroup>
+            </Col>
 
-      <FormGroup>
-        <ControlLabel>Starting Pressure</ControlLabel>
-        <FormControl 
-          type='text' 
-          value={this.state.starting_pressure} 
-          name='starting_pressure' 
-          onChange={this.handleInputChange} />
-      </FormGroup>
+            <Col md={3}>
+              <FormGroup>
+                <ControlLabel>Final Pressure</ControlLabel>
+                <FormControl 
+                  type='text' 
+                  value={this.state.final_pressure} 
+                  name='final_pressure' 
+                  onChange={this.handleInputChange} />
+              </FormGroup>
+            </Col>
+          </Row>
 
-      <FormGroup>
-        <ControlLabel>Final Pressure</ControlLabel>
-        <FormControl 
-          type='text' 
-          value={this.state.final_pressure} 
-          name='final_pressure' 
-          onChange={this.handleInputChange} />
-      </FormGroup>
+          <Row>
+            <Col md={12}>
+              <FormGroup>
+                <ControlLabel>Comments</ControlLabel>
+                <FormControl componentClass='textarea'
+                  value={this.state.comments} 
+                  name='comments' 
+                  onChange={this.handleInputChange} />
+              </FormGroup>
+            </Col>
+          </Row>
 
-      <FormGroup>
-        <ControlLabel>Comments</ControlLabel>
-        <FormControl componentClass='textarea'
-          value={this.state.comments} 
-          name='comments' 
-          onChange={this.handleInputChange} />
-      </FormGroup>
-
-      <br/>
-      <Button type='submit'>Save</Button>
-    </Form>
+          <Button type='submit'>Save</Button>
+        </Form>
+      </Grid>
     );
   }
 }
