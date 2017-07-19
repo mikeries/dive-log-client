@@ -9,6 +9,7 @@
 
 
 ## Other stuff
+- update Readme.md
 - pull 'magic numbers' into a constants.js file
 - publish to Heroku
 - use custom Favicon
