@@ -10,6 +10,11 @@ body {
   text-align: center;
 }
 
+.Welcome p {
+  text-align: left;
+  font-size: 1.3em;
+}
+
 .navbar {
   border-bottom: 2px solid black;
   padding-bottom: 10px;
@@ -17,5 +22,5 @@ body {
 }
 
 #email > a {
-  color: #700;
+  color: #666;
 }
