@@ -55,7 +55,7 @@ class App extends Component {
       <Router>
         <div className="App">
           { this.isLoggedIn() &&
-            <Navbar handleLogout={this.props.logoutUser} />
+            <Navbar user={this.props.user} handleLogout={this.props.logoutUser} />
           }
           <Switch>
             <Route exact path='/logout' render={() => (<Redirect to="/"/>)} />
