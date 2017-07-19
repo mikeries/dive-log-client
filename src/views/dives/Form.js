@@ -47,7 +47,7 @@ class DiveForm extends Component  {
     return (
       <Grid>
         <Form onSubmit={this.handleFormSubmit}>
-          {this.props.dive.id===0 ? <h1>Editing Dive</h1> : <h1>New Dive</h1>}
+          {this.state.id!==0 ? <h1>Editing Dive</h1> : <h1>New Dive</h1>}
 
           <Row>
             <Col md={6}>
@@ -55,7 +55,7 @@ class DiveForm extends Component  {
                 <ControlLabel>Date</ControlLabel>
                 <FormControl
                   type="text"
-                  value={this.state.value}
+                  value={this.state.datetime}
                   placeholder="Date of dive"
                   name='datetime'
                   onChange={this.handleInputChange}
