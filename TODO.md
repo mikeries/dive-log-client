@@ -6,6 +6,7 @@
 - Add client-side validation
 - Improve site styling
 - Charts of data
+- Calculators for nitrogen load
 
 
 ## Other stuff
