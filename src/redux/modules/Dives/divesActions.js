@@ -13,10 +13,11 @@ export function fetchDives(jwt) {
 
 export function updateDive(jwt,dive) {
   return (dispatch) => {
-    dispatch({type: actions.UPDATING_DIVE, dive});
+    dispatch({type: actions.UPDATING_DIVE});
     return services.patch(`/dives/${dive.id}`, jwt, dive)
       .then( () => dispatch({
-        type: actions.DIVE_PATCH_SUCCESSFUL
+        type: actions.DIVE_PATCH_SUCCESSFUL,
+        dive
       }))
   }
 }

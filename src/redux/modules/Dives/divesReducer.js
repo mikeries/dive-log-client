@@ -14,13 +14,14 @@ export default function divesReducer(state = initialState, action) {
       return Object.assign({}, state, {dives: dives});
 
     case actions.UPDATING_DIVE:
+      return state;
+      
+    case actions.DIVE_PATCH_SUCCESSFUL:
       dives = state.dives.map(dive => (
         dive.id === action.dive.id ? action.dive : dive
       ));
       return Object.assign({}, state, {dives: dives});
 
-    case actions.DIVE_PATCH_SUCCESSFUL:
-      return Object.assign({}, state);
     
     case actions.CREATING_DIVE:
       return state;
