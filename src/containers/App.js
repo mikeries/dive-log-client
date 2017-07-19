@@ -58,6 +58,7 @@ class App extends Component {
             <Navbar handleLogout={this.props.logoutUser} />
           }
           <Switch>
+            <Route exact path='/logout' render={() => (<Redirect to="/"/>)} />
             <Route exact path="/" render={() => (
               this.isLoggedIn() ? (
                 <Redirect to="/dashboard" />
