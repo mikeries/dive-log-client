@@ -7,6 +7,7 @@ body {
 .App {
   width: 80%;
   margin: auto;
+  text-align: center;
 }
 
 .navbar {
@@ -15,6 +16,6 @@ body {
   margin-bottom: 12px;
 }
 
-.email a {
+#email > a {
   color: #700;
 }

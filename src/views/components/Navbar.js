@@ -10,7 +10,7 @@ const NavBar = ({ user, handleLogout }) => (
       <LinkContainer to='/locations'><NavItem>Locations</NavItem></LinkContainer>
     </Nav>
     <Nav pullRight={true}>
-      {user && user.email && <li role='presentation' className='email'><a>Welcome {user.email}!</a></li>}
+      {user && user.email && <li role='presentation' id='email'><a>Welcome {user.email}!</a></li>}
       <LinkContainer to='/logout' ><NavItem onClick={handleLogout}>Logout</NavItem></LinkContainer>
     </Nav>
   </Navbar>
