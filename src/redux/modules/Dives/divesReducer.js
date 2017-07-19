@@ -23,13 +23,10 @@ export default function divesReducer(state = initialState, action) {
       return Object.assign({}, state);
     
     case actions.CREATING_DIVE:
-      dives = state.dives.concat(action.dive);
-      return Object.assign({}, state, {dives: dives});
+      return state;
 
     case actions.CREATE_DIVE_SUCCESSFUL:
-      dives = state.dives.map(dive => (
-        dive.id === 0 ? action.dive : dive
-      ));
+      dives = state.dives.concat(action.dive);
       return Object.assign({}, state, {dives: dives});
 
     case actions.DELETE_DIVE:

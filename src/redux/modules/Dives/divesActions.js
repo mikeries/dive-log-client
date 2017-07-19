@@ -23,7 +23,7 @@ export function updateDive(jwt,dive) {
 
 export function newDive(jwt,dive) {
   return (dispatch) => {
-    dispatch({type: actions.CREATING_DIVE, dive});
+    dispatch({type: actions.CREATING_DIVE});
     return services.post(`/dives`, jwt, dive)
       .then(dive => dispatch({
         type: actions.CREATE_DIVE_SUCCESSFUL,
