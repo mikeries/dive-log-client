@@ -13,10 +13,16 @@ const DiveShow = ({
     <p>Ballast: {dive.ballast}  Maximum Depth: {dive.max_depth}</p>
     <p>Starting Pressure: {dive.starting_pressure}  Final Pressure: {dive.final_pressure}</p>
     
-    <h4>Comments</h4>
-    <p>{dive.comments}</p>
-    <br/>
+    {dive.comments &&
+      <div>
+        <h4>Comments</h4>
+        <p>{dive.comments}</p>
+      </div>
+    }
     
+    <Link to={'/dives'}>
+      <Button>Back</Button>
+    </Link>
     <Link to={`/dives/${dive.id}/edit`}>
       <Button>Edit</Button>
     </Link>
