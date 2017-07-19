@@ -1,23 +1,39 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Grid } from 'react-bootstrap';
+import { Button, Grid, Row, Col } from 'react-bootstrap';
 
 const DiveShow = ({ 
   dive,
   onDelete
 }) => (
   <Grid>
-    <h3>{dive.datetime} {dive.location.name} - {dive.location.city}, {dive.location.country}</h3>
+    <Row>
+      <Col md={12}>
+        <h3>{dive.location.name} - {dive.location.city}, {dive.location.country}</h3>
+      </Col>
+    </Row>
 
-    <p>Duration: {dive.duration}</p>
-    <p>Ballast: {dive.ballast}  Maximum Depth: {dive.max_depth}</p>
-    <p>Starting Pressure: {dive.starting_pressure}  Final Pressure: {dive.final_pressure}</p>
+    <Row>
+      <Col md={12}>
+        <p>on {dive.datetime}</p>
+      </Col>
+    </Row>
+
+    <Row>
+      <Col md={2}><p>Duration: {dive.duration}</p></Col>
+      <Col md={2}><p>Ballast: {dive.ballast}</p></Col>
+      <Col md={2}><p>Maximum Depth: {dive.max_depth}</p></Col>
+      <Col md={2}><p>Starting Pressure: {dive.starting_pressure}</p></Col>
+      <Col md={2}><p>Final Pressure: {dive.final_pressure}</p></Col>
+    </Row>
     
     {dive.comments &&
-      <div>
-        <h4>Comments</h4>
-        <p>{dive.comments}</p>
-      </div>
+      <Row>
+        <Col md={12}>
+          <h4>Comments</h4>
+          <p>{dive.comments}</p>
+        </Col>
+      </Row>
     }
     
     <Link to={'/dives'}>
