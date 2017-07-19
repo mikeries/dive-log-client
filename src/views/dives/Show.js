@@ -15,7 +15,7 @@ const DiveShow = ({
 
     <Row>
       <Col md={12}>
-        <p>on {dive.datetime}</p>
+        <p>on {dive.date} at {dive.time}</p>
       </Col>
     </Row>
 
