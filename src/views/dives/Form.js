@@ -47,7 +47,7 @@ class DiveForm extends Component  {
     return (
       <Grid>
         <Form onSubmit={this.handleFormSubmit}>
-          {this.state.id!==0 ? <h1>Editing Dive</h1> : <h1>New Dive</h1>}
+          {this.state.id > 0 ? <h1>Editing Dive</h1> : <h1>New Dive</h1>}
 
           <Row>
             <Col md={4}>
