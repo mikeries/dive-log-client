@@ -15,6 +15,6 @@ body {
   margin-bottom: 12px;
 }
 
-.email {
-  color: #000;
+.email a {
+  color: #700;
 }
