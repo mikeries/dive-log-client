@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'react-bootstrap';
 
 class DiveForm extends Component  {
 
@@ -71,7 +72,7 @@ class DiveForm extends Component  {
       <h4>Comments</h4>
       <textarea value={this.state.comments} name='comments' onChange={this.handleInputChange}></textarea>
       <br/>
-      <button>Save</button>
+      <Button>Save</Button>
     </form>
     );
   }

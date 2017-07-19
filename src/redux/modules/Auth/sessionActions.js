@@ -20,6 +20,6 @@ export function loginUser(jwt = null) {
 
 export function logoutUser(router) {
   sessionStorage.removeItem('jwt');
-  router.history.replace('/')
+  router.history.push('/')
   return {type: actions.LOG_OUT}
 }

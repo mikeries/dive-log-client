@@ -1,10 +1,11 @@
 import React from 'react';
+import { Button } from 'react-bootstrap'
 
 const LoginButton = (props) => (
   <div>
-    <a href={`http://localhost:3000/authenticate?type=${props.type}`}>
+    <Button href={`http://localhost:3000/authenticate?type=${props.type}`}>
       Login with {props.type}
-    </a>
+    </Button>
   </div>
 )
 
