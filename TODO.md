@@ -5,8 +5,12 @@
 - Add server-side validation
 - Add client-side validation
 - Improve site styling
+- Charts of data
 
 
 ## Other stuff
 - pull 'magic numbers' into a constants.js file
 - publish to Heroku
+- use custom Favicon
+- figure out better way to handle JWT
+- more statistics on Dashboard
