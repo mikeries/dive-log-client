@@ -50,19 +50,31 @@ class DiveForm extends Component  {
           {this.state.id > 0 ? <h1>Editing Dive</h1> : <h1>New Dive</h1>}
 
           <Row>
-            <Col md={4}>
+            <Col md={3}>
               <FormGroup>
                 <ControlLabel>Date</ControlLabel>
                 <FormControl
                   type="text"
-                  value={this.state.datetime}
+                  value={this.state.date}
                   placeholder="Date of dive"
-                  name='datetime'
+                  name='date'
                   onChange={this.handleInputChange}
                 />
               </FormGroup>
             </Col>
-            <Col md={4}>
+            <Col md={3}>
+              <FormGroup>
+                <ControlLabel>Time</ControlLabel>
+                <FormControl
+                  type="text"
+                  value={this.state.time}
+                  placeholder="Time of dive"
+                  name='time'
+                  onChange={this.handleInputChange}
+                />
+              </FormGroup>
+            </Col>
+            <Col md={3}>
               <FormGroup>
                 <ControlLabel>Location</ControlLabel>
                 <FormControl componentClass='select'
@@ -73,7 +85,7 @@ class DiveForm extends Component  {
                 </FormControl>
               </FormGroup>
             </Col>
-            <Col md={4}>
+            <Col md={3}>
               <FormGroup>
                 <ControlLabel>Duration</ControlLabel>
                 <FormControl
