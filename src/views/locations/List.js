@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Grid } from 'react-bootstrap'
 import LocationListItem from './LocationListItem'
 
 const Locations = (props) => (
-  <div>
-    <h1>Locations Page</h1>
+  <Grid>
+    <h2>Your Locations</h2>
     {props.locations && props.locations.map(
       (location, index) => ( <LocationListItem key={index} location={location} />)
     )}
-  </div>
+  </Grid>
 )
 
 const mapStateToProps = (state) => {

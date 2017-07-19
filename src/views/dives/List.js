@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import { Button, Grid } from 'react-bootstrap'
 import DiveListItem from './DiveListItem'
 
 const DiveList = ({
@@ -14,13 +14,13 @@ const DiveList = ({
   ));
 
   return (
-    <div>
+    <Grid>
       <h1>Your Dives</h1>
       {renderDives}
       <Link to={`/dives/new`}>
         <Button>New</Button>
       </Link>
-    </div>
+    </Grid>
   );
 }
 

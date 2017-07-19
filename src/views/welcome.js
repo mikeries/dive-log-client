@@ -1,21 +1,22 @@
 import React from 'react';
 import LoginButton from './components/LoginButton';
+import { Grid } from 'react-bootstrap'
 
 const Welcome = (props) => (
-  <div className="Login">
-    <div className="Login-header">
-      <h2 className="Login-title">
+  <Grid>
+    <div>
+      <h2>
         Dive Log
       </h2>
-      <p className="Login-intro">
+      <p>
         Cloud-based Dive Log
       </p>
     </div>
-    <div className="Login-buttons">
+    <div>
       <LoginButton type='facebook'/>
         <br/>
       <LoginButton type='github'/>
     </div>
-  </div>
+  </Grid>
 )
 export default Welcome

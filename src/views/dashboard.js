@@ -1,11 +1,12 @@
 import React from 'react';
+import { Grid } from 'react-bootstrap'
 
 const Dashboard = (props) => (
-  <div>
+  <Grid>
     {props.user && 
       'Welcome ' + props.user.name + '!'
     }
-  </div>
+  </Grid>
 )
 
 export default Dashboard;

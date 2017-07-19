@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Grid } from 'react-bootstrap';
 
 const DiveShow = ({ 
   dive,
   onDelete
 }) => (
-  <div>
+  <Grid>
     <h3>{dive.datetime} {dive.location.name} - {dive.location.city}, {dive.location.country}</h3>
 
     <p>Duration: {dive.duration}</p>
@@ -18,10 +18,10 @@ const DiveShow = ({
     <br/>
     
     <Link to={`/dives/${dive.id}/edit`}>
-      <Button>Save</Button>
+      <Button>Edit</Button>
     </Link>
     <Button onClick={() => onDelete(dive.id)}>Delete</Button>
-  </div>
+  </Grid>
 )
 
 export default DiveShow
