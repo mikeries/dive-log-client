@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Location from './Location'
+import LocationListItem from './LocationListItem'
 
 const Locations = (props) => (
   <div>
     <h1>Locations Page</h1>
     {props.locations && props.locations.map(
-      (location, index) => ( <Location key={index} location={location} />)
+      (location, index) => ( <LocationListItem key={index} location={location} />)
     )}
   </div>
 )
