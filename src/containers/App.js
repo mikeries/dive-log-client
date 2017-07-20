@@ -42,7 +42,7 @@ class App extends Component {
   componentWillMount() {
     const jwt = this.state.jwt
     this.props.loginUser(jwt);
-
+    
     if(jwt) {
       this.props.fetchUser(jwt)
       this.props.fetchDives(jwt)
