@@ -1,13 +1,17 @@
 import * as actions from './actionTypes';
 import services from '../Api/api_services'
+import { NOOP } from '../../../constants'
 
-export function fetchUser(jwt) {
+export function fetchUser(jwt, errorHandler = NOOP) {
   return (dispatch) => {
     dispatch({type: actions.LOADING_USER});
     return services.get('/user/current_user', jwt)
-          .then(user => dispatch(
-            { type: actions.UPDATE_USER, user }
-          ));
+          .then(user => {
+            return dispatch({ type: actions.UPDATE_USER, user });
+          }).catch(errors => {
+            console.log(errors);
+            return errorHandler(errors);
+          })
   }
 }
 

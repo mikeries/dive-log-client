@@ -3,7 +3,9 @@ import { API_URL } from '../../../constants'
 
 const parseResponse = response => (
   response.json()
-    .then(json => response.ok ? json : Promise.reject(json.errors))
+    .then(json => response.ok ? 
+          json : 
+          Promise.reject(new Error(json.errors)))
 )
 
 export default {
