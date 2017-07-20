@@ -10,9 +10,9 @@
 
 
 ## Other stuff
-- update Readme.md
-- pull 'magic numbers' into a constants.js file
-- publish to Heroku
+- ~~update Readme.md~~
+- ~~pull 'magic numbers' into a constants.js file~~
+- ~~publish to Heroku~~
 - use custom Favicon
-- figure out better way to handle JWT
+- figure out better way to handle JWT token
 - more statistics on Dashboard
