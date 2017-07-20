@@ -17,7 +17,7 @@ const Dashboard = ({user, dives}) => {
   const deepest = deepestDive(dives);
   return (
     <Grid>
-      {dives &&
+      {dives.length > 0 &&
         <div>
           <h2>Your dive statistics</h2>
  
@@ -31,10 +31,11 @@ const Dashboard = ({user, dives}) => {
             <p>{totalDuration(dives)} minutes</p>
           </div>
 
-          <div>
+          {deepest && <div>
             <h3>Deepest dive</h3>
             <p>{deepest.location.name} on {deepest.date}</p>
           </div>
+          }
 
           <div>
             <h3>Maximum depth</h3>
