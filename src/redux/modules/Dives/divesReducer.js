@@ -21,7 +21,7 @@ export default function divesReducer(state = initialState, action) {
       dives = state.dives.map(dive => (
         dive.id === action.dive.id ? action.dive : dive
       ));
-      console.log('Patching dive successful.', dive.id)
+      console.log('Patching dive successful.', dives.length)
       return Object.assign({}, state, {dives: dives});
 
     
