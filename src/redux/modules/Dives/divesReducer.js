@@ -11,6 +11,7 @@ export default function divesReducer(state = initialState, action) {
 
     case actions.ADDING_DIVES_LIST:
       let dives = Object.assign([], action.dives);
+      console.log('Loading dives: ' + dives.length)
       return Object.assign({}, state, {dives: dives});
 
     case actions.UPDATING_DIVE:
@@ -20,6 +21,7 @@ export default function divesReducer(state = initialState, action) {
       dives = state.dives.map(dive => (
         dive.id === action.dive.id ? action.dive : dive
       ));
+      console.log('Patching dive successful.', dive.id)
       return Object.assign({}, state, {dives: dives});
 
     
