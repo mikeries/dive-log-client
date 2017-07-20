@@ -1,6 +1,11 @@
 import fetch from 'isomorphic-fetch'
 import { API_URL } from '../../../constants'
 
+const parseResponse = response => (
+  response.json()
+    .then(json => response.ok ? json : Promise.reject(json.errors))
+)
+
 export default {
 
   get(url, jwt) {
@@ -12,7 +17,7 @@ export default {
     return fetch(`${API_URL}${url}`, {
       method: 'GET',
       headers: headers
-    }).then(response => (response.json()));
+    }).then(parseResponse);
   },
 
   patch(url, jwt, data) {
