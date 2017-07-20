@@ -1,6 +1,5 @@
 import fetch from 'isomorphic-fetch'
-
-const API_URL = 'http://localhost:3000'
+import { API_URL } from '../../../constants'
 
 export default {
 
