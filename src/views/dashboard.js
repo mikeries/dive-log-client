@@ -6,7 +6,7 @@ const totalDuration = dives => (
 )
 
 const deepestDive = dives => {
-  if (dives.length > 0) {
+  if (dives && dives.length > 0) {
     return dives.reduce((deepest,dive) => (
       dive = deepest.max_depth < dive.max_depth ? dive : deepest
     ), dives[0])
@@ -20,11 +20,11 @@ const Dashboard = ({user, dives}) => {
 
       <h2>Your dive statistics</h2>
 
-      {dives.length === 0 && <div>
+      {dives && dives.length === 0 && <div>
           <h3>You don't have any dive data yet.</h3>
         </div>
       }
-      {dives.length > 0 && <div>
+      {dives && dives.length > 0 && <div>
           <div>
             <h3>Number of dives</h3>
             <p>{dives.length}</p>
@@ -47,7 +47,7 @@ const Dashboard = ({user, dives}) => {
           </div>
         </div>
       }
-      
+
     </Grid>
   )
 }
