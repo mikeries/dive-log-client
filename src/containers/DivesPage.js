@@ -65,10 +65,10 @@ class DivesPage extends Component {
     <div>
       {this.props.dives &&
         <Switch>
-          <Route path={`${this.props.match.url}/new`} component={this.ShowDiveNew}/>
-          <Route path={`${this.props.match.url}/:diveId/edit`} component={this.ShowDiveEdit}/>
-          <Route path={`${this.props.match.url}/:diveId`} component={this.ShowDiveShow}/>
-          <Route exact path={this.props.match.url} component={this.ShowDiveList} />
+          <Route path={`${this.props.match.url}/new`} render={this.ShowDiveNew}/>
+          <Route path={`${this.props.match.url}/:diveId/edit`} render={this.ShowDiveEdit}/>
+          <Route path={`${this.props.match.url}/:diveId`} render={this.ShowDiveShow}/>
+          <Route exact path={this.props.match.url} render={this.ShowDiveList} />
         </Switch>
       }
     </div>
