@@ -31,7 +31,8 @@ class App extends Component {
     const jwt = params.token || sessionStorage.getItem('jwt');
 
     this.state = {
-      jwt: jwt || null
+      jwt: jwt || null,
+      errors: null
     }
   }
 
@@ -39,16 +40,19 @@ class App extends Component {
     return !!this.state.jwt;
   }
 
-  handleUserFetchError = errors => (console.log('Errors while fetching the user:' + errors))
+  handleInitializationError = errors => {
+    console.log('errors: ',errors);
+    this.setState({ errors: errors })
+  }
 
   componentWillMount() {
     const jwt = this.state.jwt
     this.props.loginUser(jwt);
 
     if(jwt) {
-      this.props.fetchUser(jwt, this.handleUserFetchError)
-      this.props.fetchDives(jwt)
-      this.props.fetchLocations(jwt)
+      this.props.fetchUser(jwt, this.handleInitializationError)
+      this.props.fetchDives(jwt, this.handleInitializationError)
+      this.props.fetchLocations(jwt, this.handleInitializationError)
     }
   }
 
@@ -60,6 +64,14 @@ class App extends Component {
             <Navbar user={this.props.user} handleLogout={this.props.logoutUser} />
           }
           <Switch>
+            {this.state.errors && 
+              <Route path='' render={() => (
+                <div>
+                  <p>Sorry, an error occurred.</p>
+                  <p>Please contact your system administrator.</p>
+                </div>
+              )}/>
+            }
             <Route exact path='/logout' render={() => (<Redirect to="/"/>)} />
             <Route exact path="/" render={() => (
               this.isLoggedIn() ? (
