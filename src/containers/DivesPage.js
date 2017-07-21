@@ -6,9 +6,24 @@ import DiveShow from '../views/dives/Show'
 import DiveForm from '../views/dives/Form'
 import DiveList from '../views/dives/List'
 
-import { updateDive, newDive, deleteDive } from '../redux/modules/Dives/divesActions'
+import { updateDive, newDive, deleteDive, resetErrors } from '../redux/modules/Dives/divesActions'
 
 class DivesPage extends Component {
+
+  constructor() {
+    super()
+    this.unListen = null;
+  }
+
+  componentWillMount() {
+    this.unListen = this.props.history.listen(() => {
+      if (this.props.errors) this.props.resetErrors() 
+    })
+  }
+
+  componentWillUnmount() {
+    this.unListen();
+  }
 
   handleSubmit = dive => {
     // TODO: perform client-side validation here.
@@ -99,7 +114,8 @@ const mapDispatchToProps = dispatch => {
     { 
     updateDive,
     newDive,
-    deleteDive
+    deleteDive,
+    resetErrors
     }
   , dispatch);
 };
