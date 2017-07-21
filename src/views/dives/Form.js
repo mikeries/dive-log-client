@@ -23,6 +23,10 @@ class DiveForm extends Component  {
     }
   }
 
+  componentWillReceiveProps() {
+    this.setState({submitted: false})
+  }
+
   handleLocationChange = (event) => {
     event.preventDefault();
     this.setState({
@@ -40,6 +44,8 @@ class DiveForm extends Component  {
     
   handleFormSubmit = (event) => {
     event.preventDefault();
+    this.setState({submitted: true});
+
     this.props.onSubmit({
       ...this.state,
     });
@@ -174,7 +180,7 @@ class DiveForm extends Component  {
           <Link to={'/dives'}>
             <Button>Back</Button>
           </Link>
-          <Button type='submit'>Save</Button>
+          <Button disabled={!!this.state.submitted} type='submit'>Save</Button>
         </Form>
       </Grid>
     );

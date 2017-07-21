@@ -1,18 +1,17 @@
 import * as actions from './actionTypes' 
 
 const initialState = {
-  loading: false,
   locations: null
 }
 
 export default function locationsReducer(state = initialState, action) {  
   switch(action.type) {
     case actions.LOADING_LOCATIONS:
-      return Object.assign({}, state, {loading: true})
+      return state;
+
     case actions.UPDATING_LOCATIONS:
-      let locations = Object.assign([], action.locations)
-      console.log('Loading locations: ' + locations.length)
-      return Object.assign({}, state, {locations: locations, loading: false})
+      return {...state, locations: action.locations}
+
     default: 
       return state;
   }

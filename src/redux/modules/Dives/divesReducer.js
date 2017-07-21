@@ -5,7 +5,6 @@ const initialState = {
   errors: null
 }
 
-// TODO tidy this code up using spread operator
 export default function divesReducer(state = initialState, action) {  
   switch(action.type) {
     case actions.RESET_ERRORS:
@@ -15,40 +14,39 @@ export default function divesReducer(state = initialState, action) {
       return state;
 
     case actions.ADDING_DIVES_LIST:
-      let dives = Object.assign([], action.dives);
-      return Object.assign({}, state, {dives: dives});
+      return {...state, dives: action.dives}
 
     case actions.UPDATING_DIVE:
       return state;
       
     case actions.DIVE_PATCH_SUCCESSFUL:
-      dives = state.dives.map(dive => (
+      let dives = state.dives.map(dive => (
         dive.id === action.dive.id ? action.dive : dive
       ));
-      return Object.assign({}, state, {dives: dives});
+      return {...state, dives: dives};
 
     case actions.DIVE_PATCH_FAILED:
-      return Object.assign({}, state, {errors: action.errors})
+      return {...state, errors: action.errors}
     
     case actions.CREATING_DIVE:
       return state;
 
     case actions.CREATE_DIVE_SUCCESSFUL:
       dives = state.dives.concat(action.dive);
-      return Object.assign({}, state, {dives: dives});
+      return {...state, dives: dives}
 
     case actions.CREATE_DIVE_FAILED:
-      return Object.assign({}, state, {errors: action.errors})
+      return {...state, errors: action.errors}
 
     case actions.DELETE_DIVE:
       return state;
 
     case actions.DELETE_DIVE_SUCCESSFUL:
       dives = state.dives.filter(dive => (dive.id !== action.diveId));
-      return Object.assign({}, state, {dives: dives});
+      return {...state, dives: dives}
 
     case actions.DELETE_DIVE_FAILED:
-      return Object.assign({}, state, {errors: action.errors})
+      return {...state, errors: action.errors}
 
     default: 
       return state;

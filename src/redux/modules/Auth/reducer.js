@@ -2,20 +2,23 @@ import * as actions from './actionTypes'
 
 const initialState = {
   jwt: null,
-  loading: false,
   user: null
 }
 
 export default function sessionReducer(state = initialState, action) {
   switch(action.type) {
     case actions.LOADING_USER:
-      return Object.assign({}, state, {loading: true})
+      return state
+
     case actions.UPDATE_USER:
-      return Object.assign({}, state, {user: action.user, loading: false})
+      return {...state, user: action.user}
+
     case actions.LOG_IN:
-      return Object.assign({}, state, {jwt: action.token})
+      return {...state, jwt: action.token}
+
     case actions.LOG_OUT:
-      return Object.assign({}, state, initialState.jwt)
+      return Object.assign(state, initialState)
+
     default: 
       return state;
   }
