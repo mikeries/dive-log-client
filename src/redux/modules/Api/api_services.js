@@ -7,10 +7,6 @@ const status = response => (
     Promise.reject(new Error(response.statusText))
 )
 
-function json(response) {
-  return response.json()
-}
-
 export default {
   get(url, jwt) {
     const headers =  {
@@ -23,14 +19,12 @@ export default {
       headers: headers
     })
     .then(status)
-    .then(json)
-    .then((data) => {
-      if (data.errors) {
-        return Promise.reject(data.errors);
-      } else {
-        return Promise.resolve(data);
-      }
-    })
+    .then(response => (response.json()))
+    .then((data) => (
+      data.errors ?
+        Promise.reject(data.errors) :
+        Promise.resolve(data)
+    ))
   },
 
   patch(url, jwt, data) {
@@ -43,7 +37,12 @@ export default {
       method: 'PATCH',
       headers: headers,
       body: JSON.stringify(data)
-    }).then(response => (response.json()));
+    }).then(response => (response.json()))
+    .then((data) => (
+      data.errors ?
+        Promise.reject(data.errors) :
+        Promise.resolve(data)
+    ))
   },
 
   post(url, jwt, data) {
@@ -56,7 +55,12 @@ export default {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(data)
-    }).then(response => (response.json()));
+    }).then(response => (response.json()))
+    .then((data) => (
+      data.errors ?
+        Promise.reject(data.errors) :
+        Promise.resolve(data)
+    ))
   },
 
     delete(url, jwt) {
@@ -68,7 +72,12 @@ export default {
     return fetch(`${API_URL}${url}`, {
       method: 'DELETE',
       headers: headers,
-    }).then(response => (response.json()));
+    }).then(response => (response.json()))
+    .then((data) => (
+      data.errors ?
+        Promise.reject(data.errors) :
+        Promise.resolve(data)
+    ))
   }
 
 }
