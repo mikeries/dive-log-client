@@ -8,7 +8,8 @@ const status = response => (
 )
 
 export default {
-  get(url, jwt) {
+  get(url) {
+    const jwt = sessionStorage.getItem('jwt');
     const headers =  {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -27,7 +28,8 @@ export default {
     ))
   },
 
-  patch(url, jwt, data) {
+  patch(url, data) {
+    const jwt = sessionStorage.getItem('jwt');
     const headers =  {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -45,7 +47,8 @@ export default {
     ))
   },
 
-  post(url, jwt, data) {
+  post(url, data) {
+    const jwt = sessionStorage.getItem('jwt');
     const headers =  {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -63,7 +66,8 @@ export default {
     ))
   },
 
-    delete(url, jwt) {
+    delete(url) {
+    const jwt = sessionStorage.getItem('jwt');
     const headers =  {
       'Accept': 'application/json',
       'Content-Type': 'application/json',

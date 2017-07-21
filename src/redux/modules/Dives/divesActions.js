@@ -5,10 +5,10 @@ export function resetErrors() {
   return {type: actions.RESET_ERRORS}
 }
 
-export function fetchDives(jwt) {
+export function fetchDives() {
   return (dispatch) => {
     dispatch({type: actions.LOADING_DIVES_LIST});
-    return services.get('/dives', jwt)
+    return services.get('/dives')
       .then(dives => dispatch({ 
         type: actions.ADDING_DIVES_LIST, 
         dives 
@@ -16,29 +16,28 @@ export function fetchDives(jwt) {
   }
 }
 
-export function updateDive(jwt,dive) {
+export function updateDive(dive, history) {
   return (dispatch) => {
     dispatch({type: actions.UPDATING_DIVE});
-    return services.patch(`/dives/${dive.id}`, jwt, dive)
-      .then( () => dispatch({
-        type: actions.DIVE_PATCH_SUCCESSFUL,
-        dive
-      }))
-      .catch(errors => dispatch({ 
-        type: actions.DIVE_PATCH_FAILED, 
-        errors
-      }))
+    return services.patch(`/dives/${dive.id}`, dive)
+      .then( () => {
+        history.push('/dives');
+        dispatch({ type: actions.DIVE_PATCH_SUCCESSFUL, dive});
+      })
+      .catch(errors => {
+        dispatch({ type: actions.DIVE_PATCH_FAILED, errors });
+      })
   }
 }
 
-export function newDive(jwt,dive) {
+export function newDive(dive, history) {
   return (dispatch) => {
     dispatch({type: actions.CREATING_DIVE});
-    return services.post(`/dives`, jwt, dive)
-      .then(dive => dispatch({
-        type: actions.CREATE_DIVE_SUCCESSFUL,
-        dive
-      }))
+    return services.post(`/dives`, dive)
+      .then(dive => { 
+        history.push('/dives');
+        dispatch({ type: actions.CREATE_DIVE_SUCCESSFUL, dive });
+      })
       .catch(errors => dispatch({ 
         type: actions.CREATE_DIVE_FAILED, 
         errors
@@ -46,10 +45,10 @@ export function newDive(jwt,dive) {
   }
 }
 
-export function deleteDive(jwt,diveId) {
+export function deleteDive(diveId) {
   return (dispatch) => {
     dispatch({type: actions.DELETE_DIVE});
-    return services.delete(`/dives/${diveId}`, jwt)
+    return services.delete(`/dives/${diveId}`)
       .then(dive => dispatch({
         type: actions.DELETE_DIVE_SUCCESSFUL,
         diveId: diveId

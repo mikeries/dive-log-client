@@ -28,16 +28,14 @@ class DivesPage extends Component {
   handleSubmit = dive => {
     // TODO: perform client-side validation here.
     if (dive.id) {
-      this.props.updateDive(this.props.jwt, dive)
-      this.props.history.push(this.props.match.url)
+      this.props.updateDive(dive, this.props.history)
     } else {
-      this.props.newDive(this.props.jwt, dive)
-      //this.props.history.push(this.props.match.url)
+      this.props.newDive(dive, this.props.history)
     }
   }
 
   handleDelete = (diveId) => {
-    this.props.deleteDive(this.props.jwt, diveId);
+    this.props.deleteDive(diveId);
     this.props.history.push(this.props.match.url);
   }
 
@@ -102,7 +100,6 @@ class DivesPage extends Component {
 
 const mapStateToProps = state => {
   return { 
-    jwt: state.sessionReducer.jwt,
     dives: state.divesReducer.dives,
     locations: state.locationsReducer.locations,
     errors: state.divesReducer.errors

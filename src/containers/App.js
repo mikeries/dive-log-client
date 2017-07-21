@@ -50,9 +50,9 @@ class App extends Component {
     this.props.loginUser(jwt);
 
     if(jwt) {
-      this.props.fetchUser(jwt, this.handleInitializationError)
-      this.props.fetchDives(jwt, this.handleInitializationError)
-      this.props.fetchLocations(jwt, this.handleInitializationError)
+      this.props.fetchUser(this.handleInitializationError)
+      this.props.fetchDives(this.handleInitializationError)
+      this.props.fetchLocations(this.handleInitializationError)
     }
   }
 
