@@ -1,17 +1,17 @@
 import * as actions from './actionTypes' 
 
 const initialState = {
-  dives: null
+  dives: null,
+  errors: null
 }
 
 export default function divesReducer(state = initialState, action) {  
   switch(action.type) {
     case actions.LOADING_DIVES_LIST:
-      return Object.assign({}, state);
+      return state;
 
     case actions.ADDING_DIVES_LIST:
       let dives = Object.assign([], action.dives);
-      console.log('Loading dives: ' + dives.length)
       return Object.assign({}, state, {dives: dives});
 
     case actions.UPDATING_DIVE:
@@ -21,9 +21,10 @@ export default function divesReducer(state = initialState, action) {
       dives = state.dives.map(dive => (
         dive.id === action.dive.id ? action.dive : dive
       ));
-      console.log('Patching dive successful.', dives.length)
       return Object.assign({}, state, {dives: dives});
 
+    case actions.DIVE_PATCH_FAILED:
+      return Object.assign({}, state, {errors: action.errors})
     
     case actions.CREATING_DIVE:
       return state;
@@ -32,12 +33,18 @@ export default function divesReducer(state = initialState, action) {
       dives = state.dives.concat(action.dive);
       return Object.assign({}, state, {dives: dives});
 
+    case actions.CREATE_DIVE_FAILED:
+      return Object.assign({}, state, {errors: action.errors})
+
     case actions.DELETE_DIVE:
       return state;
 
     case actions.DELETE_DIVE_SUCCESSFUL:
       dives = state.dives.filter(dive => (dive.id !== action.diveId));
       return Object.assign({}, state, {dives: dives});
+
+    case actions.DELETE_DIVE_FAILED:
+      return Object.assign({}, state, {errors: action.errors})
 
     default: 
       return state;
