@@ -44,6 +44,19 @@ class DiveForm extends Component  {
     });
   }
 
+  // TODO: refactor error list into a reusable component and put it elsewhere.
+  renderErrors = () => {
+    let errorList=[]
+    for (let key in this.props.errors) {
+      errorList.push(
+        <p key={key}>
+        {`${key}: ${this.props.errors[key]}`}
+        </p>
+        )
+    }
+    return errorList;
+  }
+
   render() {
     return (
       <Grid>
@@ -53,7 +66,7 @@ class DiveForm extends Component  {
           {this.props.errors &&
             <Row>
               <Col md={12}>
-                <Well className='error'>You have errors.</Well>
+                <Well className='error'>{this.renderErrors()}</Well>
               </Col>
             </Row>
           }
