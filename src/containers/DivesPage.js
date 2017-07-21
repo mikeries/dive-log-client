@@ -11,6 +11,7 @@ import { updateDive, newDive, deleteDive } from '../redux/modules/Dives/divesAct
 class DivesPage extends Component {
 
   handleSubmit = dive => {
+    // TODO: perform client-side validation here.
     if (dive.id) {
       this.props.updateDive(this.props.jwt, dive)
       this.props.history.push(this.props.match.url)
