@@ -39,20 +39,23 @@ class DivesPage extends Component {
 
   ShowDiveNew = props => {
     const dive = {
-      location: this.props.locations[0], // default to first location for now
+      location: this.props.locations[0],           // use first location as default, at least for now
       location_id: this.props.locations[0].id,
-      datetime: '',
+      date: '',
+      time: '',
       duration: '',
       ballast: '',
       max_depth: '',
       starting_pressure: '',
-      final_pressure: ''
+      final_pressure: '',
+      comments: ''
     }
     return <DiveForm dive={dive} onSubmit={this.handleSubmit} locations={this.props.locations}/>
   }
 
   ShowDiveEdit = props => {
-    const dive = this.props.dives.find(dive => dive.id === +props.match.params.diveId)
+    let dive = this.props.dives.find(dive => dive.id === +props.match.params.diveId);
+    for (let key in dive) { dive[key] = dive[key] ? dive[key] : '' }  // replace nulls with ''
     return <DiveForm
             dive={dive}
             locations={this.props.locations}
