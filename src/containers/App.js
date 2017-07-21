@@ -39,12 +39,14 @@ class App extends Component {
     return !!this.state.jwt;
   }
 
+  handleUserFetchError = errors => (console.log('Errors while fetching the user:' + errors))
+
   componentWillMount() {
     const jwt = this.state.jwt
     this.props.loginUser(jwt);
-    
+
     if(jwt) {
-      this.props.fetchUser(jwt)
+      this.props.fetchUser(jwt, this.handleUserFetchError)
       this.props.fetchDives(jwt)
       this.props.fetchLocations(jwt)
     }

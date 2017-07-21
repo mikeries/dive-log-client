@@ -6,12 +6,12 @@ export function fetchUser(jwt, errorHandler = NOOP) {
   return (dispatch) => {
     dispatch({type: actions.LOADING_USER});
     return services.get('/user/current_user', jwt)
-          .then(user => {
-            return dispatch({ type: actions.UPDATE_USER, user });
-          }).catch(errors => {
-            console.log(errors);
-            return errorHandler(errors);
-          })
+      .catch(errors => {
+        errorHandler(errors);
+      })
+      .then(user => (
+        dispatch({ type: actions.UPDATE_USER, user })
+      ))
   }
 }
 
