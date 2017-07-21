@@ -45,7 +45,7 @@ class App extends Component {
     this.setState({ errors: errors })
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const jwt = this.state.jwt
     this.props.loginUser(jwt);
 
