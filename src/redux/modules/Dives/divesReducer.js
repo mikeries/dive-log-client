@@ -5,8 +5,12 @@ const initialState = {
   errors: null
 }
 
+// TODO tidy this code up using spread operator
 export default function divesReducer(state = initialState, action) {  
   switch(action.type) {
+    case actions.RESET_ERRORS:
+      return {...state, errors: null}
+
     case actions.LOADING_DIVES_LIST:
       return state;
 

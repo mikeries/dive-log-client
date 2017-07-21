@@ -1,6 +1,10 @@
 import * as actions from './actionTypes';
 import services from '../Api/api_services'
 
+export function resetErrors() {
+  return {type: actions.RESET_ERRORS}
+}
+
 export function fetchDives(jwt) {
   return (dispatch) => {
     dispatch({type: actions.LOADING_DIVES_LIST});

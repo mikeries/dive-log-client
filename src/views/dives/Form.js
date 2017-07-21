@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
 import { 
   Button,
   Form,
@@ -12,7 +13,6 @@ import {
   Well
  } from 'react-bootstrap';
  import ErrorList from '../components/ErrorList'
-
 
 class DiveForm extends Component  {
 
