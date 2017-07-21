@@ -24,3 +24,8 @@ body {
 #username {
   color: #666;
 }
+
+.error {
+  color: red;
+  border-color: red;
+}

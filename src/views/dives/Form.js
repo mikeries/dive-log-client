@@ -8,7 +8,8 @@ import {
   FormControl,
   Grid,
   Row,
-  Col
+  Col,
+  Well
  } from 'react-bootstrap';
 
 
@@ -48,6 +49,14 @@ class DiveForm extends Component  {
       <Grid>
         <Form onSubmit={this.handleFormSubmit}>
           {this.state.id > 0 ? <h1>Editing Dive</h1> : <h1>New Dive</h1>}
+
+          {this.props.errors &&
+            <Row>
+              <Col md={12}>
+                <Well className='error'>You have errors.</Well>
+              </Col>
+            </Row>
+          }
 
           <Row>
             <Col md={3}>

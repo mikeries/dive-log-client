@@ -16,13 +16,13 @@ export function updateDive(jwt,dive) {
   return (dispatch) => {
     dispatch({type: actions.UPDATING_DIVE});
     return services.patch(`/dives/${dive.id}`, jwt, dive)
-      .catch(errors => dispatch({ 
-        type: actions.DIVE_PATCH_FAILED, 
-        errors
-      }))
       .then( () => dispatch({
         type: actions.DIVE_PATCH_SUCCESSFUL,
         dive
+      }))
+      .catch(errors => dispatch({ 
+        type: actions.DIVE_PATCH_FAILED, 
+        errors
       }))
   }
 }
@@ -31,13 +31,13 @@ export function newDive(jwt,dive) {
   return (dispatch) => {
     dispatch({type: actions.CREATING_DIVE});
     return services.post(`/dives`, jwt, dive)
-      .catch(errors => dispatch({ 
-        type: actions.CREATE_DIVE_FAILED, 
-        errors
-      }))
       .then(dive => dispatch({
         type: actions.CREATE_DIVE_SUCCESSFUL,
         dive
+      }))
+      .catch(errors => dispatch({ 
+        type: actions.CREATE_DIVE_FAILED, 
+        errors
       }))
   }
 }
@@ -46,13 +46,13 @@ export function deleteDive(jwt,diveId) {
   return (dispatch) => {
     dispatch({type: actions.DELETE_DIVE});
     return services.delete(`/dives/${diveId}`, jwt)
-      .catch(errors => dispatch({ 
-        type: actions.DELETE_DIVE_FAILED, 
-        errors
-      }))
       .then(dive => dispatch({
         type: actions.DELETE_DIVE_SUCCESSFUL,
         diveId: diveId
+      }))
+      .catch(errors => dispatch({ 
+        type: actions.DELETE_DIVE_FAILED, 
+        errors
       }))
   }
 }

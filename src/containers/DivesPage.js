@@ -17,7 +17,7 @@ class DivesPage extends Component {
       this.props.history.push(this.props.match.url)
     } else {
       this.props.newDive(this.props.jwt, dive)
-      this.props.history.push(this.props.match.url)
+      //this.props.history.push(this.props.match.url)
     }
   }
 
@@ -38,7 +38,7 @@ class DivesPage extends Component {
           />
   }
 
-  ShowDiveNew = props => {
+  ShowDiveNew = () => {
     const dive = {
       location: this.props.locations[0],           // use first location as default, at least for now
       location_id: this.props.locations[0].id,
@@ -51,7 +51,11 @@ class DivesPage extends Component {
       final_pressure: '',
       comments: ''
     }
-    return <DiveForm dive={dive} onSubmit={this.handleSubmit} locations={this.props.locations}/>
+    return <DiveForm 
+            dive={dive}
+            errors={this.props.errors}
+            onSubmit={this.handleSubmit}
+            locations={this.props.locations}/>
   }
 
   ShowDiveEdit = props => {
@@ -59,6 +63,7 @@ class DivesPage extends Component {
     for (let key in dive) { dive[key] = dive[key] ? dive[key] : '' }  // replace nulls with ''
     return <DiveForm
             dive={dive}
+            errors={this.props.errors}
             locations={this.props.locations}
             onSubmit={this.handleSubmit}
           />
@@ -84,7 +89,8 @@ const mapStateToProps = state => {
   return { 
     jwt: state.sessionReducer.jwt,
     dives: state.divesReducer.dives,
-    locations: state.locationsReducer.locations
+    locations: state.locationsReducer.locations,
+    errors: state.divesReducer.errors
   };
 }
 
