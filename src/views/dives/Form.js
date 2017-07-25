@@ -94,10 +94,12 @@ class DiveForm extends Component  {
               <FormGroup>
                 <ControlLabel>Location</ControlLabel>
                 <FormControl componentClass='select'
-                  value={this.state.location_id} name='location' onChange={this.handleLocationChange}>
-                  {this.props.locations && this.props.locations.map(location => (
-                    <option value={location.id} key={location.id}>{location.name}</option>)
-                  )}
+                  value={this.state.location_id} 
+                  name='location' 
+                  onChange={this.handleLocationChange}>
+                    {this.props.locations && this.props.locations.map(location => (
+                      <option value={location.id} key={location.id}>{location.name}</option>)
+                    )}
                 </FormControl>
               </FormGroup>
             </Col>
