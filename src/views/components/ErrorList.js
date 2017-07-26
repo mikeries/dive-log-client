@@ -1,17 +1,14 @@
-import React from 'react'
+import React from 'react';
 
 const ErrorList = ({ errors }) => {
-  const errorList = []
-    for (let key in errors) {
-      errorList.push(
-        <p key={key}>
-          {`${key}: ${errors[key]}`}
-        </p>
-      )
-  }
-  return (
-    <div>{errorList}</div>
-  )
+
+  const errorList = Object.keys(errors).map(key => (
+      <p key={key}>
+        {`${key}: ${errors[key]}`}
+      </p>
+  ));
+  
+  return <div>{errorList}</div>
 }
 
 export default ErrorList;
