@@ -3,3 +3,4 @@ export const API_URL = 'http://localhost:3000';
 export const NOOP = () => {};
 
 export const DIVES_ROOT = '/dives';
+export const LOCATIONS_ROOT = '/locations';
