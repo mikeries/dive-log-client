@@ -14,6 +14,17 @@ class DivesPage extends Component {
   constructor() {
     super();
     this.unListen = null;
+
+    this.emptyDive = {
+      date: '',
+      time: '',
+      duration: '',
+      ballast: '',
+      max_depth: '',
+      starting_pressure: '',
+      final_pressure: '',
+      comments: ''
+    }
   }
 
   componentWillMount() {
@@ -53,20 +64,13 @@ class DivesPage extends Component {
   }
 
   ShowDiveNew = () => {
-    const dive = {
+    const newDive = {...this.emptyDive,  
       location: this.props.locations[0],           // use first location as default, at least for now
-      location_id: this.props.locations[0].id,
-      date: '',
-      time: '',
-      duration: '',
-      ballast: '',
-      max_depth: '',
-      starting_pressure: '',
-      final_pressure: '',
-      comments: ''
+      location_id: this.props.locations[0].id 
     };
+
     return <DiveForm 
-            dive={dive}
+            dive={newDive}
             errors={this.props.errors}
             onSubmit={this.handleSubmit}
             locations={this.props.locations}/>
@@ -74,7 +78,8 @@ class DivesPage extends Component {
 
   ShowDiveEdit = props => {
     let dive = this.props.dives.find(dive => dive.id === +props.match.params.diveId);
-    for (let key in dive) { dive[key] = dive[key] ? dive[key] : '' };  // replace nulls with ''
+    dive = Object.assign({},this.emptyDive, dive )
+
     return <DiveForm
             dive={dive}
             errors={this.props.errors}
