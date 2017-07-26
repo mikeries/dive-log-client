@@ -12,8 +12,9 @@ import {
   logoutUser, 
   fetchUser
 } from '../redux/modules/Auth/sessionActions';
-import { fetchDives } from '../redux/modules/Dives/divesActions'
-import { fetchLocations } from '../redux/modules/Locations/locationsActions'
+
+import { fetchDives } from '../redux/modules/Dives/divesActions';
+import { fetchLocations } from '../redux/modules/Locations/locationsActions';
 
 import Navbar from '../views/components/Navbar';
 import Welcome from '../views/welcome';
@@ -33,7 +34,7 @@ class App extends Component {
     this.state = {
       jwt: jwt || null,
       errors: null
-    }
+    };
   }
 
   isLoggedIn() {
@@ -41,18 +42,17 @@ class App extends Component {
   }
 
   handleInitializationError = errors => {
-    console.log('errors: ',errors);
-    this.setState({ errors: errors })
+    this.setState({ errors: errors });
   }
 
   componentDidMount() {
-    const jwt = this.state.jwt
+    const jwt = this.state.jwt;
     this.props.loginUser(jwt);
 
     if(jwt) {
-      this.props.fetchUser(this.handleInitializationError)
-      this.props.fetchDives(this.handleInitializationError)
-      this.props.fetchLocations(this.handleInitializationError)
+      this.props.fetchUser(this.handleInitializationError);
+      this.props.fetchDives(this.handleInitializationError);
+      this.props.fetchLocations(this.handleInitializationError);
     }
   }
 
@@ -60,9 +60,11 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+
           { this.isLoggedIn() &&
             <Navbar user={this.props.user} handleLogout={this.props.logoutUser} />
           }
+
           <Switch>
             {this.state.errors && 
               <Route path='' render={() => (
@@ -72,7 +74,9 @@ class App extends Component {
                 </div>
               )}/>
             }
+
             <Route exact path='/logout' render={() => (<Redirect to="/"/>)} />
+            
             <Route exact path="/" render={() => (
               this.isLoggedIn() ? (
                 <Redirect to="/dashboard" />
@@ -80,6 +84,7 @@ class App extends Component {
                 <Welcome />
               )
             )}/>
+
             <Route exact path="/dashboard" render={() => (
               this.isLoggedIn() ? (
                 <Dashboard user={this.props.user} dives={this.props.dives} />
@@ -87,7 +92,9 @@ class App extends Component {
                 <Redirect to="/"/>
               )
             )}/>
+
             <Route path='/dives' component={DivesPage} />
+
             <Route exact path='/locations' component={Locations} />
           </Switch>
         </div>
@@ -96,7 +103,7 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     { loginUser,
       logoutUser,
@@ -107,7 +114,7 @@ const mapDispatchToProps = (dispatch) => {
   , dispatch);
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return { 
     user: state.sessionReducer.user,
     dives: state.divesReducer.dives
