@@ -5,6 +5,8 @@
 - ~~Add server-side validation~~
 - Add client-side validation
 - Improve site styling
+- Add about page with information about me, project implementation notes, links, etc.
+- add footer with links:  github repo, blog link, linked in link, webpage link, etc.
 - Charts of data
 - Calculators for nitrogen load
 
