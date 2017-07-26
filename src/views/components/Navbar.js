@@ -1,5 +1,5 @@
 import React from 'react';
-import {Navbar, NavItem, Nav} from 'react-bootstrap'
+import { Navbar, NavItem, Nav } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap';
 
 const NavBar = ({ user, handleLogout }) => (
@@ -11,7 +11,9 @@ const NavBar = ({ user, handleLogout }) => (
     </Nav>
     <Nav pullRight={true}>
       {user && user.name && <NavItem id='username'>Welcome {user.name}!</NavItem>}
-      <LinkContainer to='/logout' ><NavItem onClick={handleLogout}>Logout</NavItem></LinkContainer>
+      <LinkContainer to='/logout' >
+        <NavItem onClick={handleLogout}>Logout</NavItem>
+      </LinkContainer>
     </Nav>
   </Navbar>
 );

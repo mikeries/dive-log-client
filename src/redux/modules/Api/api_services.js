@@ -20,12 +20,12 @@ export default {
       headers: headers
     })
     .then(status)
-    .then(response => (response.json()))
-    .then((data) => (
+    .then(response => response.json())
+    .then(data => 
       data.errors ?
         Promise.reject(data.errors) :
         Promise.resolve(data)
-    ))
+    )
   },
 
   patch(url, data) {
@@ -39,12 +39,12 @@ export default {
       method: 'PATCH',
       headers: headers,
       body: JSON.stringify(data)
-    }).then(response => (response.json()))
-    .then((data) => (
+    }).then(response => response.json())
+    .then(data => 
       data.errors ?
         Promise.reject(data.errors) :
         Promise.resolve(data)
-    ))
+    )
   },
 
   post(url, data) {
@@ -58,8 +58,8 @@ export default {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(data)
-    }).then(response => (response.json()))
-    .then((data) => (
+    }).then(response => response.json())
+    .then(data => (
       data.errors ?
         Promise.reject(data.errors) :
         Promise.resolve(data)
@@ -76,12 +76,12 @@ export default {
     return fetch(`${API_URL}${url}`, {
       method: 'DELETE',
       headers: headers,
-    }).then(response => (response.json()))
-    .then((data) => (
+    }).then(response => response.json())
+    .then(data => 
       data.errors ?
         Promise.reject(data.errors) :
         Promise.resolve(data)
-    ))
+    )
   }
 
 }

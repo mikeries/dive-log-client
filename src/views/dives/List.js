@@ -6,7 +6,7 @@ import DiveListItem from './DiveListItem'
 const DiveList = ({
   dives
 }) => {
-  const renderDives = dives.map((dive) => (
+  const renderDives = dives.map(dive => (
     <Link key={dive.id} to={`/dives/${dive.id}`}>
       <DiveListItem key={dive.id} dive={dive}/>
     </Link>
