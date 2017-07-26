@@ -14,7 +14,7 @@ export default {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization': `Bearer: ${jwt}`
-    }
+    };
     return fetch(`${API_URL}${url}`, {
       method: 'GET',
       headers: headers
@@ -25,7 +25,7 @@ export default {
       data.errors ?
         Promise.reject(data.errors) :
         Promise.resolve(data)
-    )
+    );
   },
 
   patch(url, data) {
@@ -34,7 +34,7 @@ export default {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization': `Bearer: ${jwt}`
-    }
+    };
     return fetch(`${API_URL}${url}`, {
       method: 'PATCH',
       headers: headers,
@@ -44,7 +44,7 @@ export default {
       data.errors ?
         Promise.reject(data.errors) :
         Promise.resolve(data)
-    )
+    );
   },
 
   post(url, data) {
@@ -53,7 +53,7 @@ export default {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization': `Bearer: ${jwt}`
-    }
+    };
     return fetch(`${API_URL}${url}`, {
       method: 'POST',
       headers: headers,
@@ -63,7 +63,7 @@ export default {
       data.errors ?
         Promise.reject(data.errors) :
         Promise.resolve(data)
-    ))
+    ));
   },
 
     delete(url) {
@@ -72,7 +72,7 @@ export default {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization': `Bearer: ${jwt}`
-    }
+    };
     return fetch(`${API_URL}${url}`, {
       method: 'DELETE',
       headers: headers,
@@ -81,7 +81,7 @@ export default {
       data.errors ?
         Promise.reject(data.errors) :
         Promise.resolve(data)
-    )
+    );
   }
 
 }

@@ -2,22 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Route, Switch } from 'react-router-dom';
-import DiveShow from '../views/dives/Show'
-import DiveForm from '../views/dives/Form'
-import DiveList from '../views/dives/List'
 
-import { updateDive, newDive, deleteDive, resetErrors } from '../redux/modules/Dives/divesActions'
+import { updateDive, newDive, deleteDive, resetErrors } from '../redux/modules/Dives/divesActions';
+
+import DiveShow from '../views/dives/Show';
+import DiveForm from '../views/dives/Form';
+import DiveList from '../views/dives/List';
+
 
 class DivesPage extends Component {
 
   constructor() {
-    super()
+    super();
     this.unListen = null;
   }
 
   componentWillMount() {
     this.unListen = this.props.history.listen(() => {
-      if (this.props.errors) this.props.resetErrors() 
+      if (this.props.errors) this.props.resetErrors();
     })
   }
 
@@ -28,13 +30,13 @@ class DivesPage extends Component {
   handleSubmit = dive => {
     // TODO: perform client-side validation here.
     if (dive.id) {
-      this.props.updateDive(dive, this.props.history)
+      this.props.updateDive(dive, this.props.history);
     } else {
-      this.props.newDive(dive, this.props.history)
+      this.props.newDive(dive, this.props.history);
     }
   }
 
-  handleDelete = (diveId) => {
+  handleDelete = diveId => {
     this.props.deleteDive(diveId);
     this.props.history.push(this.props.match.url);
   }
@@ -44,7 +46,7 @@ class DivesPage extends Component {
   )
 
   ShowDiveShow = props => {
-    const dive = this.props.dives.find(dive => dive.id === +props.match.params.diveId)
+    const dive = this.props.dives.find(dive => dive.id === +props.match.params.diveId);
     return <DiveShow 
           dive={dive} 
           onDelete={this.handleDelete}
@@ -63,7 +65,7 @@ class DivesPage extends Component {
       starting_pressure: '',
       final_pressure: '',
       comments: ''
-    }
+    };
     return <DiveForm 
             dive={dive}
             errors={this.props.errors}
@@ -73,7 +75,7 @@ class DivesPage extends Component {
 
   ShowDiveEdit = props => {
     let dive = this.props.dives.find(dive => dive.id === +props.match.params.diveId);
-    for (let key in dive) { dive[key] = dive[key] ? dive[key] : '' }  // replace nulls with ''
+    for (let key in dive) { dive[key] = dive[key] ? dive[key] : '' };  // replace nulls with ''
     return <DiveForm
             dive={dive}
             errors={this.props.errors}
