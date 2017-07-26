@@ -29,3 +29,7 @@ body {
   color: red;
   border-color: red;
 }
+
+.btn {
+  margin-left: 10px;
+}
