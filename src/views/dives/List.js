@@ -4,8 +4,7 @@ import { Button, Grid } from 'react-bootstrap'
 import DiveListItem from './DiveListItem'
 
 const DiveList = ({
-  dives,
-  handleNewClick
+  dives
 }) => {
   const renderDives = dives.map((dive) => (
     <Link key={dive.id} to={`/dives/${dive.id}`}>
