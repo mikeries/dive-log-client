@@ -9,7 +9,6 @@ import DiveShow from '../views/dives/Show';
 import DiveForm from '../views/dives/Form';
 import DiveList from '../views/dives/List';
 
-
 class DivesPage extends Component {
 
   constructor() {

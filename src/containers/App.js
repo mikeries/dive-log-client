@@ -13,6 +13,8 @@ import {
   fetchUser
 } from '../redux/modules/Auth/sessionActions';
 
+import { DIVES_ROOT, LOCATIONS_ROOT } from '../constants';
+
 import { fetchDives } from '../redux/modules/Dives/divesActions';
 import { fetchLocations } from '../redux/modules/Locations/locationsActions';
 
@@ -93,9 +95,9 @@ class App extends Component {
               )
             )}/>
 
-            <Route path='/dives' component={DivesPage} />
+            <Route path={`${DIVES_ROOT}`} component={DivesPage} />
 
-            <Route exact path='/locations' component={Locations} />
+            <Route exact path={`${LOCATIONS_ROOT}`} component={Locations} />
           </Switch>
         </div>
       </Router>
