@@ -40,7 +40,6 @@ const Dashboard = ({user, dives}) => {
             <p>{deepest.location.name} on {deepest.date}</p>
           </div>
           
-
           <div>
             <h3>Maximum depth</h3>
             <p>{deepest.max_depth} feet</p>

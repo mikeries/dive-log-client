@@ -2,7 +2,7 @@ import React from 'react';
 import LoginButton from './components/LoginButton';
 import { Grid } from 'react-bootstrap'
 
-const Welcome = (props) => (
+const Welcome = () => (
   <Grid className='Welcome'>
     <div>
       <h1>Welcome to Dive Logger!</h1>

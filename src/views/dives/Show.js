@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Grid, Row, Col } from 'react-bootstrap';
 
+import { DIVES_ROOT } from '../../constants';
+
 const DiveShow = ({ 
   dive,
   onDelete
@@ -38,10 +40,11 @@ const DiveShow = ({
       </Row>
     }
     <br/>
-    <Link to={'/dives'}>
+    
+    <Link to={`${DIVES_ROOT}`}>
       <Button>Back</Button>
     </Link>
-    <Link to={`/dives/${dive.id}/edit`}>
+    <Link to={`${DIVES_ROOT}/${dive.id}/edit`}>
       <Button>Edit</Button>
     </Link>
     <Button onClick={() => onDelete(dive.id)}>Delete</Button>
