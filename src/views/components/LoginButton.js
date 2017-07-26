@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from 'react-bootstrap'
-import { API_URL } from '../../constants'
+import { Button } from 'react-bootstrap';
+import { API_URL } from '../../constants';
 
 const LoginButton = props => (
   <div>

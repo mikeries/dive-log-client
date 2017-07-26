@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
 import { 
   Button,
   Form,
@@ -12,7 +11,9 @@ import {
   Col,
   Well
  } from 'react-bootstrap';
- import ErrorList from '../components/ErrorList'
+
+import {DIVES_ROOT } from '../../constants';
+ import ErrorList from '../components/ErrorList';
 
 class DiveForm extends Component  {
 
@@ -20,14 +21,14 @@ class DiveForm extends Component  {
     this.state = {
       ...this.props.dive,
       locations: this.props.locations
-    }
+    };
   }
 
   componentWillReceiveProps() {
-    this.setState({submitted: false})
+    this.setState({ submitted: false });
   }
 
-  handleLocationChange = (event) => {
+  handleLocationChange = event => {
     event.preventDefault();
     this.setState({
       location_id: event.target.value,
@@ -35,19 +36,19 @@ class DiveForm extends Component  {
     });
   }
 
-  handleInputChange = (event) => {
+  handleInputChange = event => {
     event.preventDefault();
     this.setState({
       [event.target.name]: event.target.value,
     });
   }
     
-  handleFormSubmit = (event) => {
+  handleFormSubmit = event => {
     event.preventDefault();
-    this.setState({submitted: true});
+    this.setState({ submitted: true });
 
     this.props.onSubmit({
-      ...this.state,
+      ...this.state
     });
   }
 
@@ -179,7 +180,7 @@ class DiveForm extends Component  {
             </Col>
           </Row>
 
-          <Link to={'/dives'}>
+          <Link to={`${DIVES_ROOT}`}>
             <Button>Back</Button>
           </Link>
           <Button disabled={!!this.state.submitted} type='submit'>Save</Button>
