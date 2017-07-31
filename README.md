@@ -1,6 +1,8 @@
 
 # Dive Log
 
+A demo of this application can be found here: [Dive Log Redux.](http://dive-log-client.herokuapp.com)  Note that because the hosting service (Heroku) sleeps idle applications, this link may take several seconds to load.
+
 This app was created to enable divers to track their dive data online, where it can be accessed from anywhere.
 
 This project is the front end and was designed to interface to a custom API, found [here](https://github.com/mikeries/dive-log-api).  It was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and uses React and Redux.
