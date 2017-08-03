@@ -43,6 +43,10 @@ class App extends Component {
     return !!this.state.jwt;
   }
 
+  handleLogin() {
+    console.log('clicked')
+  }
+
   handleInitializationError = errors => {
     this.setState({ errors: errors });
   }
@@ -83,7 +87,7 @@ class App extends Component {
               this.isLoggedIn() ? (
                 <Redirect to="/dashboard" />
               ) : (
-                <Welcome />
+                <Welcome handleLogin={this.handleLogin} />
               )
             )}/>
 

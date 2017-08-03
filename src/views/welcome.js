@@ -1,8 +1,8 @@
-import React from 'react';
-import LoginButton from './components/LoginButton';
+import  React from 'react';
+import FbLoginButton from './components/FbLoginButton';
 import { Grid } from 'react-bootstrap'
 
-const Welcome = () => (
+const Welcome = ({ handleLogin }) => (
   <Grid className='Welcome'>
     <div>
       <h1>Welcome to Dive Logger!</h1>
@@ -22,11 +22,11 @@ const Welcome = () => (
 
     </div>
     
-    <div>
-      <LoginButton type='facebook'/>
-        <br/>
-      <LoginButton type='github'/>
-    </div>
+    <FbLoginButton className="fb-login-button"
+        onSuccess={handleLogin}>
+        Login with Facebook
+    </FbLoginButton>
   </Grid>
 )
+
 export default Welcome
