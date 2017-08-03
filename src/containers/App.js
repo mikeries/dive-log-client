@@ -8,7 +8,6 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { 
-  loginUser, 
   logoutUser, 
   fetchUser,
   facebookLogin
@@ -104,7 +103,7 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
-    { loginUser,
+    { 
       logoutUser,
       fetchUser,
       fetchDives,

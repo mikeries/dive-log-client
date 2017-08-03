@@ -3,6 +3,11 @@ import { API_URL } from '../../../constants'
 
 // TODO: refactor to eliminate duplicate for for callbacks and headers
 
+const defaultHeaders =  {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json',
+};
+
 const status = response => (
   response.ok ? 
     Promise.resolve(response) : 
@@ -12,10 +17,7 @@ const status = response => (
 export default {
 
   exchangeFbTokenForJWT(data) {
-    const headers =  {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    };
+    const headers =  defaultHeaders;
     return fetch(`${API_URL}/auth/facebook_user`, {
       method: 'POST',
       headers: headers,
@@ -30,9 +32,7 @@ export default {
 
   get(url) {
     const jwt = sessionStorage.getItem('jwt');
-    const headers =  {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
+    const headers =  {...defaultHeaders,
       'Authorization': `Bearer: ${jwt}`
     };
     return fetch(`${API_URL}${url}`, {
@@ -50,9 +50,7 @@ export default {
 
   patch(url, data) {
     const jwt = sessionStorage.getItem('jwt');
-    const headers =  {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
+    const headers =  {...defaultHeaders,
       'Authorization': `Bearer: ${jwt}`
     };
     return fetch(`${API_URL}${url}`, {
@@ -69,9 +67,7 @@ export default {
 
   post(url, data) {
     const jwt = sessionStorage.getItem('jwt');
-    const headers =  {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
+    const headers =  {...defaultHeaders,
       'Authorization': `Bearer: ${jwt}`
     };
     return fetch(`${API_URL}${url}`, {
@@ -88,9 +84,7 @@ export default {
 
     delete(url) {
     const jwt = sessionStorage.getItem('jwt');
-    const headers =  {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
+    const headers =  {...defaultHeaders,
       'Authorization': `Bearer: ${jwt}`
     };
     return fetch(`${API_URL}${url}`, {

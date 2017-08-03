@@ -1,6 +1,6 @@
 import * as actions from './actionTypes';
-import services from '../Api/api_services'
-import { NOOP } from '../../../constants'
+import services from '../Api/api_services';
+import { NOOP } from '../../../constants';
 
 export function fetchUser(errorHandler = NOOP) {
   return dispatch => {
@@ -15,22 +15,15 @@ export function fetchUser(errorHandler = NOOP) {
 
 export function facebookLogin(fbToken, uid, errorHandler = NOOP) {
   return dispatch => {
-    dispatch({ type: actions.LOADING_FACEBOOK_USER });
-    return services.exchangeFbTokenForJWT( 
+    dispatch({ type: actions.LOADING_USER });
+    return services.exchangeFbTokenForJWT(
           { token: fbToken, uid: uid }
       ).catch(errors => errorHandler(errors))
       .then(({ jwt, user }) => {
         sessionStorage.setItem('jwt', jwt);
-        dispatch({ type: actions.UPDATE_FACEBOOK_USER, user })
+        dispatch({ type: actions.UPDATE_USER, user })
       });
   }
-}
-
-export function loginUser(jwt = null) {
-  if (jwt) sessionStorage.setItem('jwt', jwt);
-  else sessionStorage.removeItem('jwt');
-
-  return { type: actions.LOG_IN, token: jwt };
 }
 
 export function logoutUser(router) {
