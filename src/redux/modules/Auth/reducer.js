@@ -1,7 +1,6 @@
 import * as actions from './actionTypes' 
 
 const initialState = {
-  jwt: null,
   user: null
 }
 
@@ -20,7 +19,7 @@ export default function sessionReducer(state = initialState, action) {
       return { ...state, user: action.user };
 
     case actions.LOG_IN:
-      return { ...state, jwt: action.token };
+      return { ...state };
 
     case actions.LOG_OUT:
       return { ...state, initialState };

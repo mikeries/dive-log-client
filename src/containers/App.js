@@ -25,17 +25,11 @@ import Dashboard from '../views/dashboard';
 import DivesPage from './DivesPage';
 import Locations from '../views/locations/List';
 
-import { getQueryParams } from '../utils';
-
 class App extends Component {
   constructor() {
     super();
 
-    const params = getQueryParams();
-    const jwt = params.token || sessionStorage.getItem('jwt');
-
     this.state = {
-      jwt: jwt || null,
       errors: null
     };
   }
@@ -55,10 +49,6 @@ class App extends Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if (nextState.jwt !== this.state.jwt) {
-      this.props.fetchUser(this.handleInitializationError)
-    }
-
     if(nextProps.user !== this.props.user) {
       this.props.fetchDives(this.handleInitializationError);
       this.props.fetchLocations(this.handleInitializationError);
