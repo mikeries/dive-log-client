@@ -14,8 +14,7 @@ const Welcome = ({ handleLogin }) => (
       </p>
 
       <p>
-        For safety reasons, each diver must be authenticated by creating an account through Facebook or Github 
-        (Google Plus coming soon.) Once logged in, a Diver can add or modify locations, and keep track of their dives, 
+        For safety reasons, each diver must be authenticated by creating an account through Facebook. (Other options will be coming soon.) Once logged in, a Diver can add or modify locations, and keep track of their dives, 
         including the key parameters of location, maximum depth, duration, initial tank pressure, final tank pressure, 
         ballast, along with helpful comments about what kind of day it was, or what you had for breakfast.
       </p>
