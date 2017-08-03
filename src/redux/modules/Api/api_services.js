@@ -1,6 +1,8 @@
 import fetch from 'isomorphic-fetch'
 import { API_URL } from '../../../constants'
 
+// TODO: refactor to eliminate duplicate for for callbacks and headers
+
 const status = response => (
   response.ok ? 
     Promise.resolve(response) : 
@@ -8,6 +10,24 @@ const status = response => (
 )
 
 export default {
+
+  exchangeFbTokenForJWT(data) {
+    const headers =  {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    };
+    return fetch(`${API_URL}/auth/facebook_user`, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(data)
+    }).then(response => response.json())
+    .then(data => (
+      data.errors ?
+        Promise.reject(data.errors) :
+        Promise.resolve(data)
+    ));
+  },
+
   get(url) {
     const jwt = sessionStorage.getItem('jwt');
     const headers =  {

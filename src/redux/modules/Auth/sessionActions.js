@@ -13,15 +13,16 @@ export function fetchUser(errorHandler = NOOP) {
   }
 }
 
-export function facebookLogin(fbToken, errorHandler = NOOP) {
-  console.log('facebook token:',fbToken)
+export function facebookLogin(fbToken, uid, errorHandler = NOOP) {
   return dispatch => {
     dispatch({ type: actions.LOADING_FACEBOOK_USER });
-    return services.post('/auth/facebook_user')
-      .catch(errors => errorHandler(errors))
-      .then(user => 
+    return services.exchangeFbTokenForJWT( 
+          { token: fbToken, uid: uid }
+      ).catch(errors => errorHandler(errors))
+      .then(({ jwt, user }) => {
+        sessionStorage.setItem('jwt', jwt);
         dispatch({ type: actions.UPDATE_FACEBOOK_USER, user })
-      );
+      });
   }
 }
 

@@ -41,7 +41,7 @@ class App extends Component {
   }
 
   isLoggedIn() {
-    return !!this.state.jwt;
+    return !!sessionStorage.getItem('jwt');
   }
 
   handleInitializationError = errors => {
@@ -49,11 +49,17 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const jwt = this.state.jwt;
-    this.props.loginUser(jwt);
+    if (this.isLoggedIn()) {
+      this.props.fetchUser(this.handleInitializationError)
+    }
+  }
 
-    if(jwt) {
-      this.props.fetchUser(this.handleInitializationError);
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.jwt !== this.state.jwt) {
+      this.props.fetchUser(this.handleInitializationError)
+    }
+
+    if(nextProps.user !== this.props.user) {
       this.props.fetchDives(this.handleInitializationError);
       this.props.fetchLocations(this.handleInitializationError);
     }
