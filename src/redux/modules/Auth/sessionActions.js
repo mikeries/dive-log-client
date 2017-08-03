@@ -17,7 +17,7 @@ export function facebookLogin(fbToken, errorHandler = NOOP) {
   console.log('facebook token:',fbToken)
   return dispatch => {
     dispatch({ type: actions.LOADING_FACEBOOK_USER });
-    return services.get('/user/facebook_user')
+    return services.post('/auth/facebook_user')
       .catch(errors => errorHandler(errors))
       .then(user => 
         dispatch({ type: actions.UPDATE_FACEBOOK_USER, user })
