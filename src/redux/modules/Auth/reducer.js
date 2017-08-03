@@ -13,6 +13,12 @@ export default function sessionReducer(state = initialState, action) {
     case actions.UPDATE_USER:
       return { ...state, user: action.user };
 
+    case actions.LOADING_FACEBOOK_USER:
+      return state;
+
+    case actions.UPDATE_FACEBOOK_USER:
+      return { ...state, user: action.user };
+
     case actions.LOG_IN:
       return { ...state, jwt: action.token };
 

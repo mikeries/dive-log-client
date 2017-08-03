@@ -10,7 +10,8 @@ import { bindActionCreators } from 'redux';
 import { 
   loginUser, 
   logoutUser, 
-  fetchUser
+  fetchUser,
+  facebookLogin
 } from '../redux/modules/Auth/sessionActions';
 
 import { DIVES_ROOT, LOCATIONS_ROOT } from '../constants';
@@ -41,10 +42,6 @@ class App extends Component {
 
   isLoggedIn() {
     return !!this.state.jwt;
-  }
-
-  handleLogin() {
-    console.log('clicked')
   }
 
   handleInitializationError = errors => {
@@ -87,7 +84,7 @@ class App extends Component {
               this.isLoggedIn() ? (
                 <Redirect to="/dashboard" />
               ) : (
-                <Welcome handleLogin={this.handleLogin} />
+                <Welcome handleLogin={this.props.facebookLogin} />
               )
             )}/>
 
@@ -115,7 +112,8 @@ const mapDispatchToProps = dispatch => {
       logoutUser,
       fetchUser,
       fetchDives,
-      fetchLocations
+      fetchLocations,
+      facebookLogin
     }
   , dispatch);
 };
