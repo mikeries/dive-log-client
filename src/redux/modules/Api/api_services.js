@@ -1,101 +1,78 @@
 import fetch from 'isomorphic-fetch'
-import { API_URL } from '../../../constants'
+import { API_URL, FACEBOOK_AUTHORIZATION_PATH } from '../../../constants'
 
-// TODO: refactor to eliminate duplicate for for callbacks and headers
-
-const defaultHeaders =  {
+const headers = {
   'Accept': 'application/json',
-  'Content-Type': 'application/json',
-};
+  'Content-Type': 'application/json'
+}
 
-const status = response => (
-  response.ok ? 
-    Promise.resolve(response) : 
-    Promise.reject(new Error(response.statusText))
+const headersWithAuthorization = () => {
+  const jwt = sessionStorage.getItem('jwt');
+  return {
+    ...headers,
+    'Authorization': `Bearer: ${jwt}`
+  }
+}
+
+const parseToJson = response => response.json()
+
+const checkForErrors = data => (
+  data.errors ?
+    Promise.reject(data.errors) :
+    Promise.resolve(data)
 )
+
+const parseResponse = response => {
+  return (response.ok ? 
+            Promise.resolve(response) : 
+            Promise.reject(new Error(response.statusText)))
+    .then(parseToJson)
+    .then(checkForErrors);
+}
 
 export default {
 
   exchangeFbTokenForJWT(data) {
-    const headers =  defaultHeaders;
-    return fetch(`${API_URL}/auth/facebook_user`, {
+    return fetch(`${API_URL}${FACEBOOK_AUTHORIZATION_PATH}`, {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(data)
-    }).then(response => response.json())
-    .then(data => (
-      data.errors ?
-        Promise.reject(data.errors) :
-        Promise.resolve(data)
-    ));
+    })
+    .then(parseResponse)
   },
 
   get(url) {
-    const jwt = sessionStorage.getItem('jwt');
-    const headers =  {...defaultHeaders,
-      'Authorization': `Bearer: ${jwt}`
-    };
     return fetch(`${API_URL}${url}`, {
       method: 'GET',
-      headers: headers
+      headers: headersWithAuthorization()
     })
-    .then(status)
-    .then(response => response.json())
-    .then(data => 
-      data.errors ?
-        Promise.reject(data.errors) :
-        Promise.resolve(data)
-    );
+    .then(parseResponse)
   },
 
   patch(url, data) {
-    const jwt = sessionStorage.getItem('jwt');
-    const headers =  {...defaultHeaders,
-      'Authorization': `Bearer: ${jwt}`
-    };
     return fetch(`${API_URL}${url}`, {
       method: 'PATCH',
-      headers: headers,
+      headers: headersWithAuthorization(),
       body: JSON.stringify(data)
-    }).then(response => response.json())
-    .then(data => 
-      data.errors ?
-        Promise.reject(data.errors) :
-        Promise.resolve(data)
-    );
+    })
+    .then(parseResponse)
   },
 
   post(url, data) {
-    const jwt = sessionStorage.getItem('jwt');
-    const headers =  {...defaultHeaders,
-      'Authorization': `Bearer: ${jwt}`
-    };
     return fetch(`${API_URL}${url}`, {
       method: 'POST',
-      headers: headers,
+      headers: headersWithAuthorization(),
       body: JSON.stringify(data)
-    }).then(response => response.json())
-    .then(data => (
-      data.errors ?
-        Promise.reject(data.errors) :
-        Promise.resolve(data)
-    ));
+    })
+    .then(parseResponse)
   },
 
-    delete(url) {
-    const jwt = sessionStorage.getItem('jwt');
-    const headers =  {...defaultHeaders,
-      'Authorization': `Bearer: ${jwt}`
-    };
+  delete(url) {
     return fetch(`${API_URL}${url}`, {
       method: 'DELETE',
-      headers: headers,
-    }).then(response => response.json())
-    .then(data => 
-      data.errors ?
-        Promise.reject(data.errors) :
-        Promise.resolve(data)
-    );
+      headers: headersWithAuthorization(),
+    })
+    .then(parseResponse)
   }
 
 }
