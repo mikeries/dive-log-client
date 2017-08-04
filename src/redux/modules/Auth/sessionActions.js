@@ -14,11 +14,14 @@ export function fetchUser(errorHandler = NOOP) {
 }
 
 export function facebookLogin(fbToken, uid, errorHandler = NOOP) {
+  const data = {
+    token: fbToken,
+    uid: uid
+  }
   return dispatch => {
     dispatch({ type: actions.LOADING_USER });
-    return services.exchangeFbTokenForJWT(
-          { token: fbToken, uid: uid }
-      ).catch(errors => errorHandler(errors))
+    return services.exchangeFbTokenForJWT({ data })
+      .catch(errors => errorHandler(errors))
       .then(({ jwt, user }) => {
         sessionStorage.setItem('jwt', jwt);
         dispatch({ type: actions.UPDATE_USER, user })

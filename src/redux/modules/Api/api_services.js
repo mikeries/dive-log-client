@@ -40,7 +40,7 @@ export default {
   exchangeFbTokenForJWT(data) {
     return fetch(`${API_URL}${FACEBOOK_AUTHORIZATION_PATH}`, {
       method: 'POST',
-      headers: {...headers, 'Content-Type': 'application/form-data'},
+      headers: headers,
       body: JSON.stringify(data)
     })
     .then(parseResponse)
