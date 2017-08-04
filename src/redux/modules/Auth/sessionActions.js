@@ -29,8 +29,9 @@ export function facebookLogin(fbToken, uid, errorHandler = NOOP) {
   }
 }
 
-export function logoutUser(router) {
+export function logoutUser() {
   sessionStorage.removeItem('jwt');
+  window.location.reload();
   //router.history.push('/');
   return { type: actions.LOG_OUT };
 }
