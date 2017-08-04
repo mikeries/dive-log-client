@@ -3,7 +3,7 @@ import { API_URL, FACEBOOK_AUTHORIZATION_PATH } from '../../../constants'
 
 const headers = {
   'Accept': 'application/json',
-  'Content-Type': 'application/json'
+  'Content-Type': 'application/form-data'
 }
 
 const headersWithAuthorization = () => {
@@ -35,10 +35,7 @@ export default {
   exchangeFbTokenForJWT(data) {
     return fetch(`${API_URL}${FACEBOOK_AUTHORIZATION_PATH}`, {
       method: 'POST',
-      headers:  {
-          'Accept': 'application/json',
-          'Content-Type': 'application/form-data'
-        },
+      headers: headers,
       body: JSON.stringify(data)
     })
     .then(parseResponse)
