@@ -14,20 +14,23 @@ const headersWithAuthorization = () => {
   }
 }
 
+// TODO: clarify error structure -- differentiate between handled and unhandled errors
+
 const parseToJson = response => response.json()
 
-const checkForErrors = data => (
+const checkForApiErrors = data => (
   data.errors ?
     Promise.reject(data.errors) :
     Promise.resolve(data)
 )
 
 const parseResponse = response => {
-  return (response.ok ? 
+  let result = response.status === 422 || response.ok ? 
             Promise.resolve(response) : 
-            Promise.reject(new Error(response.statusText)))
+            Promise.reject(new Error(response.statusText))
+  return result
     .then(parseToJson)
-    .then(checkForErrors);
+    .then(checkForApiErrors);
 }
 
 export default {
