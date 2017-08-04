@@ -16,7 +16,7 @@ export default function sessionReducer(state = initialState, action) {
       return { ...state };
 
     case actions.LOG_OUT:
-      return { ...state, initialState };
+      return initialState;
 
     default: 
       return state;
