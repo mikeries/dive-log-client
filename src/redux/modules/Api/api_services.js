@@ -3,7 +3,7 @@ import { API_URL, FACEBOOK_AUTHORIZATION_PATH } from '../../../constants'
 
 const headers = {
   'Accept': 'application/json',
-  'Content-Type': 'application/form-data'
+  'Content-Type': 'application/json'
 }
 
 const headersWithAuthorization = () => {
