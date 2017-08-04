@@ -31,6 +31,6 @@ export function facebookLogin(fbToken, uid, errorHandler = NOOP) {
 
 export function logoutUser(router) {
   sessionStorage.removeItem('jwt');
-  router.history.push('/');
+  //router.history.push('/');
   return { type: actions.LOG_OUT };
 }

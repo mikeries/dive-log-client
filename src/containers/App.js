@@ -49,6 +49,9 @@ class App extends Component {
 
   componentWillUpdate(nextProps, nextState) {
     if(nextProps.user !== this.props.user) {
+      console.log('User change')
+    }
+    if(nextProps.user !== this.props.user && nextProps.user) {
       this.props.fetchDives(this.handleInitializationError);
       this.props.fetchLocations(this.handleInitializationError);
     }
