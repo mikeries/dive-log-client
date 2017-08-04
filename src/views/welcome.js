@@ -24,6 +24,10 @@ const Welcome = ({ handleLogin }) => (
         onSuccess={handleLogin}>
         Login with Facebook
     </FbLoginButton>
+
+    <br/>
+    <br/>
+    <p>Note: The API server goes to sleep when idle, so you may have to wait several seconds for it to wake up after logging in.</p>
   </Grid>
 )
 
