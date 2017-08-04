@@ -18,7 +18,6 @@ const Welcome = ({ handleLogin }) => (
         including the key parameters of location, maximum depth, duration, initial tank pressure, final tank pressure, 
         ballast, along with helpful comments about what kind of day it was, or what you had for breakfast.
       </p>
-
     </div>
     
     <FbLoginButton className="fb-login-button"

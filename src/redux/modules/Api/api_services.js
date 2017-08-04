@@ -1,5 +1,7 @@
 import fetch from 'isomorphic-fetch'
-import { API_URL, FACEBOOK_AUTHORIZATION_PATH } from '../../../constants'
+import { FACEBOOK_AUTHORIZATION_PATH } from '../../../constants'
+
+const API_URL = process.env.REACT_APP_API_URL
 
 const headers = {
   'Accept': 'application/json',

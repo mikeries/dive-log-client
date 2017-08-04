@@ -16,7 +16,7 @@ class FbLoginBtn extends Component {
   componentDidMount() {
     let scriptTag = document.createElement('script');
     scriptTag.type = 'text/javascript';
-    scriptTag.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=686314098218839";
+    scriptTag.src = process.env.REACT_APP_FACEBOOK_AUTH_PATH;
     scriptTag.addEventListener('load', e => {
       this.FB = window.FB;
       // I don't like exposing the SDK to global scope
