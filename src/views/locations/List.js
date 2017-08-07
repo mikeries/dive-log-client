@@ -2,25 +2,25 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Grid } from 'react-bootstrap';
 
-import { DIVES_ROOT } from '../../constants';
-import DiveListItem from './DiveListItem';
+import { LOCATIONS_ROOT } from '../../constants';
+import LocationListItem from './LocationListItem';
 
-const DiveList = ({
-  dives
+const LocationList = ({
+  locations
 }) => {
-  const renderDives = dives.map(dive => (
-    <Link key={dive.id} to={`${DIVES_ROOT}/${dive.id}`}>
-      <DiveListItem key={dive.id} dive={dive}/>
+  const renderLocations = locations.map(location => (
+    <Link key={location.id} to={`${LOCATIONS_ROOT}/${location.id}`}>
+      <LocationListItem key={location.id} location={location}/>
     </Link>
   ));
 
   return (
     <Grid>
-      <h1>Your Dives</h1>
+      <h1>Your Locations</h1>
 
-      {renderDives}
+      {renderLocations}
 
-      <Link to={`${DIVES_ROOT}/new`}>
+      <Link to={`${LOCATIONS_ROOT}/new`}>
         <Button>New</Button>
       </Link>
       
@@ -28,4 +28,4 @@ const DiveList = ({
   );
 }
 
-export default DiveList
+export default LocationList

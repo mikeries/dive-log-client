@@ -99,9 +99,8 @@ class LocationsPage extends Component {
 
 const mapStateToProps = state => {
   return { 
-    Locations: state.LocationsReducer.Locations,
     locations: state.locationsReducer.locations,
-    errors: state.LocationsReducer.errors
+    errors: state.locationsReducer.errors
   };
 }
 
