@@ -14,6 +14,18 @@ const LocationShow = ({
         <h3>{location.name} - {location.city}, {location.country}</h3>
       </Col>
     </Row>
+
+    <Row>
+      <Col md={12}>
+        <p>{location.description}</p>
+      </Col>
+    </Row>
+
+    <Row>
+      <Col md={12}>
+        <p>Category: {location.category}</p>
+      </Col>
+    </Row>
     
     <Link to={`${LOCATIONS_ROOT}`}>
       <Button>Back</Button>
