@@ -22,7 +22,7 @@ import Navbar from '../views/components/Navbar';
 import Welcome from '../views/welcome';
 import Dashboard from '../views/dashboard';
 import DivesPage from './DivesPage';
-import Locations from '../views/locations/List';
+import LocationsPage from './LocationsPage';
 
 class App extends Component {
   constructor() {
@@ -93,7 +93,7 @@ class App extends Component {
 
             <Route path={`${DIVES_ROOT}`} component={DivesPage} />
 
-            <Route exact path={`${LOCATIONS_ROOT}`} component={Locations} />
+            <Route exact path={`${LOCATIONS_ROOT}`} component={LocationsPage} />
           </Switch>
         </div>
       </Router>
