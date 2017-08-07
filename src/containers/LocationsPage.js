@@ -39,19 +39,19 @@ class LocationsPage extends Component {
     }
   }
 
-  handleDelete = LocationId => {
-    this.props.deleteLocation(LocationId);
+  handleDelete = locationId => {
+    this.props.deleteLocation(locationId);
     this.props.history.push(this.props.match.url);
   }
 
   ShowLocationList = () => (
-    <LocationList Locations={this.props.Locations} />
+    <LocationList locations={this.props.locations} />
   )
 
   ShowLocationShow = props => {
-    const Location = this.props.Locations.find(Location => Location.id === +props.match.params.LocationId);
+    const location = this.props.locations.find(location => location.id === +props.match.params.locationId);
     return <LocationShow 
-          Location={Location} 
+          location={location} 
           onDelete={this.handleDelete}
           />
   }
@@ -63,18 +63,18 @@ class LocationsPage extends Component {
     };
 
     return <LocationForm 
-            Location={newLocation}
+            location={newLocation}
             errors={this.props.errors}
             onSubmit={this.handleSubmit}
             locations={this.props.locations}/>
   }
 
   ShowLocationEdit = props => {
-    let Location = this.props.Locations.find(Location => Location.id === +props.match.params.LocationId);
-    Location = Object.assign({},this.emptyLocation, Location )
+    let location = this.props.locations.find(location => location.id === +props.match.params.locationId);
+    location = Object.assign({},this.emptyLocation, location )
 
     return <LocationForm
-            Location={Location}
+            location={location}
             errors={this.props.errors}
             locations={this.props.locations}
             onSubmit={this.handleSubmit}
@@ -84,11 +84,11 @@ class LocationsPage extends Component {
   render() {
     return (
     <div>
-      {this.props.Locations &&
+      {this.props.locations &&
         <Switch>
           <Route path={`${this.props.match.url}/new`} render={this.ShowLocationNew}/>
-          <Route path={`${this.props.match.url}/:LocationId/edit`} render={this.ShowLocationEdit}/>
-          <Route path={`${this.props.match.url}/:LocationId`} render={this.ShowLocationShow}/>
+          <Route path={`${this.props.match.url}/:locationId/edit`} render={this.ShowLocationEdit}/>
+          <Route path={`${this.props.match.url}/:locationId`} render={this.ShowLocationShow}/>
           <Route exact path={this.props.match.url} render={this.ShowLocationList} />
         </Switch>
       }
