@@ -6,7 +6,7 @@ import { DIVES_ROOT } from '../../constants';
 import DiveListItem from './DiveListItem';
 
 const DiveList = ({
-  dives
+  dives, locations
 }) => {
   const renderDives = dives.map(dive => (
     <Link key={dive.id} to={`${DIVES_ROOT}/${dive.id}`}>
@@ -20,9 +20,13 @@ const DiveList = ({
 
       {renderDives}
 
-      <Link to={`${DIVES_ROOT}/new`}>
-        <Button>New</Button>
-      </Link>
+      {locations && locations.length > 0 ? (
+        <Link to={`${DIVES_ROOT}/new`}>
+          <Button>New</Button>
+        </Link>
+       ) : (
+        <p>You must create at least 1 location before you may create a dive.</p>
+       )}
       
     </Grid>
   );
