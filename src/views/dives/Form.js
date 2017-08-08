@@ -48,7 +48,7 @@ class DiveForm extends Component  {
     this.setState({ submitted: true });
 
     this.props.onSubmit({
-      ...this.state
+      ...this.state, locations: null, location: null
     });
   }
 

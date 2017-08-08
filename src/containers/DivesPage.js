@@ -52,7 +52,7 @@ class DivesPage extends Component {
   }
 
   ShowDiveList = () => (
-    <DiveList dives={this.props.dives} />
+    <DiveList dives={this.props.dives} locations={this.props.locations}/>
   )
 
   ShowDiveShow = props => {
@@ -64,9 +64,9 @@ class DivesPage extends Component {
   }
 
   ShowDiveNew = () => {
-    const newDive = {...this.emptyDive,  
-      location: this.props.locations[0],           // use first location as default, at least for now
-      location_id: this.props.locations[0].id 
+    const newDive = {...this.emptyDive, 
+      location_id: this.props.locations[0].id, 
+      location: this.props.locations[0] 
     };
 
     return <DiveForm 
