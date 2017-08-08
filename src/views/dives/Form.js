@@ -180,7 +180,7 @@ class DiveForm extends Component  {
             </Col>
           </Row>
 
-          <Link to={`${DIVES_ROOT}`}>
+          <Link to={`${DIVES_ROOT}/${this.state.id}`}>
             <Button>Back</Button>
           </Link>
           <Button disabled={!!this.state.submitted} type='submit'>Save</Button>
