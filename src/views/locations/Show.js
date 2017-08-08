@@ -33,7 +33,10 @@ const LocationShow = ({
     <Link to={`${LOCATIONS_ROOT}/${location.id}/edit`}>
       <Button>Edit</Button>
     </Link>
-    <Button onClick={() => onDelete(location.id)}>Delete</Button>
+    <Link to={`${LOCATIONS_ROOT}/${location.id}/delete/confirm`}>
+      <Button>Delete Location</Button>
+    </Link>
+
   </Grid>
 )
 

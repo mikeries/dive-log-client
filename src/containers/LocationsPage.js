@@ -8,6 +8,7 @@ import { updateLocation, newLocation, deleteLocation, resetErrors } from '../red
 import LocationShow from '../views/locations/Show';
 import LocationForm from '../views/locations/Form';
 import LocationList from '../views/locations/List';
+import LocationConfirm from '../views/locations/LocationConfirm';
 
 class LocationsPage extends Component {
 
@@ -83,6 +84,16 @@ class LocationsPage extends Component {
           />
   }
 
+    ShowLocationConfirm = props => {
+    let location = this.props.locations.find(location => location.id === +props.match.params.locationId);
+    location = Object.assign({},this.emptyLocation, location )
+
+    return <LocationConfirm
+            location={location}
+            handleDelete={this.handleDelete}
+          />
+  }
+
   render() {
     return (
     <div>
@@ -90,6 +101,7 @@ class LocationsPage extends Component {
         <Switch>
           <Route path={`${this.props.match.url}/new`} render={this.ShowLocationNew}/>
           <Route path={`${this.props.match.url}/:locationId/edit`} render={this.ShowLocationEdit}/>
+          <Route path={`${this.props.match.url}/:locationId/delete/confirm`} render={this.ShowLocationConfirm}/>
           <Route path={`${this.props.match.url}/:locationId`} render={this.ShowLocationShow}/>
           <Route exact path={this.props.match.url} render={this.ShowLocationList} />
         </Switch>
@@ -99,7 +111,7 @@ class LocationsPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return { 
     locations: state.locationsReducer.locations,
     errors: state.locationsReducer.errors
