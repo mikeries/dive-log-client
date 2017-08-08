@@ -50,9 +50,9 @@ export function deleteLocation(locationId) {
   return dispatch => {
     dispatch({ type: actions.DELETE_LOCATION });
     return services.delete(`${LOCATIONS_ROOT}/${locationId}`)
-      .then(dive => dispatch({
+      .then(location => dispatch({
         type: actions.DELETE_LOCATION_SUCCESSFUL,
-        diveId: locationId
+        locationId: locationId
       }))
       .catch(errors => dispatch({ 
         type: actions.DELETE_LOCATION_FAILED, 
