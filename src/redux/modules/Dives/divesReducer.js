@@ -1,4 +1,5 @@
 import * as actions from './actionTypes' 
+import { DELETE_LOCATION_SUCCESSFUL } from '../Locations/actionTypes';
 
 const initialState = {
   dives: null,
@@ -47,6 +48,10 @@ export default function divesReducer(state = initialState, action) {
 
     case actions.DELETE_DIVE_FAILED:
       return { ...state, errors: action.errors };
+
+    case DELETE_LOCATION_SUCCESSFUL:
+      dives = state.dives.filter(dive => dive.location.id !== action.locationId);
+      return { ...state, dives: dives };
 
     default: 
       return state;
