@@ -16,7 +16,11 @@ class LocationsPage extends Component {
     this.unListen = null;
 
     this.emptyLocation = {
-
+      name: '',
+      category: '',
+      city: '',
+      country: '',
+      description: ''
     }
   }
 
@@ -57,9 +61,7 @@ class LocationsPage extends Component {
   }
 
   ShowLocationNew = () => {
-    const newLocation = {...this.emptyLocation,  
-      location: this.props.locations[0],           // use first location as default, at least for now
-      location_id: this.props.locations[0].id 
+    const newLocation = {...this.emptyLocation
     };
 
     return <LocationForm 
