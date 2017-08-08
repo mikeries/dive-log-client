@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Button } from 'react-bootstrap';
 import DiveListItem from '../dives/DiveListItem';
-import { DIVES_ROOT } from '../../constants';
 
 const LocationConfirm = ({ 
   location,

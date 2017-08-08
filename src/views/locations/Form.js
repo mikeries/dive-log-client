@@ -121,7 +121,7 @@ class LocationForm extends Component  {
             </Col>
           </Row>
 
-          <Link to={`${LOCATIONS_ROOT}`}>
+          <Link to={`${LOCATIONS_ROOT}/${this.state.id}`}>
             <Button>Back</Button>
           </Link>
           <Button disabled={!!this.state.submitted} type='submit'>Save</Button>
