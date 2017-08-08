@@ -89,8 +89,9 @@ class LocationsPage extends Component {
     location = Object.assign({},this.emptyLocation, location )
 
     return <LocationConfirm
+            dives={this.props.dives}
             location={location}
-            handleDelete={this.handleDelete}
+            onDelete={this.handleDelete}
           />
   }
 
@@ -114,6 +115,7 @@ class LocationsPage extends Component {
 const mapStateToProps = (state) => {
   return { 
     locations: state.locationsReducer.locations,
+    dives: state.divesReducer.dives,
     errors: state.locationsReducer.errors
   };
 }
