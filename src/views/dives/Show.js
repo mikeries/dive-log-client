@@ -49,7 +49,7 @@ const DiveShow = ({
         <Link to={`${DIVES_ROOT}/${dive.id}/edit`}>
           <Button>Edit</Button>
         </Link>
-        <Button onClick={() => onDelete(dive.id)}>Delete</Button>
+        <Button bsStyle='danger' onClick={() => onDelete(dive.id)}>Delete</Button>
       </Grid>
     )
   } else return (<div></div>)
