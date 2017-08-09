@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import moment from 'moment';
 import { 
   Button,
   Form,
@@ -16,6 +19,20 @@ import {DIVES_ROOT } from '../../constants';
  import ErrorList from '../components/ErrorList';
 
 class DiveForm extends Component  {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      startDate: moment()
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+ 
+  handleChange(date) {
+    this.setState({
+      startDate: date
+    });
+  }
 
   componentWillMount() {
     this.state = {
@@ -80,13 +97,9 @@ class DiveForm extends Component  {
             <Col md={3}>
               <FormGroup>
                 <ControlLabel>Date</ControlLabel>
-                <FormControl
-                  type="text"
-                  value={this.state.date}
-                  placeholder="Date of dive"
-                  name='date'
-                  onChange={this.handleInputChange}
-                />
+                  <DatePicker selected={this.state.startDate}
+                    onChange={this.handleChange}
+                    className='form-control'/>
               </FormGroup>
             </Col>
             <Col md={3}>
