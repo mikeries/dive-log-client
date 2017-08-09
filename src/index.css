@@ -25,10 +25,17 @@ body {
   font-size: 1.3em;
 }
 
+#username {
+  outline: none;
+  border-left: none;
+  border-right: none;
+}
+
 #username:focus, #username:hover {
   background-color: inherit;
   background-image: none;
-  outline: none;
+  color: inherit;
+  cursor: default;
 }
 
 .error {

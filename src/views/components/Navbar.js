@@ -11,7 +11,7 @@ const NavBar = ({ user, handleLogout }) => (
     </Nav>
 
     <Nav pullRight={true}>
-      {user && user.name && <NavItem id='username'>Welcome {user.name}!</NavItem>}
+      {user && user.name && <NavItem id='username' to=''>Welcome {user.name}!</NavItem>}
       <LinkContainer to='/logout' >
         <NavItem onClick={handleLogout}>Logout</NavItem>
       </LinkContainer>
