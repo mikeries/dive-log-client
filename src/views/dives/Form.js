@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
-// import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment';
 import { 
   Button,
@@ -20,29 +19,24 @@ import {DIVES_ROOT } from '../../constants';
 
 class DiveForm extends Component  {
 
-  constructor (props) {
-    super(props)
-    this.state = {
-      startDate: moment()
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
- 
-  handleChange(date) {
-    this.setState({
-      startDate: date
-    });
-  }
-
   componentWillMount() {
     this.state = {
       ...this.props.dive,
-      locations: this.props.locations
+      startDate: moment(),
+      locations: this.props.locations,
+      date: moment().format('MM/DD/YYYY')
     };
   }
 
   componentWillReceiveProps() {
     this.setState({ submitted: false });
+  }
+
+  handleDateChange = date => {
+    this.setState({
+      startDate: date,
+      date: date.format('MM/DD/YYYY')
+    });
   }
 
   handleLocationChange = event => {
@@ -65,7 +59,7 @@ class DiveForm extends Component  {
     this.setState({ submitted: true });
 
     this.props.onSubmit({
-      ...this.state, locations: null, location: null
+      ...this.state
     });
   }
 
@@ -80,6 +74,7 @@ class DiveForm extends Component  {
       title = 'New Dive';
       backButtonUrl = `${DIVES_ROOT}`;
     }
+
     return (
       <Grid>
         <Form onSubmit={this.handleFormSubmit}>
@@ -98,7 +93,10 @@ class DiveForm extends Component  {
               <FormGroup>
                 <ControlLabel>Date</ControlLabel>
                   <DatePicker selected={this.state.startDate}
-                    onChange={this.handleChange}
+                    name={this.state.date}
+                    value={this.state.date}
+                    placeholder="Date of dive"
+                    onChange={this.handleDateChange}
                     className='form-control'/>
               </FormGroup>
             </Col>
