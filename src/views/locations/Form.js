@@ -58,7 +58,7 @@ class LocationForm extends Component  {
     return (
       <Grid>
         <Form onSubmit={this.handleFormSubmit}>
-          {title}
+          <h2>{title}</h2>
 
           {this.props.errors &&
             <Row>
