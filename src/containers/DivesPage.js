@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import { updateDive, newDive, deleteDive, resetErrors } from '../redux/modules/Dives/divesActions';
 
@@ -93,7 +93,11 @@ class DivesPage extends Component {
     <div>
       {this.props.dives &&
         <Switch>
-          <Route path={`${this.props.match.url}/new`} render={this.ShowDiveNew}/>
+          {this.props.locations ?
+            <Route path={`${this.props.match.url}/new`} render={this.ShowDiveNew}/>
+            :
+            <Redirect to={`${this.props.match.url}`}/>
+          }
           <Route path={`${this.props.match.url}/:diveId/edit`} render={this.ShowDiveEdit}/>
           <Route path={`${this.props.match.url}/:diveId`} render={this.ShowDiveShow}/>
           <Route exact path={this.props.match.url} render={this.ShowDiveList} />
