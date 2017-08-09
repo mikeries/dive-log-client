@@ -44,10 +44,21 @@ class LocationForm extends Component  {
   }
 
   render() {
+    let title,
+        backButtonUrl;
+
+    if (this.state.id > 0) {
+      title = 'Editing Location';
+      backButtonUrl = `${LOCATIONS_ROOT}/${this.state.id}`;
+    } else {
+      title = 'New Location';
+      backButtonUrl = `${LOCATIONS_ROOT}`;
+    }
+
     return (
       <Grid>
         <Form onSubmit={this.handleFormSubmit}>
-          {this.state.id > 0 ? <h1>Editing Location</h1> : <h1>New Location</h1>}
+          {title}
 
           {this.props.errors &&
             <Row>
@@ -121,7 +132,7 @@ class LocationForm extends Component  {
             </Col>
           </Row>
 
-          <Link to={`${LOCATIONS_ROOT}/${this.state.id}`}>
+          <Link to={backButtonUrl}>
             <Button>Back</Button>
           </Link>
           <Button disabled={!!this.state.submitted} type='submit'>Save</Button>

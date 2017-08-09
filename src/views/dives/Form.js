@@ -53,10 +53,20 @@ class DiveForm extends Component  {
   }
 
   render() {
+    let title,
+        backButtonUrl;
+
+    if (this.state.id > 0) {
+      title = 'Editing Dive';
+      backButtonUrl = `${DIVES_ROOT}/${this.state.id}`;
+    } else {
+      title = 'New Dive';
+      backButtonUrl = `${DIVES_ROOT}`;
+    }
     return (
       <Grid>
         <Form onSubmit={this.handleFormSubmit}>
-          {this.state.id > 0 ? <h1>Editing Dive</h1> : <h1>New Dive</h1>}
+          <h1>{title}</h1>
 
           {this.props.errors &&
             <Row>
@@ -180,7 +190,7 @@ class DiveForm extends Component  {
             </Col>
           </Row>
 
-          <Link to={`${DIVES_ROOT}/${this.state.id}`}>
+          <Link to={backButtonUrl}>
             <Button>Back</Button>
           </Link>
           <Button disabled={!!this.state.submitted} type='submit'>Save</Button>
