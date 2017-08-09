@@ -39,8 +39,9 @@ body {
 }
 
 .error {
-  color: red;
+  color: #722;
   border-color: red;
+  background-color: #caa;
 }
 
 .btn {
@@ -58,9 +59,11 @@ body {
 
 .react-datepicker {
   font-size: 1em;
+  background-color: #ccc;
 }
 .react-datepicker__header {
   padding-top: 0.8em;
+  background-color: #ccc;
 }
 .react-datepicker__month {
   margin: 0.4em 1em;
@@ -85,4 +88,8 @@ body {
 .react-datepicker__navigation--next {
   border-left-color: #ccc;
   right: 1em;
+}
+
+.react-datepicker__day--selected:hover, .react-datepicker__day--in-selecting-range:hover, .react-datepicker__day--in-range:hover {
+    background-color: #1e5799;
 }
