@@ -8,11 +8,12 @@ import DiveListItem from './DiveListItem';
 const DiveList = ({
   dives, locations
 }) => {
-  const renderDives = dives.map(dive => (
-    <Link key={dive.id} to={`${DIVES_ROOT}/${dive.id}`}>
-      <DiveListItem key={dive.id} dive={dive}/>
+  const renderDives = dives.map(dive => {
+    const location = locations.find(l => dive.location_id === l.id);
+    return (<Link key={dive.id} to={`${DIVES_ROOT}/${dive.id}`}>
+      <DiveListItem key={dive.id} dive={dive} location={location}/>
     </Link>
-  ));
+  )});
 
   return (
     <Grid>

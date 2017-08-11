@@ -6,14 +6,16 @@ import { DIVES_ROOT } from '../../constants';
 
 const DiveShow = ({ 
   dive,
+  location,
   onDelete
 }) => {
-  if (dive && dive.location) {
+
+  if (dive && location) {
     return (
       <Grid>
         <Row>
           <Col md={12}>
-            <h3>{dive.location.name} - {dive.location.city}, {dive.location.country}</h3>
+            <h3>{location.name} - {location.city}, {location.country}</h3>
           </Col>
         </Row>
 

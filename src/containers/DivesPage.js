@@ -57,8 +57,10 @@ class DivesPage extends Component {
 
   ShowDiveShow = props => {
     const dive = this.props.dives.find(dive => dive.id === +props.match.params.diveId);
+    const location = this.props.locations.find(location => location.id = dive.location_id);
     return <DiveShow 
           dive={dive} 
+          location={location}
           onDelete={this.handleDelete}
           />
   }

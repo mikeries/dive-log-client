@@ -13,18 +13,24 @@ const deepestDive = dives => {
   }
 }
 
-const Dashboard = ({user, dives}) => {
-  const deepest = deepestDive(dives);
+const Dashboard = ({ user, dives, locations }) => {
+  let deepest = null;
+
+  if(dives && locations) {
+    deepest = {...deepestDive(dives)}
+    deepest.location = locations.find(l => deepest.location_id === l.id);
+  }
+
   return (
     <Grid>
 
       <h2>Your dive statistics</h2>
 
-      {dives && dives.length === 0 && <div>
+      {dives && dives.length === 0  && <div>
           <h3>You don't have any dive data yet.</h3>
         </div>
       }
-      {dives && dives.length > 0 && <div>
+      {dives && dives.length > 0 && deepest && deepest.location && <div>
           <div>
             <h3>Number of dives</h3>
             <p>{dives.length}</p>
