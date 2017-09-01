@@ -11,11 +11,25 @@ import {
   Col,
   Well
  } from 'react-bootstrap';
+ import classNames from 'classnames';
+ import validator from 'validator';
 
 import { LOCATIONS_ROOT } from '../../constants';
  import ErrorList from '../components/ErrorList';
 
 class LocationForm extends Component  {
+  constructor() {
+    super();
+    this.state = {
+      validation: {
+        name: { isValid: true, message: '' },
+        city: { isValid: true, message: '' },
+        country: { isValid: true, message: '' },
+        category: { isValid: true, message: '' },
+        description: { isValid: true, message: '' }
+      }
+    };
+  }
 
   componentWillMount() {
     this.state = {
@@ -29,9 +43,11 @@ class LocationForm extends Component  {
 
   handleInputChange = event => {
     event.preventDefault();
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+
+    var state = this.state;
+    state[event.target.name] = event.target.value;
+
+    this.setState(state);
   }
     
   handleFormSubmit = event => {
@@ -43,9 +59,25 @@ class LocationForm extends Component  {
     });
   }
 
+  formIsValid = () => {
+    var state = this.state;
+
+    return true;
+  }
+
+  resetValidationStates = () => {
+    var validation = this.state.validation;
+
+    Object.keys(validation).map(key => (
+      validation[key] = { isValid: true, message: '' }
+    ));
+    this.setState({validation: validation});
+  }
+
   render() {
-    let title,
-        backButtonUrl;
+    console.log(this.state)
+    let title = '',
+        backButtonUrl = '';
 
     if (this.state.id > 0) {
       title = 'Editing Location';
@@ -104,6 +136,7 @@ class LocationForm extends Component  {
                   name='country'
                   onChange={this.handleInputChange}
                 />
+                <span className="help-block">{this.state.country.message}</span>
               </FormGroup>
             </Col>
             <Col md={3}>
