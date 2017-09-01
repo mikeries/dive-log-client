@@ -1,6 +1,7 @@
 import  React from 'react';
 import FbLoginButton from './components/FbLoginButton';
 import { Grid } from 'react-bootstrap'
+import Login from './login.js'
 
 const Welcome = ({ handleLogin }) => (
   <Grid className='Welcome'>
@@ -28,6 +29,8 @@ const Welcome = ({ handleLogin }) => (
     <br/>
     <br/>
     <p>Note: The API server goes to sleep when idle, so you may have to wait several seconds for it to wake up after logging in.</p>
+
+    <Login/>
   </Grid>
 )
 
