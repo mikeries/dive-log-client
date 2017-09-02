@@ -18,9 +18,10 @@ import { LOCATIONS_ROOT } from '../../constants';
  import ErrorList from '../components/ErrorList';
 
 class LocationForm extends Component  {
-  constructor() {
-    super();
+
+  componentWillMount() {
     this.state = {
+      ...this.props.location,
       validation: {
         name: { isValid: true, message: '' },
         city: { isValid: true, message: '' },
@@ -28,12 +29,6 @@ class LocationForm extends Component  {
         category: { isValid: true, message: '' },
         description: { isValid: true, message: '' }
       }
-    };
-  }
-
-  componentWillMount() {
-    this.state = {
-      ...this.props.location
     };
   }
 
@@ -52,17 +47,35 @@ class LocationForm extends Component  {
     
   handleFormSubmit = event => {
     event.preventDefault();
-    this.setState({ submitted: true });
 
-    this.props.onSubmit({
-      ...this.state
-    });
+    this.resetValidationStates();
+    if(this.formIsValid()) {
+      this.setState({ submitted: true });
+
+      this.props.onSubmit({
+        ...this.state
+      });
+    }
   }
 
   formIsValid = () => {
-    var state = this.state;
+    const { name, country } = this.state;
+    let validation = this.state.validation;
+    let valid = true;
 
-    return true;
+    if(validator.isEmpty(name)) {
+      validation.name.isValid = false;
+      validation.name.message = 'You must supply a name.'
+      valid = false;
+    }
+
+    if(validator.isEmpty(country)) {
+      validation.country.isValid = false;
+      validation.country.message = 'You must supply a country.'
+      valid = false;
+    }
+
+    return valid;
   }
 
   resetValidationStates = () => {
@@ -75,10 +88,13 @@ class LocationForm extends Component  {
   }
 
   render() {
-    console.log(this.state)
     let title = '',
-        backButtonUrl = '';
+        backButtonUrl = '',
+        validation = this.state.validation;
 
+    var nameGroupClass = classNames('form-group', {'has-error': !validation.name.isValid});
+    var countryGroupClass = classNames('form-group', {'has-error': !validation.country.isValid});
+    
     if (this.state.id > 0) {
       title = 'Editing Location';
       backButtonUrl = `${LOCATIONS_ROOT}/${this.state.id}`;
@@ -101,7 +117,7 @@ class LocationForm extends Component  {
           }
           <Row>
             <Col md={3}>
-              <FormGroup>
+              <FormGroup className={nameGroupClass}>
                 <ControlLabel>Name</ControlLabel>
                 <FormControl
                   type="text"
@@ -110,6 +126,7 @@ class LocationForm extends Component  {
                   name='name'
                   onChange={this.handleInputChange}
                 />
+                <span className="help-block">{validation.name.message}</span>
               </FormGroup>
             </Col>
 
@@ -127,7 +144,7 @@ class LocationForm extends Component  {
             </Col>
 
             <Col md={3}>
-              <FormGroup>
+              <FormGroup className={countryGroupClass}>
                 <ControlLabel>Country</ControlLabel>
                 <FormControl
                   type="text"
@@ -136,7 +153,7 @@ class LocationForm extends Component  {
                   name='country'
                   onChange={this.handleInputChange}
                 />
-                <span className="help-block">{this.state.country.message}</span>
+                <span className="help-block">{validation.country.message}</span>
               </FormGroup>
             </Col>
             <Col md={3}>
