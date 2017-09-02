@@ -24,10 +24,7 @@ class LocationForm extends Component  {
       ...this.props.location,
       validation: {
         name: { isValid: true, message: '' },
-        city: { isValid: true, message: '' },
-        country: { isValid: true, message: '' },
-        category: { isValid: true, message: '' },
-        description: { isValid: true, message: '' }
+        country: { isValid: true, message: '' }
       }
     };
   }
@@ -92,8 +89,8 @@ class LocationForm extends Component  {
         backButtonUrl = '',
         validation = this.state.validation;
 
-    var nameGroupClass = classNames('form-group', {'has-error': !validation.name.isValid});
-    var countryGroupClass = classNames('form-group', {'has-error': !validation.country.isValid});
+    var nameClasses = classNames('form-group', {'has-error': !validation.name.isValid});
+    var countryClasses = classNames('form-group', {'has-error': !validation.country.isValid});
     
     if (this.state.id > 0) {
       title = 'Editing Location';
@@ -117,12 +114,12 @@ class LocationForm extends Component  {
           }
           <Row>
             <Col md={3}>
-              <FormGroup className={nameGroupClass}>
+              <FormGroup className={nameClasses}>
                 <ControlLabel>Name</ControlLabel>
                 <FormControl
                   type="text"
                   value={this.state.name}
-                  placeholder="location name"
+                  placeholder="name"
                   name='name'
                   onChange={this.handleInputChange}
                 />
@@ -136,7 +133,7 @@ class LocationForm extends Component  {
                 <FormControl
                   type="text"
                   value={this.state.city}
-                  placeholder="location city"
+                  placeholder="city"
                   name='city'
                   onChange={this.handleInputChange}
                 />
@@ -144,12 +141,12 @@ class LocationForm extends Component  {
             </Col>
 
             <Col md={3}>
-              <FormGroup className={countryGroupClass}>
+              <FormGroup className={countryClasses}>
                 <ControlLabel>Country</ControlLabel>
                 <FormControl
                   type="text"
                   value={this.state.country}
-                  placeholder="location country"
+                  placeholder="country"
                   name='country'
                   onChange={this.handleInputChange}
                 />
