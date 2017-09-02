@@ -9,18 +9,17 @@ class FormValidator {
     let isValid = true;
     
     this.validations.forEach(v => {
-      if (!validation[v.property] || validation[v.property].isValid) {
-        if(v.method(state[v.property], v.options) !== v.validWhen) {
-          validation[v.property] = { isValid: false, message: v.message }
+      if (!validation[v.property] || !validation[v.property].isInvalid) {
+        if(v.method(state[v.property], v.options, state) !== v.validWhen) {
+          validation[v.property] = { isInvalid: true, message: v.message }
           isValid = false;
         } else {
-          validation[v.property] = { isValid: true, message: '' }
+          validation[v.property] = { isInvalid: false, message: '' }
         }
       }
     });
 
-    this.validation = validation;
-    return isValid;
+    return { isValid, ...validation };
   }
 
 
@@ -28,10 +27,10 @@ class FormValidator {
     const validation = {}
 
     this.validations.map(v => (
-      validation[v.property] = { isValid: true, message: '' }
+      validation[v.property] = { isInvalid: false, message: '' }
     ));
 
-    return validation;
+    return { isValid: true, ...validation };
   }
 }
 

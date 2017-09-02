@@ -51,17 +51,16 @@ class LocationForm extends Component  {
     
   handleFormSubmit = event => {
     event.preventDefault();
-    const validator = this.validator;
+    const validation = this.validator.validate(this.state);
 
-    validator.reset();
-    if(validator.validate(this.state)) {
+    if(validation.isValid) {
       this.setState({ submitted: true });
 
       this.props.onSubmit({
         ...this.state
       });
     } else {
-      this.setState({ validation: validator.validation });
+      this.setState({ validation: validation });
     }
   }
 
@@ -70,8 +69,8 @@ class LocationForm extends Component  {
         backButtonUrl = '',
         validation = this.state.validation;
 
-    var nameClasses = classNames('form-group', {'has-error': !validation.name.isValid});
-    var countryClasses = classNames('form-group', {'has-error': !validation.country.isValid});
+    var nameClasses = classNames('form-group', {'has-error': validation.name.isInvalid});
+    var countryClasses = classNames('form-group', {'has-error': validation.country.isInvalid});
     
     if (this.state.id > 0) {
       title = 'Editing Location';
