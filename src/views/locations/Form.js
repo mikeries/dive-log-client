@@ -11,12 +11,12 @@ import {
   Col,
   Well
  } from 'react-bootstrap';
- import classNames from 'classnames';
- import FormValidator from '../../FormValidator';
- import validator from 'validator';
+
+import FormValidator from '../../FormValidator';
+import validator from 'validator';
 
 import { LOCATIONS_ROOT } from '../../constants';
- import ErrorList from '../components/ErrorList';
+import ErrorList from '../components/ErrorList';
 
 class LocationForm extends Component  {
   constructor() {
@@ -130,6 +130,7 @@ class LocationForm extends Component  {
                 <span className="help-block">{validation.country.message}</span>
               </FormGroup>
             </Col>
+
             <Col md={3}>
               <FormGroup>
                 <ControlLabel>Category</ControlLabel>

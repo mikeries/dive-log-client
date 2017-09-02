@@ -50,7 +50,7 @@ export default function divesReducer(state = initialState, action) {
       return { ...state, errors: action.errors };
 
     case DELETE_LOCATION_SUCCESSFUL:
-      dives = state.dives.filter(dive => dive.location.id !== action.locationId);
+      dives = state.dives.filter(dive => dive.location_id !== action.locationId);
       return { ...state, dives: dives };
 
     default: 

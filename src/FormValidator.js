@@ -18,7 +18,6 @@ class FormValidator {
     return validation;
   }
 
-
   reset = () => {
     const validation = {}
 

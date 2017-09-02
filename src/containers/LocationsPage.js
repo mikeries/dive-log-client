@@ -36,7 +36,6 @@ class LocationsPage extends Component {
   }
 
   handleSubmit = location => {
-    // TODO: perform client-side validation here.
     if (location.id) {
       this.props.updateLocation(location, this.props.history);
     } else {
@@ -89,7 +88,7 @@ class LocationsPage extends Component {
     location = Object.assign({},this.emptyLocation, location )
 
     return <LocationConfirm
-            dives={this.props.dives}
+            dives={this.props.dives.filter(dive => dive.location_id === location.id)}
             location={location}
             onDelete={this.handleDelete}
           />
