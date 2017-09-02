@@ -8,7 +8,8 @@ class FormValidator {
     
     this.validations.forEach(v => {
       if (!validation[v.field].isInvalid) {
-        if(v.method(state[v.field], v.options, state) !== v.validWhen) {
+        const args = v.args || [];
+        if(v.method(state[v.field], ...args, state) !== v.validWhen) {
           validation[v.field] = { isInvalid: true, message: v.message }
           validation.isValid = false;
         }
