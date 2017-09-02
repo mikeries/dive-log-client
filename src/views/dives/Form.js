@@ -15,10 +15,20 @@ import {
  } from 'react-bootstrap';
 
 import {DIVES_ROOT } from '../../constants';
- import ErrorList from '../components/ErrorList';
+import ErrorList from '../components/ErrorList';
+
+import FormValidator from '../../FormValidator';
 
 class DiveForm extends Component  {
+  constructor() {
+    super();
 
+    this.validator = new FormValidator([
+      { field: 'duration', method: 'isNumeric', validWhen: true, message: 'Duration must be a number.'},
+      { field: 'time', method: 'matches', args: [],
+                      validWhen: false, message: 'You must provide a country.'},
+    ]);
+  }
   componentWillMount() {
     this.state = {
       ...this.props.dive,
