@@ -8,7 +8,7 @@ const LocationConfirm = ({
   dives,
   onDelete
 }) => {
-
+  const buttonText = dives && dives.length > 0 ? 'Delete Location and Dives' : 'Delete Location'
   return (
     <Grid>
       <h2>Deleting {location.name}</h2>
@@ -18,12 +18,12 @@ const LocationConfirm = ({
         <div>
         <p>This will also delete the following dives:</p>
         {dives.map(dive => (
-          <DiveListItem key={dive.id} dive={dive}/>
+          <DiveListItem key={dive.id} dive={dive} location={location}/>
         ))}
         </div>
       }
       <Link to={`/locations/${location.id}`}><Button>Back</Button></Link>
-      <Button bsStyle='danger' onClick={() => onDelete(location.id)}>Delete Location</Button>
+      <Button bsStyle='danger' onClick={() => onDelete(location.id)}>{buttonText}</Button>
     </Grid>
   )
 }
