@@ -12,20 +12,22 @@ import {
   Well
  } from 'react-bootstrap';
  import classNames from 'classnames';
- import validator from 'validator';
+ import FormValidator from '../../FormValidator'
 
 import { LOCATIONS_ROOT } from '../../constants';
  import ErrorList from '../components/ErrorList';
 
 class LocationForm extends Component  {
+  constructor() {
+    super();
+
+    this.validator = new FormValidator();
+  }
 
   componentWillMount() {
     this.state = {
       ...this.props.location,
-      validation: {
-        name: { isValid: true, message: '' },
-        country: { isValid: true, message: '' }
-      }
+      validation: this.validator.reset()
     };
   }
 
@@ -44,44 +46,18 @@ class LocationForm extends Component  {
     
   handleFormSubmit = event => {
     event.preventDefault();
+    const validator = this.validator;
 
-    this.resetValidationStates();
-    if(this.formIsValid()) {
+    validator.reset();
+    if(validator.validate(this.state)) {
       this.setState({ submitted: true });
 
       this.props.onSubmit({
         ...this.state
       });
+    } else {
+      this.setState({ validation: validator.validation });
     }
-  }
-
-  formIsValid = () => {
-    const { name, country } = this.state;
-    let validation = this.state.validation;
-    let valid = true;
-
-    if(validator.isEmpty(name)) {
-      validation.name.isValid = false;
-      validation.name.message = 'You must supply a name.'
-      valid = false;
-    }
-
-    if(validator.isEmpty(country)) {
-      validation.country.isValid = false;
-      validation.country.message = 'You must supply a country.'
-      valid = false;
-    }
-
-    return valid;
-  }
-
-  resetValidationStates = () => {
-    var validation = this.state.validation;
-
-    Object.keys(validation).map(key => (
-      validation[key] = { isValid: true, message: '' }
-    ));
-    this.setState({validation: validation});
   }
 
   render() {
