@@ -25,6 +25,7 @@ class LocationForm extends Component  {
     this.validator = new FormValidator([
       { property: 'name', method: validator.isEmpty, validWhen: false, message: 'You must provide a name.'},
       { property: 'country', method: validator.isEmpty, validWhen: false, message: 'You must provide a country.'},
+      { property: 'country', method: validator.isLength, options: {min: 0, max: 9}, validWhen: true, message: 'Length must be less than 10.' },
     ]);
   }
 

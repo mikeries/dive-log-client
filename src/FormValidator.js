@@ -9,8 +9,8 @@ class FormValidator {
     let isValid = true;
     
     this.validations.forEach(v => {
-      if (validation[v.property] === undefined) {
-        if(v.method(state[v.property]) !== v.validWhen) {
+      if (!validation[v.property] || validation[v.property].isValid) {
+        if(v.method(state[v.property], v.options) !== v.validWhen) {
           validation[v.property] = { isValid: false, message: v.message }
           isValid = false;
         } else {
