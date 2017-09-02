@@ -16,7 +16,7 @@ class FormValidator {
               validator[v.method] : 
               v.method
               
-        if(validation_method(state[v.field], ...args, state) !== v.validWhen) {
+        if(validation_method(state[v.field].toString(), ...args, state) !== v.validWhen) {
           validation[v.field] = { isInvalid: true, message: v.message }
           validation.isValid = false;
         }
