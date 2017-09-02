@@ -23,9 +23,9 @@ class LocationForm extends Component  {
     super();
 
     this.validator = new FormValidator([
-      { property: 'name', method: validator.isEmpty, validWhen: false, message: 'You must provide a name.'},
-      { property: 'country', method: validator.isEmpty, validWhen: false, message: 'You must provide a country.'},
-      { property: 'country', method: validator.isLength, options: {min: 0, max: 9}, validWhen: true, message: 'Length must be less than 10.' },
+      { field: 'name', method: validator.isEmpty, validWhen: false, message: 'You must provide a name.'},
+      { field: 'country', method: validator.isEmpty, validWhen: false, message: 'You must provide a country.'},
+      { field: 'country', method: validator.isLength, options: {min: 0, max: 9}, validWhen: true, message: 'Length must be less than 10.' },
     ]);
   }
 
@@ -69,9 +69,6 @@ class LocationForm extends Component  {
         backButtonUrl = '',
         validation = this.state.validation;
 
-    var nameClasses = classNames('form-group', {'has-error': validation.name.isInvalid});
-    var countryClasses = classNames('form-group', {'has-error': validation.country.isInvalid});
-    
     if (this.state.id > 0) {
       title = 'Editing Location';
       backButtonUrl = `${LOCATIONS_ROOT}/${this.state.id}`;
@@ -94,7 +91,7 @@ class LocationForm extends Component  {
           }
           <Row>
             <Col md={3}>
-              <FormGroup className={nameClasses}>
+              <FormGroup className={validation.name.isInvalid && 'has-error'}>
                 <ControlLabel>Name</ControlLabel>
                 <FormControl
                   type="text"
@@ -121,7 +118,7 @@ class LocationForm extends Component  {
             </Col>
 
             <Col md={3}>
-              <FormGroup className={countryClasses}>
+              <FormGroup className={validation.country.isInvalid && 'has-error'}>
                 <ControlLabel>Country</ControlLabel>
                 <FormControl
                   type="text"
