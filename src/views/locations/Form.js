@@ -13,7 +13,6 @@ import {
  } from 'react-bootstrap';
 
 import FormValidator from '../../FormValidator';
-import validator from 'validator';
 
 import { LOCATIONS_ROOT } from '../../constants';
 import ErrorList from '../components/ErrorList';
@@ -52,15 +51,14 @@ class LocationForm extends Component  {
   handleFormSubmit = event => {
     event.preventDefault();
     const validation = this.validator.validate(this.state);
-
+    this.setState({ validation });
+    
     if(validation.isValid) {
       this.setState({ submitted: true });
 
       this.props.onSubmit({
         ...this.state
       });
-    } else {
-      this.setState({ validation: validation });
     }
   }
 

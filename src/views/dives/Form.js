@@ -25,8 +25,27 @@ class DiveForm extends Component  {
 
     this.validator = new FormValidator([
       { field: 'duration', method: 'isNumeric', validWhen: true, message: 'Duration must be a number.'},
-      { field: 'time', method: 'matches', args: [],
-                      validWhen: false, message: 'You must provide a country.'},
+      { field: 'duration', method: 'isInt', args: [{min: 1, max: 100}], 
+                          validWhen: true, message: 'Duration must be between 1 and 100 minutes.'},
+
+      { field: 'ballast', method: 'isNumeric', validWhen: true, message: 'Ballast must be a number.'},
+      { field: 'ballast', method: 'isInt', args: [{min: 0, max: 20}], 
+                          validWhen: true, message: 'Ballast must between 0 and 20 pounds.'},
+
+      { field: 'max_depth', method: 'isNumeric', validWhen: true, message: 'Maximum depth must be a number.'},
+      { field: 'max_depth', method: 'isInt', args: [{min: 1, max: 150}], 
+                          validWhen: true, message: 'Maximum depth must be between 1 and 150 feet.'},
+
+      { field: 'starting_pressure', method: 'isNumeric', validWhen: true, message: 'Starting pressure must be a number, in psi.'},
+      { field: 'starting_pressure', method: 'isInt', args: [{min: 1, max: 4000}], 
+                          validWhen: true, message: 'Starting pressure must be between 1 and 4000 psi.'},
+
+      { field: 'final_pressure', method: 'isNumeric', validWhen: true, message: 'Final pressure must be a number, in psi.'},
+      { field: 'final_pressure', method: 'isInt', args: [{min: 1, max: 4000}], 
+                          validWhen: true, message: 'Final pressure must be between 1 and 4000 psi.'},
+
+      { field: 'time', method: 'matches', args: [/^\d?\d:\d\d$/],
+                      validWhen: true, message: 'Time must be in the format hh:mm.'},
     ]);
   }
   componentWillMount() {
@@ -34,7 +53,8 @@ class DiveForm extends Component  {
       ...this.props.dive,
       startDate: moment(),
       locations: this.props.locations,
-      date: moment().format('MM/DD/YYYY')
+      date: moment().format('MM/DD/YYYY'),
+      validation: this.validator.reset()
     };
   }
 
@@ -66,16 +86,22 @@ class DiveForm extends Component  {
     
   handleFormSubmit = event => {
     event.preventDefault();
-    this.setState({ submitted: true });
+    const validation = this.validator.validate(this.state);
+    this.setState({ validation });
 
-    this.props.onSubmit({
-      ...this.state
-    });
+    if (validation.isValid) {
+      this.setState({ submitted: true });
+
+      this.props.onSubmit({
+        ...this.state
+      });
+    }
   }
 
   render() {
     let title,
-        backButtonUrl;
+        backButtonUrl,
+        validation = this.state.validation;
 
     if (this.state.id > 0) {
       title = 'Editing Dive';
@@ -111,7 +137,7 @@ class DiveForm extends Component  {
               </FormGroup>
             </Col>
             <Col md={3}>
-              <FormGroup>
+              <FormGroup className={validation.time.isInvalid && 'has-error'}>
                 <ControlLabel>Time</ControlLabel>
                 <FormControl
                   type="text"
@@ -120,6 +146,7 @@ class DiveForm extends Component  {
                   name='time'
                   onChange={this.handleInputChange}
                 />
+                <span className="help-block">{validation.time.message}</span>
               </FormGroup>
             </Col>
             <Col md={3}>
@@ -136,7 +163,7 @@ class DiveForm extends Component  {
               </FormGroup>
             </Col>
             <Col md={3}>
-              <FormGroup>
+              <FormGroup className={validation.duration.isInvalid && 'has-error'}>
                 <ControlLabel>Duration</ControlLabel>
                 <FormControl
                   type="text"
@@ -145,13 +172,14 @@ class DiveForm extends Component  {
                   name='duration'
                   onChange={this.handleInputChange}
                 />
+                <span className="help-block">{validation.duration.message}</span>
               </FormGroup>
             </Col>
           </Row>
 
           <Row>
             <Col md={3}>
-              <FormGroup>
+              <FormGroup className={validation.ballast.isInvalid && 'has-error'}>
                 <ControlLabel>Ballast</ControlLabel>
                 <FormControl 
                   type='text' 
@@ -159,11 +187,12 @@ class DiveForm extends Component  {
                   placeholder='How many pounds of ballast'
                   name='ballast' 
                   onChange={this.handleInputChange} />
+                  <span className="help-block">{validation.ballast.message}</span>
               </FormGroup>
             </Col>
 
             <Col md={3}>
-              <FormGroup>
+              <FormGroup className={validation.max_depth.isInvalid && 'has-error'}>
                 <ControlLabel>Maximum Depth</ControlLabel>
                 <FormControl 
                   type='text' 
@@ -171,11 +200,12 @@ class DiveForm extends Component  {
                   placeholder='Maximum depth, in feet'
                   name='max_depth' 
                   onChange={this.handleInputChange} />
+                <span className="help-block">{validation.max_depth.message}</span>
               </FormGroup>
             </Col>
 
             <Col md={3}>
-              <FormGroup>
+              <FormGroup className={validation.starting_pressure.isInvalid && 'has-error'}>
                 <ControlLabel>Starting Pressure</ControlLabel>
                 <FormControl 
                   type='text' 
@@ -183,11 +213,12 @@ class DiveForm extends Component  {
                   placeholder='Initial pressure, in psi'
                   name='starting_pressure' 
                   onChange={this.handleInputChange} />
+                <span className="help-block">{validation.starting_pressure.message}</span>
               </FormGroup>
             </Col>
 
             <Col md={3}>
-              <FormGroup>
+              <FormGroup className={validation.final_pressure.isInvalid && 'has-error'}>
                 <ControlLabel>Final Pressure</ControlLabel>
                 <FormControl 
                   type='text' 
@@ -195,6 +226,7 @@ class DiveForm extends Component  {
                   placeholder='Final pressure, in psi'
                   name='final_pressure' 
                   onChange={this.handleInputChange} />
+                <span className="help-block">{validation.final_pressure.message}</span>
               </FormGroup>
             </Col>
           </Row>

@@ -11,7 +11,11 @@ class FormValidator {
     this.validations.forEach(v => {
       if (!validation[v.field].isInvalid) {
         const args = v.args || [];
-        const validation_method = typeof v.method === 'string' ? validator[v.method] : v.method
+        const validation_method = 
+              typeof v.method === 'string' ?
+              validator[v.method] : 
+              v.method
+              
         if(validation_method(state[v.field], ...args, state) !== v.validWhen) {
           validation[v.field] = { isInvalid: true, message: v.message }
           validation.isValid = false;
