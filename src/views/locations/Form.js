@@ -12,7 +12,8 @@ import {
   Well
  } from 'react-bootstrap';
  import classNames from 'classnames';
- import FormValidator from '../../FormValidator'
+ import FormValidator from '../../FormValidator';
+ import validator from 'validator';
 
 import { LOCATIONS_ROOT } from '../../constants';
  import ErrorList from '../components/ErrorList';
@@ -21,7 +22,10 @@ class LocationForm extends Component  {
   constructor() {
     super();
 
-    this.validator = new FormValidator();
+    this.validator = new FormValidator([
+      { property: 'name', method: validator.isEmpty, validWhen: false, message: 'You must provide a name.'},
+      { property: 'country', method: validator.isEmpty, validWhen: false, message: 'You must provide a country.'},
+    ]);
   }
 
   componentWillMount() {

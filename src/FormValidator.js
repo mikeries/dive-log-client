@@ -1,39 +1,34 @@
-import validator from 'validator';
-
 class FormValidator {
-  constructor() {
-    this.validation = {
-      name: { isValid: true, message: '' },
-      country: { isValid: true, message: '' }
-    }
+  constructor(validations) {
+    this.validations = validations;
+    this.validation = this.reset();
   }
 
   validate = state => {
-    const { name, country } = state;
-    let validation = this.validation;
-    let formIsValid = true;
+    const validation = {};
+    let isValid = true;
+    
+    this.validations.forEach(v => {
+      if (validation[v.property] === undefined) {
+        if(v.method(state[v.property]) !== v.validWhen) {
+          validation[v.property] = { isValid: false, message: v.message }
+          isValid = false;
+        } else {
+          validation[v.property] = { isValid: true, message: '' }
+        }
+      }
+    });
 
-    if(validator.isEmpty(name)) {
-      validation.name.isValid = false;
-      validation.name.message = 'You must supply a name.'
-      formIsValid = false;
-    }
-
-    if(validator.isEmpty(country)) {
-      validation.country.isValid = false;
-      validation.country.message = 'You must supply a country.'
-      formIsValid = false;
-    }
-
-    return formIsValid;
+    this.validation = validation;
+    return isValid;
   }
 
 
   reset = () => {
-    var validation = this.validation;
+    const validation = {}
 
-    Object.keys(validation).map(key => (
-      validation[key] = { isValid: true, message: '' }
+    this.validations.map(v => (
+      validation[v.property] = { isValid: true, message: '' }
     ));
 
     return validation;
