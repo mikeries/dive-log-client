@@ -1,8 +1,9 @@
 import  React from 'react';
+import { Link } from 'react-router-dom'
 import FbLoginButton from './components/FbLoginButton';
-import { Grid } from 'react-bootstrap'
+import { Grid, Button } from 'react-bootstrap'
 
-const Welcome = ({ handleLogin }) => (
+const Welcome = ({ handleLogin, guestLogin }) => (
   <Grid className='Welcome'>
     <div>
       <h1>Welcome to Dive Logger!</h1>
@@ -20,6 +21,10 @@ const Welcome = ({ handleLogin }) => (
       </p>
     </div>
     
+    <div>
+      <Button onClick={guestLogin}>Continue as Guest</Button>
+    </div>
+    <p style={{textAlign: 'center'}}>or</p>
     <FbLoginButton className="fb-login-button"
         onSuccess={handleLogin}>
         Login with Facebook

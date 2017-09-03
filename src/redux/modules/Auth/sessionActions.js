@@ -13,6 +13,19 @@ export function fetchUser(errorHandler = NOOP) {
   }
 }
 
+export function guestLogin(errorHandler = NOOP) {
+  console.log(errorHandler)
+  return dispatch => {
+    dispatch({ type: actions.LOADING_USER });
+    return services.postWithoutAuthorization('/auth/login_guest')
+      .catch(errors => errorHandler(errors))
+      .then(({ jwt, user }) => {
+        sessionStorage.setItem('jwt', jwt);
+        dispatch({ type: actions.UPDATE_USER, user })
+      });
+  }
+}
+
 export function facebookLogin(fbToken, uid, errorHandler = NOOP) {
   const data = {
     token: fbToken,

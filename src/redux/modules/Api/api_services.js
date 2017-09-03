@@ -46,6 +46,14 @@ export default {
     .then(parseResponse)
   },
 
+  postWithoutAuthorization(url) {
+    return fetch(`${API_URL}${url}`, {
+      method: 'POST',
+      headers: headers,
+    })
+    .then(parseResponse)
+  },
+
   get(url) {
     return fetch(`${API_URL}${url}`, {
       method: 'GET',

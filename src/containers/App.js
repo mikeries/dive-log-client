@@ -10,7 +10,8 @@ import { bindActionCreators } from 'redux';
 import { 
   logoutUser, 
   fetchUser,
-  facebookLogin
+  facebookLogin,
+  guestLogin
 } from '../redux/modules/Auth/sessionActions';
 
 import { DIVES_ROOT, LOCATIONS_ROOT } from '../constants';
@@ -79,7 +80,7 @@ class App extends Component {
               this.isLoggedIn() ? (
                 <Redirect to="/dashboard" />
               ) : (
-                <Welcome handleLogin={this.props.facebookLogin} />
+                <Welcome handleLogin={this.props.facebookLogin} guestLogin={this.props.guestLogin}/>
               )
             )}/>
 
@@ -108,7 +109,8 @@ const mapDispatchToProps = dispatch => {
       fetchUser,
       fetchDives,
       fetchLocations,
-      facebookLogin
+      facebookLogin,
+      guestLogin
     }
   , dispatch);
 };
