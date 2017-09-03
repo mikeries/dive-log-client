@@ -1,9 +1,8 @@
 ## Features not yet implemented
 - ~~Add ability to show/edit/add/delete locations~~
-- Add google plus login
-- convert string data to appropriate type (date, time, number)
+- ~~convert string data to appropriate type (date, time, number)~~
 - ~~Add server-side validation~~
-- Add client-side validation
+- ~~Add client-side validation~~
 - Improve site styling
 - Add about page with information about me, project implementation notes, links, etc.
 - add footer with links:  github repo, blog link, linked in link, webpage link, etc.
