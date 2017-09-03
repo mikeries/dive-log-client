@@ -2,6 +2,7 @@ import validator from 'validator';
 
 class FormValidator {
   constructor(validations) {
+    console.log('constructing validator')
     this.validations = validations;
   }
 
