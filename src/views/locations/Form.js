@@ -20,7 +20,7 @@ import ErrorList from '../components/ErrorList';
 class LocationForm extends Component  {
   constructor() {
     super();
-    console.log('constructing form')
+
     this.validator = new FormValidator([
       { field: 'name', method: 'isEmpty', validWhen: false, message: 'You must provide a name.'},
       { field: 'country', method: 'isEmpty', validWhen: false, message: 'You must provide a country.'},
@@ -50,10 +50,9 @@ class LocationForm extends Component  {
     
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log('submitting form')
     const validation = this.validator.validate(this.state);
     this.setState({ validation });
-    console.log('validation', validation)
+
     if(validation.isValid) {
       this.setState({ submitted: true });
 
@@ -147,7 +146,7 @@ class LocationForm extends Component  {
           <Row>
             <Col md={12}>
               <FormGroup>
-                <ControlLabel>Location Description</ControlLabel>
+                <ControlLabel>Description</ControlLabel>
                 <FormControl componentClass='textarea'
                   value={this.state.description} 
                   name='description' 

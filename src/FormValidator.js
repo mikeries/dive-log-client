@@ -2,13 +2,11 @@ import validator from 'validator';
 
 class FormValidator {
   constructor(validations) {
-    console.log('constructing validator')
     this.validations = validations;
   }
 
   validate = state => {
     let validation = this.reset();
-    console.log('validating')
     this.validations.forEach(v => {
       if (!validation[v.field].isInvalid) {
         const args = v.args || [];
