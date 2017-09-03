@@ -3,9 +3,13 @@
 - ~~convert string data to appropriate type (date, time, number)~~
 - ~~Add server-side validation~~
 - ~~Add client-side validation~~
-- Improve site styling
+- Improve site styling and layout
+- add time/date picker
+- guest login
 - Add about page with information about me, project implementation notes, links, etc.
 - add footer with links:  github repo, blog link, linked in link, webpage link, etc.
+- image gallery
+- map on location show page - gps coords in database
 - Charts of data
 - Calculators for nitrogen load
 
