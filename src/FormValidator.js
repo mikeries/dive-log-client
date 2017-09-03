@@ -7,7 +7,7 @@ class FormValidator {
 
   validate = state => {
     let validation = this.reset();
-    
+    console.log('validating')
     this.validations.forEach(v => {
       if (!validation[v.field].isInvalid) {
         const args = v.args || [];
