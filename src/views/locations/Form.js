@@ -147,7 +147,7 @@ class LocationForm extends Component  {
           <Row>
             <Col md={12}>
               <FormGroup>
-                <ControlLabel>Description</ControlLabel>
+                <ControlLabel>Location Description</ControlLabel>
                 <FormControl componentClass='textarea'
                   value={this.state.description} 
                   name='description' 
