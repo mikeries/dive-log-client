@@ -8,11 +8,9 @@ const NavBar = ({ user, handleLogout }) => (
       <LinkContainer to='/dashboard'><NavItem>Dive Log Dashboard</NavItem></LinkContainer>
       <LinkContainer to='/dives'><NavItem>Dives</NavItem></LinkContainer>
       <LinkContainer to='/locations'><NavItem>Locations</NavItem></LinkContainer>
-    </Nav>
+      <LinkContainer to='/about'><NavItem>About</NavItem></LinkContainer>
 
-    <Nav pullRight={true}>
-      {user && user.name && <NavItem id='username' to=''>Welcome {user.name}!</NavItem>}
-      <LinkContainer to='/logout' >
+      <LinkContainer to='/logout'>
         <NavItem onClick={handleLogout}>Logout</NavItem>
       </LinkContainer>
     </Nav>

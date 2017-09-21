@@ -24,6 +24,7 @@ import Welcome from '../views/welcome';
 import Dashboard from '../views/dashboard';
 import DivesPage from './DivesPage';
 import LocationsPage from './LocationsPage';
+import About from '../views/about';
 
 class App extends Component {
   constructor() {
@@ -95,6 +96,8 @@ class App extends Component {
             <Route path={`${DIVES_ROOT}`} component={DivesPage} />
 
             <Route path={`${LOCATIONS_ROOT}`} component={LocationsPage} />
+
+            <Route path={`${LOCATIONS_ROOT}`} component={About} />
           </Switch>
         </div>
       </Router>
