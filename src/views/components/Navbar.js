@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, NavItem, Nav } from 'react-bootstrap';
+import RouteNavItem from "./RouteNavItem";
 import { Link } from 'react-router-dom'
-import { LinkContainer } from 'react-router-bootstrap';
 
 const NavBar = ({ user, handleLogout }) => (
   <div className="container">
@@ -10,20 +10,19 @@ const NavBar = ({ user, handleLogout }) => (
       <Navbar.Brand>
         <Link to='/dashboard'>Dive Log Dashboard</Link>
       </Navbar.Brand>
+      <Navbar.Toggle/>
     </Navbar.Header>
 
     <Navbar.Collapse>
       <Nav>
-        <LinkContainer to='/dives'><NavItem>Dives</NavItem></LinkContainer>
-        <LinkContainer to='/locations'><NavItem>Locations</NavItem></LinkContainer>
-        <LinkContainer to='/about'><NavItem>About</NavItem></LinkContainer>
+        <RouteNavItem href='/dives'>Dives</RouteNavItem>
+        <RouteNavItem href='/locations'>Locations</RouteNavItem>
+        <RouteNavItem href='/about'>About</RouteNavItem>
       </Nav>
       
       <Nav pullRight>
         {user && user.name && <NavItem id='username' to=''>Welcome {user.name}!</NavItem>}
-        <LinkContainer to='/logout' >
-          <NavItem onClick={handleLogout}>Logout</NavItem>
-        </LinkContainer>
+        <RouteNavItem href= '/logout'>Logout</RouteNavItem>
       </Nav>
     </Navbar.Collapse>
     
