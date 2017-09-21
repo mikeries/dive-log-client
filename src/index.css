@@ -35,6 +35,11 @@ body {
   padding: 0;
 }
 
+#about .links a {
+  margin: 10px;
+  color: inherit;
+}
+
 #username {
   outline: none;
   border-left: none;

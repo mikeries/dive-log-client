@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid } from 'react-bootstrap'
+import FontAwesome from 'react-fontawesome'
 
 const About = () => {
   return (
@@ -40,6 +41,11 @@ const About = () => {
             apply these skills to help a mission-driven organization improve our world.
           </p>
           <div className="links">
+            <a href='http://michaelries.net'><FontAwesome name='globe' size='2x'/></a>
+            <a href='https://medium.com/code-monkey'><FontAwesome name='medium' size='2x'/></a>
+            <a href='https://github.com/mikeries'><FontAwesome name='github' size='2x'/></a>
+            <a href='https://www.linkedin.com/in/mike-ries-29b0876/'><FontAwesome name='linkedin-square' size='2x'/></a>
+            <a href='mailto:michael.ries@gmail.com'><FontAwesome name='envelope-o' size='2x'/></a>
           </div>
         </div>
       </div>
