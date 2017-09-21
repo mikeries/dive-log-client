@@ -6,14 +6,14 @@ const About = () => {
     <Grid>
       <div id="about" className="row">
         <div className="col-md-12">
-          <h1>About the Dive Log</h1>
+          <h1>About the Dive Logger</h1>
           <p>
-            The Dive Log is still under construction.  It began as the final project of the
+            The Dive Logger is still under construction.  It began as the final project of the
             Full Stack Web Development curriculum at <a href="https://flatironschool.com/programs/online-web-developer-career-course/">Flatiron School</a>, 
             and is now being improved upon for fun and extra learning.
           </p>
           <p>
-            The Dive Log is a single-page web application created using React and Redux that interacts with 
+            The Dive Logger is a single-page web application created using React and Redux that interacts with 
             a custom API built with Ruby on Rails and a Postqresql database.
           </p>
           <h2>
