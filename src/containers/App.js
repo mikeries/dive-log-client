@@ -97,7 +97,7 @@ class App extends Component {
 
             <Route path={`${LOCATIONS_ROOT}`} component={LocationsPage} />
 
-            <Route path={`${LOCATIONS_ROOT}`} component={About} />
+            <Route exact path="/about" component={About} />
           </Switch>
         </div>
       </Router>

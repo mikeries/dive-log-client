@@ -9,8 +9,11 @@ const NavBar = ({ user, handleLogout }) => (
       <LinkContainer to='/dives'><NavItem>Dives</NavItem></LinkContainer>
       <LinkContainer to='/locations'><NavItem>Locations</NavItem></LinkContainer>
       <LinkContainer to='/about'><NavItem>About</NavItem></LinkContainer>
+    </Nav>
 
-      <LinkContainer to='/logout'>
+    <Nav right>
+      {user && user.name && <NavItem id='username' to=''>Welcome {user.name}!</NavItem>}
+      <LinkContainer to='/logout' >
         <NavItem onClick={handleLogout}>Logout</NavItem>
       </LinkContainer>
     </Nav>
