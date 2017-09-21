@@ -75,7 +75,10 @@ class App extends Component {
               )}/>
             }
 
-            <Route exact path='/logout' render={() => (<Redirect to="/"/>)} />
+            <Route exact path='/logout' render={() => {
+              window.history.pushState({},'','/');
+              logoutUser();
+            }}/>
             
             <Route exact path="/" render={() => (
               this.isLoggedIn() ? (
