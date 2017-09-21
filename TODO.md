@@ -5,7 +5,7 @@
 - ~~Add client-side validation~~
 - Improve site styling and layout
 - add time/date picker
-- guest login
+- ~~guest login~~
 - Add about page with information about me, project implementation notes, links, etc.
 - add footer with links:  github repo, blog link, linked in link, webpage link, etc.
 - image gallery
