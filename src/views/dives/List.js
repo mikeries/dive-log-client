@@ -16,7 +16,7 @@ const DiveList = ({
   )});
 
   return (
-    <Grid>
+    <Grid id='dive-list'>
       <h1>Your Dives</h1>
 
       {renderDives}

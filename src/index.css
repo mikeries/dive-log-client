@@ -108,3 +108,25 @@ body {
 .react-datepicker__day--selected:hover, .react-datepicker__day--in-selecting-range:hover, .react-datepicker__day--in-range:hover {
     background-color: #1e5799;
 }
+
+/* Dive components */
+#dive-list .dive-list-item {
+  background: #56719E;
+  height: 40px;
+  margin: 10px 10px;
+}
+
+#dive-list a,
+#dive-list a:hover,
+#dive-list a:focus,
+#dive-list a:visited
+ {
+  text-decoration: none;
+  color: inherit;
+}
+
+#dive-list h3 {
+  height: 30px;
+  margin: auto;
+  color: inherit;
+}
