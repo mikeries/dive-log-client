@@ -111,9 +111,13 @@ body {
 
 /* Dive components */
 #dive-list .dive-list-item {
-  background: #56719E;
-  height: 40px;
+  background: #43597D;
+  min-height: 40px;
   margin: 10px 10px;
+}
+
+#dive-list .dive-list-item:hover {
+  background: #53709F;
 }
 
 #dive-list a,
@@ -126,7 +130,13 @@ body {
 }
 
 #dive-list h3 {
-  height: 30px;
-  margin: auto;
+  padding-top: 20px;
   color: inherit;
+  font-size: 1.4em;
+}
+
+#dive-list p {
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
 }
