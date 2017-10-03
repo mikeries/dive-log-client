@@ -20,6 +20,7 @@ import { fetchDives } from '../redux/modules/Dives/divesActions';
 import { fetchLocations } from '../redux/modules/Locations/locationsActions';
 
 import Navbar from '../views/components/Navbar';
+import Aquarium from '../views/components/Aquarium'
 import Welcome from '../views/welcome';
 import Dashboard from '../views/dashboard';
 import DivesPage from './DivesPage';
@@ -64,6 +65,8 @@ class App extends Component {
           { this.isLoggedIn() &&
             <Navbar user={this.props.user} handleLogout={this.props.logoutUser} />
           }
+
+          <Aquarium />
 
           <Switch>
             {this.state.errors && 
