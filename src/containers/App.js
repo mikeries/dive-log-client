@@ -62,11 +62,11 @@ class App extends Component {
       <Router>
         <div className="App">
 
+          <Aquarium />
+
           { this.isLoggedIn() &&
             <Navbar user={this.props.user} handleLogout={this.props.logoutUser} />
           }
-
-          <Aquarium />
 
           <Switch>
             {this.state.errors && 

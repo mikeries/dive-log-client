@@ -5,7 +5,7 @@ class Aquarium extends Component {
   render() {
     let waterStyle = {height: window.innerHeight, width: window.innerWidth}
     return (
-      <div>
+      <div id='aquarium'>
         <div className='water' style={{...waterStyle, zIndex:-1}}></div>
         <div className='water' style={{...waterStyle, zIndex:-10}}></div>
         <div className='water' style={{...waterStyle, zIndex:-20}}></div>
