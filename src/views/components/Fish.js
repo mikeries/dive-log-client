@@ -46,8 +46,27 @@ class Fish extends Component {
     }
   }
 
+  relocate() {
+    this.setState({
+    x: Math.random() * 
+      (window.innerWidth - Constant.max_scale_factor * Constant.image_width),
+
+    y: Math.random() * 
+      (window.innerHeight - Constant.max_scale_factor * Constant.image_height),
+    yDirection: 'down',
+    yVelocity: 1,
+
+    z: Constant.min_z,  // start in the back
+    zVelocity: 0.1
+    })
+  }
+
   move() {
     let { xVelocity, xDirection, yVelocity, yDirection, zVelocity, zDirection } = this.state;
+
+    if (this.state.x > window.innerWidth || this.state.y > window.innerHeight) {
+      this.relocate(); // if the fish is outisde the window (window was resized, probably)
+    } 
 
     if (this.state.x > 
       (window.innerWidth - Constant.max_scale_factor * Constant.image_width)) {
