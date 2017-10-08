@@ -61,14 +61,14 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-
-          <Aquarium />
-
-          { this.isLoggedIn() &&
-            <Navbar user={this.props.user} handleLogout={this.props.logoutUser} />
-          }
-
-          <Switch>
+        
+        <Aquarium /> 
+        
+        { this.isLoggedIn() &&
+          <Navbar user={this.props.user} handleLogout={this.props.logoutUser} />
+        }
+        
+        <Switch>
             {this.state.errors && 
               <Route path='' render={() => (
                 <div>

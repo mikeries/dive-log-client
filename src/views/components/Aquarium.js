@@ -3,7 +3,7 @@ import Fish from './Fish'
 
 class Aquarium extends Component {
   render() {
-    let waterStyle = {height: '100vh', width: '100vw'}
+    //let waterStyle = {height: '100vh', width: '100vw'}
     return (
       <div id='aquarium'>
         <div className='water' style={{zIndex: -1}}></div>
@@ -16,6 +16,7 @@ class Aquarium extends Component {
         <Fish image='./images/tiny-small-pixel-fish-aquarium-animated-gif-picture-10.gif'/>
         <Fish image='./images/tiny-small-pixel-fish-aquarium-animated-gif-picture-19.gif'/>
         <Fish image='./images/tiny-small-pixel-fish-aquarium-animated-gif-picture-11.gif'/>
+        <Fish image='./images/clownfishb.gif'/>
       </div>
     );
   }

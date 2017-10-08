@@ -11,7 +11,6 @@ class Fish extends Component {
       xDirection: 'right',
       xVelocity: 2,
 
-
       y: Math.random() * 
         (window.innerHeight - Constant.max_scale_factor * Constant.image_height),
       yDirection: 'down',
