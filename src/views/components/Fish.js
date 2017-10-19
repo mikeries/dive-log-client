@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Constant from './fish_constants'
+import Const from './fish_constants'
 
 class Fish extends Component {
   constructor() {
@@ -19,10 +19,10 @@ class Fish extends Component {
 
       position: {
         x: Math.random() * 
-        (window.innerWidth - Constant.max_scale_factor * Constant.image_width),
+        (window.innerWidth - Const.max_scale_factor * Const.image_width),
         y: Math.random() * 
-        (window.innerHeight - Constant.max_scale_factor * Constant.image_height),
-        z: Math.random() * Constant.min_z,
+        (window.innerHeight - Const.max_scale_factor * Const.image_height),
+        z: Math.random() * Const.min_z,
       },
 
       velocity: {
@@ -35,9 +35,9 @@ class Fish extends Component {
 
   chooseRandomMovement() {
     const velocity = {
-      x: Math.random() * Constant.max_x_velocity,
-      y: Math.random() * Constant.max_y_velocity,
-      z: Math.random() * Constant.max_z_velocity
+      x: Math.random() * Const.max_x_velocity,
+      y: Math.random() * Const.max_y_velocity,
+      z: Math.random() * Const.max_z_velocity
     }
 
     const direction = {
@@ -54,7 +54,7 @@ class Fish extends Component {
 
   tick() {
     this.move();
-    if(Math.random() < Constant.chance_to_change_direction) {
+    if(Math.random() < Const.chance_to_change_direction) {
       this.chooseRandomMovement();
     }
   }
@@ -63,10 +63,10 @@ class Fish extends Component {
     this.setState({
       position: {
         x: Math.random() * 
-          (this.state.aquariumWidth - Constant.max_scale_factor * Constant.image_width),
+          (this.state.aquariumWidth - Const.max_scale_factor * Const.image_width),
         y: Math.random() * 
-          (this.state.aquariumHeight - Constant.max_scale_factor * Constant.image_height),
-        z: Constant.min_z,  // start in the back
+          (this.state.aquariumHeight - Const.max_scale_factor * Const.image_height),
+        z: Const.min_z,  // start in the back
       },
       velocity: { ...this.state.velocity, y: 1, z: 0.1 }
     })
@@ -80,22 +80,22 @@ class Fish extends Component {
     } 
 
     if (position.x > 
-      ( aquarium.width - Constant.max_scale_factor * Constant.image_width)) {
+      ( aquarium.width - Const.max_scale_factor * Const.image_width)) {
       direction.x = 'left';
-    } else if (position.x < Constant.max_scale_factor * Constant.image_width) {
+    } else if (position.x < Const.max_scale_factor * Const.image_width) {
       direction.x = 'right';
     }
 
     if (position.y > 
-      ( aquarium.height - Constant.max_scale_factor * Constant.image_height )) {
+      ( aquarium.height - Const.max_scale_factor * Const.image_height )) {
       direction.y = 'up';
-    } else if (position.y < Constant.max_scale_factor * Constant.image_height) {
+    } else if (position.y < Const.max_scale_factor * Const.image_height) {
       direction.y = 'down';
     }
 
     if (position.z > (-1)) {
       direction.z = 'in';
-    } else if (position.z < Constant.min_z) {
+    } else if (position.z < Const.min_z) {
       direction.z = 'out';
     }
 
@@ -121,13 +121,13 @@ class Fish extends Component {
 
   componentDidMount() {
     this.timerID = setInterval(
-      () => this.tick(), Constant.tick_interval
+      () => this.tick(), Const.tick_interval
     );
   }
 
   render() {
     const { position, direction } = this.state;
-    let yScale = 2 - (position.z / Constant.min_z);
+    let yScale = 2 - (position.z / Const.min_z);
     let xScale = ( direction.x === 'right' ? yScale : -yScale );
     let fishScale = {transform: `scaleX(${xScale}) scaleY(${yScale})`};
     let fishStyle = { ...fishScale, left: position.x, top: position.y, zIndex: Math.round(position.z) }
