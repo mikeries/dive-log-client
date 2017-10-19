@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import Fish from './Fish'
 
 class Aquarium extends Component {
+  constructor() {
+    super();
+    this.state = {
+      width: 100,
+      height: 100
+    }
+  }
 
   componentDidMount() {
     this.handleResize();
@@ -12,10 +19,10 @@ class Aquarium extends Component {
     const page = document.querySelector('#root');
     const height = window.innerHeight > page.scrollHeight ? window.innerHeight : page.scrollHeight
     const width = window.innerWidth > page.scollWidth ? window.innerWidth : page.scrollWidth
-    console.log('window.innerHeight:', window.innerHeight)
-    console.log('window.innerWidth:', window.innerWidth)
-    console.log('page.scrollHeight:', page.scrollHeight)
-    console.log('page.scrollWidth:', window.scrollWidth)
+    // console.log('window.innerHeight:', window.innerHeight)
+    // console.log('window.innerWidth:', window.innerWidth)
+    // console.log('page.scrollHeight:', page.scrollHeight)
+    // console.log('page.scrollWidth:', window.scrollWidth)
 
     this.setState({
       height: height,
@@ -28,6 +35,7 @@ class Aquarium extends Component {
   }
 
   render() {
+    const { width, height } = this.state;
     return (
       <div id='aquarium'>
         <div className='water' style={{ ...this.state, zIndex:-1 }}></div>
@@ -37,13 +45,13 @@ class Aquarium extends Component {
         <div className='water' style={{ ...this.state, zIndex:-40 }}></div>
         <div className='water' style={{ ...this.state, zIndex:-50 }}></div>
         <div className='water' style={{ ...this.state, zIndex:-60 }}></div>
-        <Fish aquariumWidth={this.width} aquariumHeight={this.height}
+        <Fish aquariumWidth={width} aquariumHeight={height}
               image='./images/tiny-small-pixel-fish-aquarium-animated-gif-picture-10.gif'/>
-        <Fish aquariumWidth={this.width} aquariumHeight={this.height}
+        <Fish aquariumWidth={width} aquariumHeight={height}
               image='./images/tiny-small-pixel-fish-aquarium-animated-gif-picture-11.gif'/>
-        <Fish aquariumWidth={this.width} aquariumHeight={this.height}
+        <Fish aquariumWidth={width} aquariumHeight={height}
               image='./images/tiny-small-pixel-fish-aquarium-animated-gif-picture-19.gif'/>
-        <Fish aquariumWidth={this.width} aquariumHeight={this.height}
+        <Fish aquariumWidth={width} aquariumHeight={height}
               image='./images/clownfishb.gif'/>
       </div>
     );
