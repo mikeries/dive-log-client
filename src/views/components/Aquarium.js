@@ -28,7 +28,6 @@ class Aquarium extends Component {
   }
 
   render() {
-    //let waterStyle = {height: '100vh', width: '100vw'}
     return (
       <div id='aquarium'>
         <div className='water' style={{ ...this.state, zIndex:-1 }}></div>
@@ -38,10 +37,14 @@ class Aquarium extends Component {
         <div className='water' style={{ ...this.state, zIndex:-40 }}></div>
         <div className='water' style={{ ...this.state, zIndex:-50 }}></div>
         <div className='water' style={{ ...this.state, zIndex:-60 }}></div>
-        <Fish image='./images/tiny-small-pixel-fish-aquarium-animated-gif-picture-10.gif'/>
-        <Fish image='./images/tiny-small-pixel-fish-aquarium-animated-gif-picture-19.gif'/>
-        <Fish image='./images/tiny-small-pixel-fish-aquarium-animated-gif-picture-11.gif'/>
-        <Fish image='./images/clownfishb.gif'/>
+        <Fish aquariumWidth={this.width} aquariumHeight={this.height}
+              image='./images/tiny-small-pixel-fish-aquarium-animated-gif-picture-10.gif'/>
+        <Fish aquariumWidth={this.width} aquariumHeight={this.height}
+              image='./images/tiny-small-pixel-fish-aquarium-animated-gif-picture-11.gif'/>
+        <Fish aquariumWidth={this.width} aquariumHeight={this.height}
+              image='./images/tiny-small-pixel-fish-aquarium-animated-gif-picture-19.gif'/>
+        <Fish aquariumWidth={this.width} aquariumHeight={this.height}
+              image='./images/clownfishb.gif'/>
       </div>
     );
   }

@@ -48,10 +48,10 @@ class Fish extends Component {
   relocate() {
     this.setState({
     x: Math.random() * 
-      (window.innerWidth - Constant.max_scale_factor * Constant.image_width),
+      (this.state.aquariumWidth - Constant.max_scale_factor * Constant.image_width),
 
     y: Math.random() * 
-      (window.innerHeight - Constant.max_scale_factor * Constant.image_height),
+      (this.state.aquariumHeight - Constant.max_scale_factor * Constant.image_height),
     yDirection: 'down',
     yVelocity: 1,
 
@@ -63,19 +63,19 @@ class Fish extends Component {
   move() {
     let { xVelocity, xDirection, yVelocity, yDirection, zVelocity, zDirection } = this.state;
 
-    if (this.state.x > window.innerWidth || this.state.y > window.innerHeight) {
+    if (this.state.x > this.state.aquariumWidth || this.state.y > this.state.aquariumHeight) {
       this.relocate(); // if the fish is outisde the window (window was resized, probably)
     } 
 
     if (this.state.x > 
-      (window.innerWidth - Constant.max_scale_factor * Constant.image_width)) {
+      ( this.state.aquariumWidth - Constant.max_scale_factor * Constant.image_width)) {
       xDirection = 'left';
     } else if (this.state.x < Constant.max_scale_factor * Constant.image_width) {
       xDirection = 'right';
     }
 
     if (this.state.y > 
-      ( window.innerHeight - Constant.max_scale_factor * Constant.image_height )) {
+      ( this.state.aquariumHeight - Constant.max_scale_factor * Constant.image_height )) {
       yDirection = 'up';
     } else if (this.state.y < Constant.max_scale_factor * Constant.image_height) {
       yDirection = 'down';
@@ -94,6 +94,13 @@ class Fish extends Component {
       yDirection: yDirection,
       z: this.state.z + (zDirection === 'in' ? -zVelocity : zVelocity),
       zDirection: zDirection
+    })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      aquariumWidth: nextProps.aquariumWidth, 
+      aquariumHeight: nextProps.aquariumHeight
     })
   }
 
