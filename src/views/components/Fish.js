@@ -6,6 +6,8 @@ class Fish extends Component {
     super();
 
     this.state = {
+      aquariumWidth: 100,
+      aquariumHeight: 100,
       x: Math.random() * 
         (window.innerWidth - Constant.max_scale_factor * Constant.image_width),
       xDirection: 'right',
