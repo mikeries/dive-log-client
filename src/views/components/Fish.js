@@ -133,7 +133,7 @@ class Fish extends Component {
     let fishStyle = { ...fishScale, left: position.x, top: position.y, zIndex: Math.round(position.z) }
 
     return (
-      <img className='fish' style={fishStyle} src={this.props.image}/>
+      <img alt="" className='fish' style={fishStyle} src={this.props.image}/>
     );
   }
 
