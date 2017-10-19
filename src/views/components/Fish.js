@@ -8,15 +8,17 @@ class Fish extends Component {
     this.state = {
       aquariumWidth: 100,
       aquariumHeight: 100,
-      x: Math.random() * 
-        (window.innerWidth - Constant.max_scale_factor * Constant.image_width),
-      xDirection: 'right',
 
-      y: Math.random() * 
-        (window.innerHeight - Constant.max_scale_factor * Constant.image_height),
+      xDirection: 'right',
       yDirection: 'down',
 
-      z: Math.random() * Constant.min_z,
+      position: {
+        x: Math.random() * 
+        (window.innerWidth - Constant.max_scale_factor * Constant.image_width),
+        y: Math.random() * 
+        (window.innerHeight - Constant.max_scale_factor * Constant.image_height),
+        z: Math.random() * Constant.min_z,
+      },
 
       velocity: {
         x: 2,
@@ -54,52 +56,51 @@ class Fish extends Component {
 
   relocate() {
     this.setState({
-    x: Math.random() * 
-      (this.state.aquariumWidth - Constant.max_scale_factor * Constant.image_width),
-
-    y: Math.random() * 
-      (this.state.aquariumHeight - Constant.max_scale_factor * Constant.image_height),
-    yDirection: 'down',
-
-    z: Constant.min_z,  // start in the back
-
-    velocity: { ...this.state.velocity, y: 1, z: 0.1 }
+      position: {
+        x: Math.random() * 
+          (this.state.aquariumWidth - Constant.max_scale_factor * Constant.image_width),
+        y: Math.random() * 
+          (this.state.aquariumHeight - Constant.max_scale_factor * Constant.image_height),
+        z: Constant.min_z,  // start in the back
+      },
+      yDirection: 'down',
+      velocity: { ...this.state.velocity, y: 1, z: 0.1 }
     })
   }
 
   move() {
-    let { velocity, xDirection, yDirection, zDirection } = this.state;
+    let { velocity, position, xDirection, yDirection, zDirection } = this.state;
 
-    if (this.state.x > this.state.aquariumWidth || this.state.y > this.state.aquariumHeight) {
+    if (position.x > this.state.aquariumWidth || position.y > this.state.aquariumHeight) {
       this.relocate(); // if the fish is outisde the window (window was resized, probably)
     } 
 
-    if (this.state.x > 
+    if (position.x > 
       ( this.state.aquariumWidth - Constant.max_scale_factor * Constant.image_width)) {
       xDirection = 'left';
-    } else if (this.state.x < Constant.max_scale_factor * Constant.image_width) {
+    } else if (position.x < Constant.max_scale_factor * Constant.image_width) {
       xDirection = 'right';
     }
 
-    if (this.state.y > 
+    if (position.y > 
       ( this.state.aquariumHeight - Constant.max_scale_factor * Constant.image_height )) {
       yDirection = 'up';
-    } else if (this.state.y < Constant.max_scale_factor * Constant.image_height) {
+    } else if (position.y < Constant.max_scale_factor * Constant.image_height) {
       yDirection = 'down';
     }
 
-    if (this.state.z > (-1)) {
+    if (position.z > (-1)) {
       zDirection = 'in';
-    } else if (this.state.z < Constant.min_z) {
+    } else if (position.z < Constant.min_z) {
       zDirection = 'out';
     }
 
     this.setState({
-      x: this.state.x + (xDirection === 'right' ? velocity.x : -velocity.x),
+      x: position.x + (xDirection === 'right' ? velocity.x : -velocity.x),
       xDirection: xDirection,
-      y: this.state.y + (yDirection === 'down' ? velocity.y : -velocity.y),
+      y: position.y + (yDirection === 'down' ? velocity.y : -velocity.y),
       yDirection: yDirection,
-      z: this.state.z + (zDirection === 'in' ? -velocity.z : velocity.z),
+      z: position.z + (zDirection === 'in' ? -velocity.z : velocity.z),
       zDirection: zDirection
     })
   }
@@ -118,10 +119,11 @@ class Fish extends Component {
   }
 
   render() {
-    let yScale = 2 - (this.state.z / Constant.min_z);
-    let xScale = ( this.state.xDirection === 'right' ? yScale : -yScale );
+    const { position } = this.state;
+    let yScale = 2 - (position.z / Constant.min_z);
+    let xScale = ( position.xDirection === 'right' ? yScale : -yScale );
     let fishScale = {transform: `scaleX(${xScale}) scaleY(${yScale})`};
-    let fishStyle = { ...fishScale, left: this.state.x, top: this.state.y, zIndex: Math.round(this.state.z) }
+    let fishStyle = { ...fishScale, left: position.x, top: position.y, zIndex: Math.round(position.z) }
 
     return (
       <img className='fish' style={fishStyle} src={this.props.image}/>
