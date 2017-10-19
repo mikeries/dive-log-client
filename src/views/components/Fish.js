@@ -6,11 +6,16 @@ class Fish extends Component {
     super();
 
     this.state = {
-      aquariumWidth: 100,
-      aquariumHeight: 100,
+      aquarium: {
+        height: 100,
+        width: 100
+      },
 
-      xDirection: 'right',
-      yDirection: 'down',
+      direction: {
+        x: 'right',
+        y: 'down',
+        z: 'out'
+      },
 
       position: {
         x: Math.random() * 
@@ -29,21 +34,21 @@ class Fish extends Component {
   }
 
   chooseRandomMovement() {
-    let velocity = {
+    const velocity = {
       x: Math.random() * Constant.max_x_velocity,
       y: Math.random() * Constant.max_y_velocity,
       z: Math.random() * Constant.max_z_velocity
     }
 
-    let xDirection = Math.random() < 0.5 ? 'left' : 'right';
-    let yDirection = Math.random() < 0.5 ? 'up' : 'down';
-    let zDirection = Math.random() < 0.5 ? 'in' : 'out';
+    const direction = {
+      x: Math.random() < 0.5 ? 'left' : 'right',
+      y: Math.random() < 0.5 ? 'up' : 'down',
+      z: Math.random() < 0.5 ? 'in' : 'out'
+    }
+
     this.setState({
       velocity: velocity,
-      xDirection: xDirection,
-      yDirection: yDirection,
-
-      zDirection: zDirection
+      direction: direction
     })
   }
 
@@ -63,52 +68,54 @@ class Fish extends Component {
           (this.state.aquariumHeight - Constant.max_scale_factor * Constant.image_height),
         z: Constant.min_z,  // start in the back
       },
-      yDirection: 'down',
       velocity: { ...this.state.velocity, y: 1, z: 0.1 }
     })
   }
 
   move() {
-    let { velocity, position, xDirection, yDirection, zDirection } = this.state;
+    let { velocity, position, direction, aquarium } = this.state;
 
-    if (position.x > this.state.aquariumWidth || position.y > this.state.aquariumHeight) {
+    if (position.x > aquarium.width || position.y > aquarium.height) {
       this.relocate(); // if the fish is outisde the window (window was resized, probably)
     } 
 
     if (position.x > 
-      ( this.state.aquariumWidth - Constant.max_scale_factor * Constant.image_width)) {
-      xDirection = 'left';
+      ( aquarium.width - Constant.max_scale_factor * Constant.image_width)) {
+      direction.x = 'left';
     } else if (position.x < Constant.max_scale_factor * Constant.image_width) {
-      xDirection = 'right';
+      direction.x = 'right';
     }
 
     if (position.y > 
-      ( this.state.aquariumHeight - Constant.max_scale_factor * Constant.image_height )) {
-      yDirection = 'up';
+      ( aquarium.height - Constant.max_scale_factor * Constant.image_height )) {
+      direction.y = 'up';
     } else if (position.y < Constant.max_scale_factor * Constant.image_height) {
-      yDirection = 'down';
+      direction.y = 'down';
     }
 
     if (position.z > (-1)) {
-      zDirection = 'in';
+      direction.z = 'in';
     } else if (position.z < Constant.min_z) {
-      zDirection = 'out';
+      direction.z = 'out';
     }
 
     this.setState({
-      x: position.x + (xDirection === 'right' ? velocity.x : -velocity.x),
-      xDirection: xDirection,
-      y: position.y + (yDirection === 'down' ? velocity.y : -velocity.y),
-      yDirection: yDirection,
-      z: position.z + (zDirection === 'in' ? -velocity.z : velocity.z),
-      zDirection: zDirection
+      position: {
+        x: position.x + (direction.x === 'right' ? velocity.x : -velocity.x),
+        y: position.y + (direction.y === 'down' ? velocity.y : -velocity.y),
+        z: position.z + (direction.z === 'in' ? -velocity.z : velocity.z),
+      },
+
+      direction: direction
     })
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      aquariumWidth: nextProps.aquariumWidth, 
-      aquariumHeight: nextProps.aquariumHeight
+      aquarium: {
+        width: nextProps.aquariumWidth,
+        height: nextProps.aquariumHeight
+      }
     })
   }
 
