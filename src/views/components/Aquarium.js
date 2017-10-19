@@ -36,6 +36,8 @@ class Aquarium extends Component {
 
   render() {
     const { width, height } = this.state;
+
+    console.log('width:', document.getElementsByClassName('App'))
     return (
       <div id='aquarium'>
         <div className='water' style={{ ...this.state, zIndex:-1 }}></div>

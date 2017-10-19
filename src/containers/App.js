@@ -60,51 +60,51 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
-        
-        <Aquarium /> 
-        
-        { this.isLoggedIn() &&
-          <Navbar user={this.props.user} handleLogout={this.props.logoutUser} />
-        }
-        
-        <Switch>
-            {this.state.errors && 
-              <Route path='' render={() => (
-                <div>
-                  <p>Sorry, an error occurred.</p>
-                  <p>Please contact your system administrator.</p>
-                </div>
-              )}/>
+        <div>
+          <Aquarium /> 
+          <div className="App">
+            { this.isLoggedIn() &&
+              <Navbar user={this.props.user} handleLogout={this.props.logoutUser} />
             }
+          
+            <Switch>
+              {this.state.errors && 
+                <Route path='' render={() => (
+                  <div>
+                    <p>Sorry, an error occurred.</p>
+                    <p>Please contact your system administrator.</p>
+                  </div>
+                )}/>
+              }
 
-            <Route exact path='/logout' render={() => {
-              window.history.pushState({},'','/');
-              logoutUser();
-            }}/>
-            
-            <Route exact path="/" render={() => (
-              this.isLoggedIn() ? (
-                <Redirect to="/dashboard" />
-              ) : (
-                <Welcome handleLogin={this.props.facebookLogin} guestLogin={this.props.guestLogin}/>
-              )
-            )}/>
+              <Route exact path='/logout' render={() => {
+                window.history.pushState({},'','/');
+                logoutUser();
+              }}/>
+              
+              <Route exact path="/" render={() => (
+                this.isLoggedIn() ? (
+                  <Redirect to="/dashboard" />
+                ) : (
+                  <Welcome handleLogin={this.props.facebookLogin} guestLogin={this.props.guestLogin}/>
+                )
+              )}/>
 
-            <Route exact path="/dashboard" render={() => (
-              this.isLoggedIn() ? (
-                <Dashboard user={this.props.user} dives={this.props.dives} locations={this.props.locations} />
-              ) : (
-                <Redirect to="/"/>
-              )
-            )}/>
+              <Route exact path="/dashboard" render={() => (
+                this.isLoggedIn() ? (
+                  <Dashboard user={this.props.user} dives={this.props.dives} locations={this.props.locations} />
+                ) : (
+                  <Redirect to="/"/>
+                )
+              )}/>
 
-            <Route path={`${DIVES_ROOT}`} component={DivesPage} />
+              <Route path={`${DIVES_ROOT}`} component={DivesPage} />
 
-            <Route path={`${LOCATIONS_ROOT}`} component={LocationsPage} />
+              <Route path={`${LOCATIONS_ROOT}`} component={LocationsPage} />
 
-            <Route exact path="/about" component={About} />
-          </Switch>
+              <Route exact path="/about" component={About} />
+            </Switch>
+          </div>
         </div>
       </Router>
     );
