@@ -11,31 +11,36 @@ class Fish extends Component {
       x: Math.random() * 
         (window.innerWidth - Constant.max_scale_factor * Constant.image_width),
       xDirection: 'right',
-      xVelocity: 2,
 
       y: Math.random() * 
         (window.innerHeight - Constant.max_scale_factor * Constant.image_height),
       yDirection: 'down',
-      yVelocity: 1,
 
       z: Math.random() * Constant.min_z,
-      zVelocity: 0.1
+
+      velocity: {
+        x: 2,
+        y: 1,
+        z: 0.1
+      }
     };
   }
 
   chooseRandomMovement() {
-    let xVelocity = Math.random() * Constant.max_x_velocity;
-    let yVelocity = Math.random() * Constant.max_y_velocity;
-    let zVelocity = Math.random() * Constant.max_z_velocity;
+    let velocity = {
+      x: Math.random() * Constant.max_x_velocity,
+      y: Math.random() * Constant.max_y_velocity,
+      z: Math.random() * Constant.max_z_velocity
+    }
+
     let xDirection = Math.random() < 0.5 ? 'left' : 'right';
     let yDirection = Math.random() < 0.5 ? 'up' : 'down';
     let zDirection = Math.random() < 0.5 ? 'in' : 'out';
     this.setState({
-      xVelocity: xVelocity,
-      yVelocity: yVelocity,
+      velocity: velocity,
       xDirection: xDirection,
       yDirection: yDirection,
-      zVelocity: zVelocity,
+
       zDirection: zDirection
     })
   }
@@ -55,15 +60,15 @@ class Fish extends Component {
     y: Math.random() * 
       (this.state.aquariumHeight - Constant.max_scale_factor * Constant.image_height),
     yDirection: 'down',
-    yVelocity: 1,
 
     z: Constant.min_z,  // start in the back
-    zVelocity: 0.1
+
+    velocity: { ...this.state.velocity, y: 1, z: 0.1 }
     })
   }
 
   move() {
-    let { xVelocity, xDirection, yVelocity, yDirection, zVelocity, zDirection } = this.state;
+    let { velocity, xDirection, yDirection, zDirection } = this.state;
 
     if (this.state.x > this.state.aquariumWidth || this.state.y > this.state.aquariumHeight) {
       this.relocate(); // if the fish is outisde the window (window was resized, probably)
@@ -90,11 +95,11 @@ class Fish extends Component {
     }
 
     this.setState({
-      x: this.state.x + (xDirection === 'right' ? xVelocity : -xVelocity),
+      x: this.state.x + (xDirection === 'right' ? velocity.x : -velocity.x),
       xDirection: xDirection,
-      y: this.state.y + (yDirection === 'down' ? yVelocity : -yVelocity),
+      y: this.state.y + (yDirection === 'down' ? velocity.y : -velocity.y),
       yDirection: yDirection,
-      z: this.state.z + (zDirection === 'in' ? -zVelocity : zVelocity),
+      z: this.state.z + (zDirection === 'in' ? -velocity.z : velocity.z),
       zDirection: zDirection
     })
   }
