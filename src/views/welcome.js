@@ -1,5 +1,4 @@
 import  React from 'react';
-import { Link } from 'react-router-dom'
 import FbLoginButton from './components/FbLoginButton';
 import { Grid, Button } from 'react-bootstrap'
 
