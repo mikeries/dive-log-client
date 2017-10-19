@@ -126,9 +126,9 @@ class Fish extends Component {
   }
 
   render() {
-    const { position } = this.state;
+    const { position, direction } = this.state;
     let yScale = 2 - (position.z / Constant.min_z);
-    let xScale = ( position.xDirection === 'right' ? yScale : -yScale );
+    let xScale = ( direction.x === 'right' ? yScale : -yScale );
     let fishScale = {transform: `scaleX(${xScale}) scaleY(${yScale})`};
     let fishStyle = { ...fishScale, left: position.x, top: position.y, zIndex: Math.round(position.z) }
 
