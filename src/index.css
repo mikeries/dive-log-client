@@ -15,11 +15,11 @@ body {
   background-attachment: fixed;
 }
 
-#wrapper {
-
+.container {
+  overflow: auto;
 }
 
-.App {
+#application {
   margin: auto;
   text-align: center;
 }
