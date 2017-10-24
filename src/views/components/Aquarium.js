@@ -16,13 +16,9 @@ class Aquarium extends Component {
   }
 
   handleResize() {
-    const page = document.querySelector('#root');
-    const height = window.innerHeight > page.scrollHeight ? window.innerHeight : page.scrollHeight
-    const width = window.innerWidth > page.scollWidth ? window.innerWidth : page.scrollWidth
-    // console.log('window.innerHeight:', window.innerHeight)
-    // console.log('window.innerWidth:', window.innerWidth)
-    // console.log('page.scrollHeight:', page.scrollHeight)
-    // console.log('page.scrollWidth:', window.scrollWidth)
+    const page = document.getElementById('application');
+    const height = window.innerHeight > page.clientHeight ? window.innerHeight : page.clientHeight
+    const width = window.innerWidth > page.clientWidth ? window.innerWidth : page.clientWidth
 
     this.setState({
       height: height,
@@ -37,7 +33,7 @@ class Aquarium extends Component {
   render() {
     const { width, height } = this.state;
 
-    console.log('width:', document.getElementsByClassName('App'))
+    console.log(document.getElementById('application'))
     return (
       <div id='aquarium'>
         <div className='water' style={{ ...this.state, zIndex:-1 }}></div>
