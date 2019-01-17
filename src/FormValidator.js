@@ -14,7 +14,12 @@ class FormValidator {
               typeof v.method === 'string' ?
               validator[v.method] : 
               v.method
-              
+        
+        if(state[v.field] == undefined) {
+          validation[v.field] = { isInvalid: true, message: v.message }
+          validation.isValid = false;
+        }
+        else      
         if(validation_method(state[v.field].toString(), ...args, state) !== v.validWhen) {
           validation[v.field] = { isInvalid: true, message: v.message }
           validation.isValid = false;
